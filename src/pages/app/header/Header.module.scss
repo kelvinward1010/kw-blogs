@@ -1,0 +1,20 @@
+.container{
+    width: calc(100vw - 20px);
+    height: 60px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+
+    .maintitle{
+        cursor: pointer;
+    }
+
+    .center nav li {
+        display: inline-block;
+        list-style: none;
+        margin: 0 20px;
+        cursor: pointer;
+    }
+}
