@@ -6,7 +6,9 @@ import { Header } from "./header/Header";
 export function Layout() {
     return (
         <div className={styles.container}>
-            <Header />
+            <div className={styles.header}>
+                <Header />
+            </div>
             <Outlet />
         </div>
     )

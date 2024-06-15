@@ -1,3 +1,30 @@
 *{
   margin: 0;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 4px grey;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: grey;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: black;
+}
+
+.topics_tag .ant-tag {
+  cursor:  pointer !important;
+}
+.topics_tag .ant-tag:hover{
+  background: teal;
+  color: white;
+}
