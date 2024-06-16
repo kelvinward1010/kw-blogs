@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
-import { PostsTopics } from './components/PostsTopics';
-import { TopicsSelect } from './components/TopicsSelect';
+import { PostsTopics } from '../components/PostsTopics';
+import { TopicsSelect } from '../components/TopicsSelect';
 import styles from './Topics.module.scss';
 
 export function Topics() {

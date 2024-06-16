@@ -1,17 +1,34 @@
+import { IPost } from '@/types/post';
+import { posts } from '../data';
 import { Post } from './Post';
 import styles from './PostsTopics.module.scss';
+import { useSearchParams } from 'react-router-dom';
+import { useMemo } from 'react';
 
 export function PostsTopics() {
-    const posts = [
-        {key: 1, title: 'post 1'},
-        {key: 2, title: 'post 2'},
-        {key: 3, title: 'post 3'},
-        {key: 4, title: 'post 4'},
-    ]
+    const [topicsParams,__] = useSearchParams();
+    const keysSearchOnParams = topicsParams.getAll('topic');
+
+    const filteredPosts = useMemo(() => {
+        if(keysSearchOnParams.length > 0){
+            return posts.filter((post: IPost) => post.topic.some(topic => keysSearchOnParams.includes(topic)));
+        } else {
+            return posts;
+        }
+    }, [posts, keysSearchOnParams]);
+    
+    if(filteredPosts.length <= 0){
+        return (
+            <div>
+                Not found any post!
+            </div>
+        )
+    }
+
     return (
         <div className={styles.container}>
-            {posts.map((post: any) => (
-                <Post title={post.title}/>
+            {filteredPosts.map((post: IPost) => (
+                <Post key={post.id} data={post}/>
             ))}
         </div>
     )

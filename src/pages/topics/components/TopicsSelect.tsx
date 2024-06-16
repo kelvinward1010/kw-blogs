@@ -1,9 +1,41 @@
+import { useState } from 'react';
 import styles from './TopicsSelect.module.scss';
+import { Flex, Tag, Typography } from 'antd';
+import { useSearchParams } from 'react-router-dom';
+
+
+const { Text } = Typography;
+
+const topicsData = ['Anime', 'New', 'Netflix', 'Love', 'Science Fiction', 'Fantasy'];
 
 export function TopicsSelect() {
+    const [topicsParams, setTopicsParams] = useSearchParams();
+    const keysSearchOnParams = topicsParams.getAll('topic');
+    const [selectedTopics, setSelectedTopics] = useState<string[]>(keysSearchOnParams);
+
+    const handleChange = (tag: string, checked: boolean) => {
+        const nextSelectedTags = checked
+            ? [...selectedTopics, tag]
+            : selectedTopics.filter((t) => t !== tag);
+        setSelectedTopics(nextSelectedTags);
+        setTopicsParams({ topic: nextSelectedTags });
+    };
+
     return (
         <div className={styles.container}>
-            TopicsSelect
+            <Text strong className={styles.title}>Your topics:</Text>
+            <Flex gap={4} wrap align="center" className={styles.flex_tags}>
+                {topicsData.map<React.ReactNode>((tag) => (
+                    <Tag.CheckableTag
+                        key={tag}
+                        checked={selectedTopics.includes(tag)}
+                        onChange={(checked) => handleChange(tag, checked)}
+                        className={styles.tags_input}
+                    >
+                        {tag}
+                    </Tag.CheckableTag>
+                ))}
+            </Flex>
         </div>
     )
 }

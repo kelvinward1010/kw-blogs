@@ -1,4 +1,17 @@
-export { Layout } from './app/Layout';
-export { Home } from './home/Home';
-export { Topics } from './topics/Topics';
-export { AboutWe } from './aboutwe/AboutWe';
+import { lazyLoad } from "@/utils/loadable"
+
+export const Layout = lazyLoad(
+    () => import("./app/Layout"), (module) => module.Layout,
+)
+
+export const Home = lazyLoad(
+    () => import("./home/views/Home"), (module) => module.Home,
+)
+
+export const Topics = lazyLoad(
+    () => import("./topics/views/Topics"), (module) => module.Topics,
+)
+
+export const AboutWe = lazyLoad(
+    () => import("./aboutwe/views/AboutWe"), (module) => module.AboutWe,
+)
