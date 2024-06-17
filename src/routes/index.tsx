@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { aboutweUrl, homeUrl, layoutUrl, topicsUrl } from "./urls";
-import { AboutWe, Home, Layout, Topics } from "@/pages";
+import { aboutweUrl, homeUrl, layoutUrl, postdetailUrl, topicsUrl } from "./urls";
+import { AboutWe, DetailPost, Home, Layout, Topics } from "@/pages";
 
 
 export const routerConfig = createBrowserRouter([
@@ -21,6 +21,10 @@ export const routerConfig = createBrowserRouter([
             {
                 path: aboutweUrl,
                 element: <AboutWe />
+            },
+            {
+                path: postdetailUrl,
+                element: <DetailPost />
             },
         ]
     },

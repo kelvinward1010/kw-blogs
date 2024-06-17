@@ -6,7 +6,7 @@ import styles from './Topics.module.scss';
 export function Topics() {
     return (
         <div className={styles.container}>
-            <Row gutter={[8, 16]} wrap style={{width: 'calc(100vw - 40px)'}}>
+            <Row gutter={[8, 16]} wrap style={{width: 'calc(100vw - 20px)'}}>
                 <Col flex="0 1 200px">
                     <TopicsSelect />
                 </Col>

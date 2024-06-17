@@ -12,6 +12,10 @@ export const Topics = lazyLoad(
     () => import("./topics/views/Topics"), (module) => module.Topics,
 )
 
+export const DetailPost = lazyLoad(
+    () => import("./topics/views/DetailPost"), (module) => module.DetailPost,
+)
+
 export const AboutWe = lazyLoad(
     () => import("./aboutwe/views/AboutWe"), (module) => module.AboutWe,
 )

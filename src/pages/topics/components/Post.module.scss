@@ -6,6 +6,14 @@
 
     .image_thumbnail{
         border-top-left-radius: 5px;
+        height: 220px;
+        object-fit: cover;
+    }
+
+    .title:hover{
+        color: rgb(44, 135, 255);
+        text-decoration: underline;
+        cursor: pointer;
     }
 
     .content{
