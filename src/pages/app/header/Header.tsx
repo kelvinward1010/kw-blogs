@@ -1,7 +1,7 @@
 import { Avatar, Button, Flex, Typography } from 'antd';
 import styles from './Header.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { aboutweUrl, homeUrl, topicsUrl } from '../../../routes/urls';
+import { aboutweUrl, homeUrl, signinUrl, signupUrl, topicsUrl } from '../../../routes/urls';
 import { cutString } from '@/utils/string';
 
 const { Title, Text } = Typography;
@@ -9,6 +9,9 @@ const { Title, Text } = Typography;
 export function Header() {
     const navigate = useNavigate();
     const user = false;
+
+    const goSignup = () => navigate(signupUrl);
+    const goSignin = () => navigate(signinUrl);
 
     const goHome = () => navigate(homeUrl);
     const goTopics = () => navigate(topicsUrl);
@@ -31,8 +34,8 @@ export function Header() {
                     </Avatar>
                 ) : (
                     <Flex gap={'small'} justify={'center'} align={'center'}>
-                        <Button>Sign In</Button>
-                        <Button>Sign Up</Button>
+                        <Button onClick={goSignin}>Sign In</Button>
+                        <Button onClick={goSignup}>Sign Up</Button>
                     </Flex>
                 )}
             </div>

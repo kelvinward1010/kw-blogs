@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
-import { aboutweUrl, homeUrl, layoutUrl, postdetailUrl, topicsUrl } from "./urls";
-import { AboutWe, DetailPost, Home, Layout, Topics } from "@/pages";
+import { aboutweUrl, homeUrl, layoutUrl, postdetailUrl, signinUrl, signupUrl, topicsUrl } from "./urls";
+import { AboutWe, DetailPost, Home, Layout, Signin, Signup, Topics } from "@/pages";
 
 
 export const routerConfig = createBrowserRouter([
@@ -10,6 +10,14 @@ export const routerConfig = createBrowserRouter([
                 <Layout />
         ),
         children: [
+            {
+                path: signupUrl,
+                element: <Signup />
+            },
+            {
+                path: signinUrl,
+                element: <Signin />
+            },
             {
                 path: homeUrl,
                 element: <Home />

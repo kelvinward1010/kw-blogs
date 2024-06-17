@@ -1,7 +1,15 @@
-import { lazyLoad } from "@/utils/loadable"
+import { lazyLoad } from "@/utils/loadable";
 
 export const Layout = lazyLoad(
     () => import("./app/Layout"), (module) => module.Layout,
+)
+
+export const Signup = lazyLoad(
+    () => import("./sign-up/Signup"), (module) => module.Signup,
+)
+
+export const Signin = lazyLoad(
+    () => import("./sign-in/Signin"), (module) => module.Signin,
 )
 
 export const Home = lazyLoad(

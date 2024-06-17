@@ -10,7 +10,7 @@ export function Topics() {
                 <Col flex="0 1 200px">
                     <TopicsSelect />
                 </Col>
-                <Col flex="1 1 300px">
+                <Col flex="1 1 400px">
                     <PostsTopics />
                 </Col>
             </Row>
