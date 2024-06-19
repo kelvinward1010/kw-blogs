@@ -1,14 +1,16 @@
-import { Avatar, Button, Flex, Typography } from 'antd';
-import styles from './Header.module.scss';
+import { Avatar, Button, Dropdown, Flex, Typography } from 'antd';
+import styles from './header.module.scss';
 import { useNavigate } from 'react-router-dom';
 import { aboutweUrl, homeUrl, signinUrl, signupUrl, topicsUrl } from '../../../routes/urls';
 import { cutString } from '@/utils/string';
+import { ButtonConfig } from '@/components/buttonconfig';
+import { UserOutlined } from '@ant-design/icons';
 
 const { Title, Text } = Typography;
 
-export function Header() {
+export function Header(): JSX.Element {
     const navigate = useNavigate();
-    const user = false;
+    const user = true;
 
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
@@ -16,6 +18,21 @@ export function Header() {
     const goHome = () => navigate(homeUrl);
     const goTopics = () => navigate(topicsUrl);
     const goAboutWe = () => navigate(aboutweUrl);
+
+    const items = [
+        {
+            label: <>
+                <ButtonConfig lable={'Write your content'}/>
+            </>,
+            key: '0',
+        },
+        {
+            label: <>
+                <ButtonConfig className={'button-config'} lable={'Log Out'}/>
+            </>,
+            key: '1',
+        },
+    ]
 
     return (
         <div className={styles.container}>
@@ -29,9 +46,16 @@ export function Header() {
             </div>
             <div>
                 {user ? (
-                    <Avatar className={styles.avatar}>
-                        {cutString('KW')}
-                    </Avatar>
+                    <Dropdown
+                        menu={{
+                            items,
+                        }}
+                        trigger={['click']}
+                    >
+                        <Avatar className={styles.avatar} icon={<UserOutlined />}>
+                            {cutString('KW')}
+                        </Avatar>
+                    </Dropdown>
                 ) : (
                     <Flex gap={'small'} justify={'center'} align={'center'}>
                         <Button onClick={goSignin}>Sign In</Button>
