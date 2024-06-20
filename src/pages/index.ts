@@ -27,3 +27,7 @@ export const DetailPost = lazyLoad(
 export const AboutWe = lazyLoad(
     () => import("./aboutwe/views/AboutWe"), (module) => module.AboutWe,
 )
+
+export const WriteContent = lazyLoad(
+    () => import("./write-content/views/write-content"), (module) => module.WriteContent,
+)

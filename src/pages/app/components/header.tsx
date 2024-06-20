@@ -1,7 +1,7 @@
 import { Avatar, Button, Dropdown, Flex, Typography } from 'antd';
 import styles from './header.module.scss';
 import { useNavigate } from 'react-router-dom';
-import { aboutweUrl, homeUrl, signinUrl, signupUrl, topicsUrl } from '../../../routes/urls';
+import { aboutweUrl, layoutUrl, signinUrl, signupUrl, topicsUrl, writecontentUrl } from '../../../routes/urls';
 import { cutString } from '@/utils/string';
 import { ButtonConfig } from '@/components/buttonconfig';
 import { UserOutlined } from '@ant-design/icons';
@@ -15,14 +15,14 @@ export function Header(): JSX.Element {
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
 
-    const goHome = () => navigate(homeUrl);
+    const goHome = () => navigate(layoutUrl);
     const goTopics = () => navigate(topicsUrl);
     const goAboutWe = () => navigate(aboutweUrl);
 
     const items = [
         {
             label: <>
-                <ButtonConfig lable={'Write your content'}/>
+                <ButtonConfig onClick={() => navigate(writecontentUrl)} lable={'Write your content'}/>
             </>,
             key: '0',
         },

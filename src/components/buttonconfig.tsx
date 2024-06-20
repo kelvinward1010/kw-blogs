@@ -5,6 +5,7 @@ interface ButtonProps extends Omit<BaseButtonProps, 'type'>{
     type?: ButtonType;
     props?: any;
     lable?: any | React.Component;
+    onClick?: () => void;
 }
 
 export const ButtonConfig: React.FC<ButtonProps> = ({
@@ -15,9 +16,10 @@ export const ButtonConfig: React.FC<ButtonProps> = ({
     styles,
     size,
     className,
+    onClick,
 }) => {
     return (
-        <Button className={className} styles={styles} size={size} loading={loading} {...props} type={type}>
+        <Button onClick={onClick} className={className} styles={styles} size={size} loading={loading} {...props} type={type}>
             {lable}
         </Button>
     )
