@@ -10,7 +10,7 @@ const { Title, Text } = Typography;
 
 export function Header(): JSX.Element {
     const navigate = useNavigate();
-    const user = true;
+    const user = false;
 
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
