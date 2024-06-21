@@ -4,4 +4,10 @@ export type IPost = {
     title: string;
     content: any;
     image_thumbnail: string;
+    authorID: string | number;
+}
+
+export interface IBasetListPost {
+    isLoading: boolean;
+    data: IPost[];
 }

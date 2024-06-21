@@ -1,9 +1,10 @@
-import { IPost } from '@/types/post';
+import { IBasetListPost, IPost } from '@/types/post';
 import { posts } from '../data';
 import { Post } from './Post';
 import styles from './PostsTopics.module.scss';
 import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
+import { customConditionalFeedbackHigh } from '@/utils/custom-feedback.hoc';
 
 export function PostsTopics() {
     const [topicsParams,__] = useSearchParams();
@@ -16,20 +17,33 @@ export function PostsTopics() {
             return posts;
         }
     }, [posts, keysSearchOnParams]);
-    
-    if(filteredPosts.length <= 0){
-        return (
-            <div>
-                Not found any post!
-            </div>
-        )
+
+    const draft = {
+        isLoading: false,
+        data: filteredPosts,
     }
+
+    const ListPost = customConditionalFeedbackHigh(
+        'Loading Todos...',
+        'No Todos loaded yet.',
+        'Todos are empty.',
+    )(BaseListPost);
 
     return (
         <div className={styles.container}>
-            {filteredPosts.map((post: IPost) => (
-                <Post key={post.id} data={post}/>
-            ))}
+            <ListPost data={draft} />
         </div>
     )
 }
+
+const BaseListPost: React.FC<{data: IBasetListPost}> = ({
+    data
+}) => {
+    return (
+        <div className={styles.list_post}>
+            {data?.data.map((post: IPost) => (
+                <Post key={post.id} data={post}/>
+            ))}
+        </div>
+    );
+};

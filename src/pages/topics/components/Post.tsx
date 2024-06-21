@@ -20,13 +20,14 @@ export const Post: React.FC<PostProps> = ({
 
     return (
         <div className={styles.container}>
-            <Row justify={'space-evenly'} gutter={8}>
+            <Row justify={'space-between'} gutter={8}>
                 <Col span={8}>
                     <img width={'100%'} className={styles.image_thumbnail} src={data?.image_thumbnail} />
                 </Col>
                 <Col span={16}>
                     <Flex vertical={true} justify={'center'} align={'start'}>
                         <Title className={styles.title} onClick={handleGoPost}>{data?.title}</Title>
+                        <Text strong className={styles.author}>Author: {data?.authorID}</Text>
                         <Text className={styles.content}>{data?.content}</Text>
                     </Flex>
                 </Col>
