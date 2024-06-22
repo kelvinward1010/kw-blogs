@@ -5,6 +5,7 @@ export type IPost = {
     content: any;
     image_thumbnail: string;
     authorID: string | number;
+    time_created: string;
 }
 
 export interface IBasetListPost {
