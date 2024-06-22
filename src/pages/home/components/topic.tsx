@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import styles from './right-home.module.scss';
+import styles from './topic.module.scss';
 import { Flex, Tag, Typography } from 'antd';
 import { useState } from 'react';
 import { topicsData } from '@/config/topic';
@@ -7,7 +7,7 @@ import { topicsUrl } from '@/routes/urls';
 
 const { Text } = Typography;
 
-export function RightHome() {
+export function Topics() {
 
     const navigate = useNavigate();
     const [topicsParams, setTopicsParams] = useSearchParams();

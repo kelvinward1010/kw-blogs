@@ -1,9 +1,6 @@
 .container{
     height: auto;
-    width: calc(100vw - 20px);
-    padding: 10px;
-
-    .top_left{
-        background-color: teal;
-    }
+    width: calc(100vw - 40px);
+    padding: 20px;
+    overflow-y: hidden;
 }
