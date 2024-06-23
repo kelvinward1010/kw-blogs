@@ -1,1 +1,0 @@
-export const topicsData = ['Anime', 'New', 'Netflix', 'Love', 'Science Fiction', 'Fantasy'];

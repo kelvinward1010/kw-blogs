@@ -30,7 +30,14 @@
         }
     }
 
-    .avatar{
-        cursor: pointer;
+    .right_head{
+
+        display: flex;
+
+        
+        .avatar{
+            cursor: pointer;
+        }
     }
+    
 }

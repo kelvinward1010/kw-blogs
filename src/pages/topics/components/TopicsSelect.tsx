@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './TopicsSelect.module.scss';
 import { Flex, Tag, Typography } from 'antd';
 import { useSearchParams } from 'react-router-dom';
-import { topicsData } from '@/config/topic';
+import { topicsData } from '@/config';
 
 
 const { Text } = Typography;

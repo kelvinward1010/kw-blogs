@@ -2,8 +2,8 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import styles from './topic.module.scss';
 import { Flex, Tag, Typography } from 'antd';
 import { useState } from 'react';
-import { topicsData } from '@/config/topic';
 import { topicsUrl } from '@/routes/urls';
+import { topicsData } from '@/config';
 
 const { Text } = Typography;
 

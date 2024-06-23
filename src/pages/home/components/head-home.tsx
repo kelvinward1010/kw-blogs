@@ -7,25 +7,25 @@ export function HeadHome() {
             <Carousel autoplay>
                 <div className={styles.item}>
                     <img
-                        src="https://media.istockphoto.com/id/517188688/photo/mountain-landscape.jpg?b=1&s=612x612&w=0&k=20&c=81f5HaMtoPNUrdfa4hnS8NcwEgD9tH2nnTUBu25Msug="
+                        src="https://i.imgur.com/JZe3lvz.jpg"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1a/24701-nature-natural-beauty.jpg/1280px-24701-nature-natural-beauty.jpg"
+                        src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYM9KvP-bpz9dnTQP1O7OhpXl-Vs21ImIUtsfrrwF34WX36c4S7ceysPRTiFe4MamL8AKhiCvsPsS_ON75eGeuJfhSEmUp4l6bM0.jpg?r=0e5"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://media.istockphoto.com/id/157727724/photo/sunset.webp?b=1&s=170667a&w=0&k=20&c=jgfpEZDbZeKpNpP_Ic_b4YpHuo6UWQqdU563g4eItpM="
+                        src="https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=675,quality=85/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpe"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://images.unsplash.com/photo-1517222738892-2ff5b4203027?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwcm9maWxlLWxpa2VkfDV8fHxlbnwwfHx8fHw%3D&w=1000&q=80"
+                        src="https://br.web.img3.acsta.net/pictures/20/09/14/10/31/4875617.jpg"
                         alt="Images"
                     />
                 </div>
