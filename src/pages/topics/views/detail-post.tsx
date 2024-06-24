@@ -2,6 +2,7 @@ import { Col, Row, Typography } from 'antd';
 import styles from './detail-post.module.scss';
 import { ButtonConfig } from '@/components/buttonconfig';
 import { RelateTopics } from './components/relate-topics';
+import { Comments } from './components/comments';
 
 const { Title, Text } = Typography;
 
@@ -21,7 +22,7 @@ export function DetailPost(): JSX.Element {
                     In the process of internal desktop applications development, many different design specs and implementations would be involved, which might cause designers and developers difficulties and duplication and reduce the efficiency of development.
                 </Text>
             </Row>
-            
+            <Comments />
             <RelateTopics />
         </div>
     )

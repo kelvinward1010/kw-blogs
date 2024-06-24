@@ -7,7 +7,7 @@ export const posts: IPost[] = [
         title: 'Hige wo suro 1',
         authorID: "2345677654",
         content: 'In the process of internal desktop applications development, many different design specs and implementations would be involved, which might cause designers and developers difficulties and duplication and reduce the efficiency of development.',
-        image_thumbnail: 'https://gamek.mediacdn.vn/133514250583805952/2021/4/10/sa1-16180246670981586096633.jpg',
+        image_thumbnail: 'https://ww2.kqed.org/app/uploads/sites/2/2017/04/Your_Name_wide-de15ee4b957dc7841b74d207c7736d4ce32e55b2.jpg',
         time_created: '2017-09-01',
     },
     {
@@ -34,7 +34,7 @@ export const posts: IPost[] = [
         title: 'Hige wo suro 4',
         authorID: "2345677654",
         content: 'In the process of internal desktop applications development, many different design specs and implementations would be involved, which might cause designers and developers difficulties and duplication and reduce the efficiency of development.',
-        image_thumbnail: 'https://i0.wp.com/nyc3.digitaloceanspaces.com/blog-media-cloud/2021/04/Higehiro-Ep-4-Img-08.png?fit=1200%2C675&ssl=1',
+        image_thumbnail: 'https://www.funimationfilms.com/wp-content/uploads/2016/11/YourName-heading.jpg',
         time_created: '2017-09-01',
     },
     {
