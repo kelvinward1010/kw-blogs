@@ -32,3 +32,13 @@
 .button-config{
   width: 100%;
 }
+
+.button-submit{
+  background: rgb(21, 166, 166);
+  color: white;
+}
+
+.button-submit:hover{
+  background: teal;
+  color: white;
+}
