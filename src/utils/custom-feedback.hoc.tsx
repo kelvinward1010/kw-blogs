@@ -13,7 +13,7 @@ export const customConditionalFeedbackHigh =
 
 export const customConditionalCommentsFeedbackHigh =
     (noDataFeedBack?: string, dataEmptyFeedback?: string) =>
-        (Component: React.ComponentType<{ data: IComment[] }>) =>
+        (Component: React.ComponentType<{ data?: IComment[] }>) =>
             (props: any) => {
                 if (!props?.data) return <div>{noDataFeedBack || 'No data loaded yet'}</div>
                 if (!props?.data.length) return <div>{dataEmptyFeedback || 'Data is empty'}</div>

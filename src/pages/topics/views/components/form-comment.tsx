@@ -7,7 +7,15 @@ type FieldType = {
     comment?: string;
 };
 
-export function FormComment() {
+interface CommentProps{
+    isReply?: boolean;
+    ofComment?: any;
+}
+
+export const FormComment: React.FC<CommentProps> = ({
+    isReply,
+    ofComment,
+}) => {
 
     const [form] = Form.useForm();
 
@@ -20,7 +28,7 @@ export function FormComment() {
     };
 
     return (
-        <div className={styles.container}>
+        <div className={styles.container} style={{marginLeft: `${35 * Number(isReply ? 1 : 0)}px`}}>
             <Row justify={'start'} align={'top'}>
                 <Col flex={'none'}>
                     <Avatar icon={<UserAddOutlined />} />
@@ -28,7 +36,7 @@ export function FormComment() {
                 <Col flex={'auto'} className={styles.right}>
                     <Form
                         form={form}
-                        name="Form Comment"
+                        name={`formcomment-${ofComment ?? 0}`}
                         initialValues={{ remember: true }}
                         onFinish={onFinish}
                         layout={'horizontal'}

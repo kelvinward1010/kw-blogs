@@ -11,5 +11,14 @@
 
     .right{
         margin-left: 5px;
+
+        .acincmt{
+            cursor: pointer;
+        }
+
+        .acincmt:hover{
+            text-decoration: underline;
+            color: teal;
+        }
     }
 }
