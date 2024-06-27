@@ -1,4 +1,4 @@
-import { Typography } from 'antd';
+import { Row, Typography } from 'antd';
 import styles from './relate-topics.module.scss';
 import { IBasetListPost, IPost } from '@/types/post';
 import { useNavigate } from 'react-router-dom';
@@ -47,10 +47,11 @@ const News: React.FC<{data: IPost}> = ({
     return (
         <div className={styles.container_news} onClick={handleGoPost}>
             <Title className={`${styles.text} ${styles.title}`} level={4}>{data.title}</Title>
-            <Text className={`${styles.text} ${styles.author}`}>Author: {data.authorID}</Text>
-            <Text className={`${styles.text} ${styles.time}`}>Time: {data.time_created}</Text>
+            <Row wrap justify={'space-between'}>
+                    <Text className={`${styles.text} ${styles.time}`}>Time: {data.time_created}</Text>
+                    <img width={'100%'} className={styles.img_center} src={data.image_thumbnail} alt={data.title} />
+            </Row>
             <Text className={`${styles.text} ${styles.content}`}>&nbsp;&nbsp;&nbsp;&nbsp;{data.content}</Text>
-            <img className={styles.img_center} src={data.image_thumbnail} alt={data.title} />
         </div>
     )
 }

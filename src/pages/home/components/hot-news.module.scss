@@ -5,6 +5,8 @@
     padding: 10px 0;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     border-radius: 5px;
+    padding: 0 3px;
+
     .title{
         text-transform: uppercase;
     }
@@ -19,7 +21,7 @@
 .container_news{
     max-width: 400px;
     width: auto;
-    min-height: 240px;
+    min-height: 200px;
     height: auto;
     border-radius: 5px;
     display: flex;
@@ -27,6 +29,7 @@
     flex-direction: column;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     cursor: pointer;
+    padding: 10px;
 
     .text{
         margin-left: 10px;
@@ -53,12 +56,7 @@
     }
 
     .img_center{
-        position: absolute;
-        z-index: -1;
         object-fit: cover;
-        max-width: 400px;
-        width: auto;
-        min-height: 240px;
         border-radius: 5px;
         opacity: 0.5;
     }
