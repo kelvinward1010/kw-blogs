@@ -26,7 +26,7 @@ export const Post: React.FC<PostProps> = ({
                 </Col>
                 <Col span={16}>
                     <Flex vertical={true} justify={'center'} align={'start'}>
-                        <Title className={styles.title} onClick={handleGoPost}>{data?.title}</Title>
+                        <Title className={styles.title} onClick={handleGoPost} level={3}>{data?.title}</Title>
                         <Text strong className={styles.author}>Author: {data?.authorID}</Text>
                         <Text className={styles.content}>{data?.content}</Text>
                     </Flex>
