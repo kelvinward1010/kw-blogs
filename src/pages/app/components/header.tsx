@@ -16,7 +16,7 @@ export function Header(): JSX.Element {
 
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const user = false;
+    const user = true;
     const currentLanguage = localStorage.getItem('i18nextLng-kwnews');
 
     const goSignup = () => navigate(signupUrl);
@@ -52,7 +52,7 @@ export function Header(): JSX.Element {
                 justify={'start'}
                 align={'center'}
             >
-                <img src={icon} alt="" style={{width: '10px'}}/>
+                <img src={icon} alt="" style={{width: '15px'}}/>
                 <Text style={{margin: "-1px 0 0 3px"}}>{lable}</Text>
             </Flex>
         )

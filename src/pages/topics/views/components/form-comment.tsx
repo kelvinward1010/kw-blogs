@@ -47,7 +47,7 @@ export const FormComment: React.FC<CommentProps> = ({
                             name="comment"
                             rules={[{ required: true }]}
                         >
-                            <Input.TextArea placeholder='Write your feeling...' />
+                            <Input.TextArea placeholder='Write your feeling...'/>
                         </Form.Item>
                         <Form.Item>
                             <Space>

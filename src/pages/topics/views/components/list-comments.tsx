@@ -11,6 +11,21 @@ const { Text } = Typography;
 
 export function ListComments() {
 
+    const [currentComments, setCurrentComments] = useState<number>(2);
+
+    const handleCalcComments = (): number => {
+        const increment = 2;
+        const maxLengthComments = comments.length;
+
+        if( currentComments + increment > maxLengthComments){
+            setCurrentComments(currentComments + (maxLengthComments - currentComments));
+        }else {
+            setCurrentComments(currentComments + increment);
+        }
+
+        return currentComments;
+    }
+
     const ListPost = customConditionalCommentsFeedbackHigh(
         'No Todos loaded yet.',
         'Todos are empty.',
@@ -18,7 +33,8 @@ export function ListComments() {
 
     return (
         <div className={styles.container}>
-            <ListPost data={comments} />
+            <ListPost data={comments.slice(0,currentComments)} />
+            {comments.length != currentComments ? <Text className={styles.seemorecomments} strong onClick={handleCalcComments}>See more comments</Text> : ''}
         </div>
     )
 }
