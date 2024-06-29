@@ -2,7 +2,8 @@ export type IPost = {
     id: string | number;
     topic: string[];
     title: string;
-    content: any;
+    html: any;
+    editorState?: any;
     image_thumbnail: string;
     authorID: string | number;
     time_created: string;

@@ -1,8 +1,8 @@
 import { Col, Row, Typography } from 'antd';
 import styles from './detail-post.module.scss';
 import { ButtonConfig } from '@/components/buttonconfig';
-import { RelateTopics } from './components/relate-topics';
-import { Comments } from './components/comments';
+import { RelateTopics } from '../components/comments/relate-topics';
+import { Comments } from '../components/comments/comments';
 
 const { Title, Text } = Typography;
 

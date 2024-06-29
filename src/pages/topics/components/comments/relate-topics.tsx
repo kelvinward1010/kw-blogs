@@ -26,7 +26,7 @@ export function RelateTopics() {
     return (
         <div className={styles.container}>
             <div className={styles.center}>
-                <Title level={3}>
+                <Title level={3} className={styles.title_main}>
                     Articles with related topics
                 </Title>
                 <ListPost data={draftData} />
@@ -50,7 +50,7 @@ const News: React.FC<{data: IPost}> = ({
             <Row wrap justify={'space-between'}>
                     <img width={'100%'} className={styles.img_center} src={data.image_thumbnail} alt={data.title} />
             </Row>
-            <Text className={`${styles.text} ${styles.content}`}>&nbsp;&nbsp;&nbsp;&nbsp;{data.content}</Text>
+            <Text className={`${styles.text} ${styles.content}`}>&nbsp;&nbsp;&nbsp;&nbsp;{data.html}</Text>
         </div>
     )
 }
