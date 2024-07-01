@@ -11,6 +11,8 @@
   },
   "dependencies": {
     "@ant-design/icons": "^5.3.7",
+    "@ckeditor/ckeditor5-react": "^8.0.0",
+    "@ckeditor/ckeditor5-upload": "^42.0.0",
     "@tabler/icons-react": "^3.6.0",
     "antd": "^5.18.1",
     "i18next": "^23.11.5",
