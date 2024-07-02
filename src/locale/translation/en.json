@@ -1,8 +1,16 @@
 {
     "name_app": "KW News",
-    "menu": {
-        "home": "Home",
-        "topics": "Topics",
-        "aboutwe": "About We"
+    "head": {
+        "menu": {
+            "home": "Home",
+            "topics": "Topics",
+            "aboutwe": "About We"
+        },
+        "lefthead": {
+            "writecontent": "Write your content",
+            "logout": "Log Out",
+            "signup": "Sign Up",
+            "signin": "Sign In"
+        }
     }
 }

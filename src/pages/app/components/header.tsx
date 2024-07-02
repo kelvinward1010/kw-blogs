@@ -16,7 +16,7 @@ export function Header(): JSX.Element {
 
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const user = true;
+    const user = false;
     const currentLanguage = localStorage.getItem('i18nextLng-kwnews');
 
     const goSignup = () => navigate(signupUrl);
@@ -34,13 +34,13 @@ export function Header(): JSX.Element {
     const items = [
         {
             label: <>
-                <ButtonConfig onClick={() => navigate(writecontentUrl)} lable={'Write your content'}/>
+                <ButtonConfig onClick={() => navigate(writecontentUrl)} lable={t("head.lefthead.writecontent")} />
             </>,
             key: '0',
         },
         {
             label: <>
-                <ButtonConfig className={'button-config'} lable={'Log Out'}/>
+                <ButtonConfig className={'button-config'} lable={t("head.lefthead.logout")} />
             </>,
             key: '1',
         },
@@ -52,27 +52,25 @@ export function Header(): JSX.Element {
                 justify={'start'}
                 align={'center'}
             >
-                <img src={icon} alt="" style={{width: '15px'}}/>
-                <Text style={{margin: "-1px 0 0 3px"}}>{lable}</Text>
+                <img src={icon} alt="" style={{ width: '15px' }} />
+                <Text style={{ margin: "-1px 0 0 3px" }}>{lable}</Text>
             </Flex>
         )
     }
 
     const lableRender: labelRender = (props) => {
-        if(props.label == 'VI') return configLableLanguages(VIIcon, props.label);
-        if(props.label == 'EN') return configLableLanguages(ENIcon, props.label);
+        if (props.label == 'VI') return configLableLanguages(VIIcon, props.label);
+        if (props.label == 'EN') return configLableLanguages(ENIcon, props.label);
     };
 
     return (
         <div className={styles.container}>
             <Title level={3} onClick={goHome} className={styles.maintitle}>{t("name_app")}</Title>
-            <div className={styles.center}>
-                <nav>
-                    <li onClick={goHome}><Text className={styles.title} strong>{t("menu.home")}</Text></li>
-                    <li onClick={goTopics}><Text className={styles.title} strong>{t("menu.topics")}</Text></li>
-                    <li onClick={goAboutWe}><Text className={styles.title} strong>{t("menu.aboutwe")}</Text></li>
-                </nav>
-            </div>
+            <nav>
+                <li onClick={goHome}><Text className={`${styles.title}`} strong>{t("head.menu.home")}</Text></li>
+                <li onClick={goTopics}><Text className={`${styles.title}`} strong>{t("head.menu.topics")}</Text></li>
+                <li onClick={goAboutWe}><Text className={`${styles.title}`} strong>{t("head.menu.aboutwe")}</Text></li>
+            </nav>
             <div className={styles.right_head}>
                 <Select
                     defaultValue={currentLanguage}
@@ -81,10 +79,10 @@ export function Header(): JSX.Element {
                     options={OPTIONS_LANGUAGES}
                     labelRender={lableRender}
                     optionRender={(options) => {
-                        if(options.label == 'EN'){
+                        if (options.label == 'EN') {
                             return configLableLanguages(ENIcon, 'EN')
                         }
-                        if(options.label == 'VI'){
+                        if (options.label == 'VI') {
                             return configLableLanguages(VIIcon, 'VI')
                         }
                     }}
@@ -102,8 +100,8 @@ export function Header(): JSX.Element {
                     </Dropdown>
                 ) : (
                     <Flex gap={'small'} justify={'center'} align={'center'}>
-                        <Button onClick={goSignin}>Sign In</Button>
-                        <Button onClick={goSignup}>Sign Up</Button>
+                        <Button onClick={goSignin}>{t("head.lefthead.signin")}</Button>
+                        <Button onClick={goSignup}>{t("head.lefthead.signup")}</Button>
                     </Flex>
                 )}
             </div>

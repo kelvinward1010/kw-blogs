@@ -1,14 +1,17 @@
 import { ChangeEvent, useRef, useState } from 'react';
 import { EditorConfig } from '../components/editor';
 import styles from './write-content.module.scss';
-import { Flex, Form, Input } from 'antd';
+import { Flex, Form, Input, Typography } from 'antd';
 import { ButtonConfig } from '@/components/buttonconfig';
 import { dataURLtoBlob } from '@/utils/blob';
+import { UploadOutlined } from '@ant-design/icons';
 
 type FieldType = {
     title?: string
     description?: string;
 };
+
+const { Text } = Typography;
 
 export function WriteContent() {
 
@@ -17,6 +20,8 @@ export function WriteContent() {
     const [image, setImage] = useState<any>();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
+    const formLabel = (value: string) => <Text strong>{value}</Text>;
+    
     const handleChangeInputImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         const files = e.target.files;
@@ -24,7 +29,7 @@ export function WriteContent() {
         reader.onload = () => {
             setImage(reader.result as any);
         }
-        if(files !== null && files.length) reader.readAsDataURL(files[0]);
+        if (files !== null && files.length) reader.readAsDataURL(files[0]);
     }
 
     const handleButtonClick = () => {
@@ -33,21 +38,39 @@ export function WriteContent() {
         }
     };
 
+    function checkAllFieldsExist(): boolean {
+        const valuesDraftChecks: any = {
+            content: content,
+            image_thumbnail: image,
+        }
+        const keys = Object.keys(valuesDraftChecks);
+        const allFieldsExist = keys.every((key) => valuesDraftChecks[key] !== undefined && valuesDraftChecks[key] !== null);
+
+        return allFieldsExist ? false : true;
+    }
+
+    const handleResetAll = () => {
+        form.resetFields();
+        setContent('')
+        setImage('')
+    }
+
     const onFinish = (values: FieldType) => {
 
         const dataUrl = image;
         const blob: Blob = dataURLtoBlob(dataUrl);
         const formData = new FormData();
-        formData.append('file', blob, "avatar.png");
+        formData.append('file', blob, "image.png");
 
         const draftData = {
             title: values.title,
             description: values.description,
             content: content,
-            image: image,
+            image_thumbnail: image,
         }
         console.log(draftData)
     };
+
 
     return (
         <div className={styles.container}>
@@ -65,39 +88,44 @@ export function WriteContent() {
             >
                 <Form.Item wrapperCol={{ offset: 0 }}>
                     <Flex gap="small">
-                        <ButtonConfig className={styles.submit} type="primary" htmlType={'submit'} lable={'Submit'} />
-                        <ButtonConfig danger onClick={() => form.resetFields()} lable={'Reset'} />
+                        <ButtonConfig disabled={checkAllFieldsExist()} className={styles.submit} type="primary" htmlType={'submit'} lable={'Submit'} />
+                        <ButtonConfig danger onClick={handleResetAll} lable={'Reset all'} />
                     </Flex>
                 </Form.Item>
                 <Form.Item<FieldType>
-                    label="Title"
+                    label={formLabel('Title')}
                     name="title"
+                    rules={[{ required: true, message: 'Please input your title!' }]}
                 >
                     <Input.TextArea rows={2} />
                 </Form.Item>
 
                 <Form.Item<FieldType>
-                    label="Description"
+                    label={formLabel("Description")}
                     name="description"
+                    rules={[{ required: true, message: 'Please input your description!' }]}
                 >
                     <Input.TextArea rows={4} />
                 </Form.Item>
 
                 <Form.Item
-                    label="Image"
+                    label={formLabel("Image")}
                 >
-                    <ButtonConfig onClick={handleButtonClick} lable={'Upload Image'}>
-                        <input 
-                            style={{ display: 'none' }} 
-                            ref={fileInputRef} 
-                            accept="image/*" 
-                            type={'file'} 
+                    <ButtonConfig icon={<UploadOutlined />} iconPosition={'start'} onClick={handleButtonClick} lable={'Click to upload'}>
+                        <input
+                            style={{ display: 'none' }}
+                            ref={fileInputRef}
+                            accept="image/*"
+                            type={'file'}
                             onChange={handleChangeInputImage}
                         />
                     </ButtonConfig>
+                    {image && (
+                        <img className={styles.image_upload} src={image} />
+                    )}
                 </Form.Item>
 
-                <Form.Item label="Content" wrapperCol={{ offset: 0 }}>
+                <Form.Item label={formLabel("Content")} wrapperCol={{ offset: 0 }}>
                     <EditorConfig content={content} setContent={setContent} />
                 </Form.Item>
             </Form>

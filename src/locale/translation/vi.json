@@ -1,8 +1,16 @@
 {
     "name_app": "KW Tin Tức",
-    "menu": {
-        "home": "Trang chủ",
-        "topics": "Chủ đề",
-        "aboutwe": "Chúng tôi"
+    "head": {
+        "menu": {
+            "home": "Trang chủ",
+            "topics": "Chủ đề",
+            "aboutwe": "Chúng tôi"
+        },
+        "lefthead": {
+            "writecontent": "Viết nội dung của bạn",
+            "logout": "Đăng xuất",
+            "signup": "Đăng Ký",
+            "signin": "Đăng Nhập"
+        }
     }
 }

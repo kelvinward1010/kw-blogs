@@ -8,6 +8,7 @@ interface ButtonProps extends Omit<BaseButtonProps, 'type'>{
     onClick?: () => void;
     htmlType?: any;
     children?: React.ReactNode;
+    disabled?: boolean;
 }
 
 export const ButtonConfig: React.FC<ButtonProps> = ({
@@ -22,9 +23,12 @@ export const ButtonConfig: React.FC<ButtonProps> = ({
     htmlType,
     danger,
     children,
+    icon,
+    iconPosition,
+    disabled,
 }) => {
     return (
-        <Button danger={danger} htmlType={htmlType} onClick={onClick} className={className} styles={styles} size={size} loading={loading} {...props} type={type}>
+        <Button disabled={disabled} icon={icon} iconPosition={iconPosition} danger={danger} htmlType={htmlType} onClick={onClick} className={className} styles={styles} size={size} loading={loading} {...props} type={type}>
             {lable}
             {children}
         </Button>

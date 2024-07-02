@@ -55,13 +55,13 @@ export function AboutWe() {
                         label="Your Messages"
                         name="message"
                     >
-                        <Input.TextArea rows={6}/>
+                        <Input.TextArea rows={6} />
                     </Form.Item>
 
                     <Form.Item wrapperCol={{ offset: 0 }}>
                         <Flex gap="small">
-                            <ButtonConfig className={styles.submit} type="primary" htmlType={'submit'} lable={'Submit'}/>
-                            <ButtonConfig danger onClick={() => form.resetFields()} lable={'Reset'}/>
+                            <ButtonConfig className={styles.submit} type="primary" htmlType={'submit'} lable={'Submit'} />
+                            <ButtonConfig danger onClick={() => form.resetFields()} lable={'Reset'} />
                         </Flex>
                     </Form.Item>
                 </Form>

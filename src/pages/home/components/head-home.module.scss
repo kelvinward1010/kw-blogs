@@ -18,5 +18,12 @@
             max-height: 550px;
             object-fit: cover;
         }
+
+        @media screen and (max-width: 548px) {
+            img{
+                min-height: 350px;
+                max-height: 350px;
+            }
+        }
     }
 }
