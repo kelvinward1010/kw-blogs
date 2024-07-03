@@ -26,7 +26,7 @@ export function RelateTopics() {
     return (
         <div className={styles.container}>
             <div className={styles.center}>
-                <Title level={3} className={styles.title_main}>
+                <Title level={4} className={styles.title_main}>
                     Articles with related topics
                 </Title>
                 <ListPost data={draftData} />

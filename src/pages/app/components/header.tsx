@@ -16,7 +16,7 @@ export function Header(): JSX.Element {
 
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const user = false;
+    const user = true;
     const currentLanguage = localStorage.getItem('i18nextLng-kwnews');
 
     const goSignup = () => navigate(signupUrl);

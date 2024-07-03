@@ -10,6 +10,19 @@
         min-height: calc(100vh - 120px);
         width: auto;
         height: auto;
-        overflow-x: hidden;
+        overflow-x: hidden !important;
+    }
+
+    .scrollToTop{
+        z-index: 99999;
+        position: fixed;
+        right: 20px;
+        bottom: 70px;
+        background: teal;
+        color: white;
+        border: 1px solid teal;
+    }
+    .scrollToTop.show {
+        display: block;
     }
 }

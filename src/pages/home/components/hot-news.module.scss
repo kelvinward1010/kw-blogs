@@ -3,9 +3,9 @@
     width: 100%;
     margin: 20px 0;
     padding: 10px 0;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     border-radius: 5px;
     padding: 0 3px;
+    overflow-x: hidden;
 
     .title{
         text-transform: uppercase;
@@ -30,6 +30,7 @@
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgb(209, 213, 219) 0px 0px 0px 1px inset;
     cursor: pointer;
     padding: 10px;
+    overflow-x: hidden !important;
 
     .text{
         margin-left: 10px;
@@ -70,4 +71,5 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     gap: 10px;
+    overflow-x: hidden !important;
 }

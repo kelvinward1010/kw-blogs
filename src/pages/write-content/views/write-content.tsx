@@ -1,10 +1,13 @@
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { EditorConfig } from '../components/editor';
 import styles from './write-content.module.scss';
 import { Flex, Form, Input, Typography } from 'antd';
 import { ButtonConfig } from '@/components/buttonconfig';
 import { dataURLtoBlob } from '@/utils/blob';
 import { UploadOutlined } from '@ant-design/icons';
+import { useParams } from 'react-router-dom';
+import { IPost } from '@/types/post';
+import { posts } from '@/pages/topics/data';
 
 type FieldType = {
     title?: string
@@ -15,12 +18,15 @@ const { Text } = Typography;
 
 export function WriteContent() {
 
-    const [form] = Form.useForm();
+    const [formWritecontent] = Form.useForm();
+    const id: any = useParams();
     const [content, setContent] = useState<any>();
     const [image, setImage] = useState<any>();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const formLabel = (value: string) => <Text strong>{value}</Text>;
+
+    const data: IPost = posts?.[id?.id];
     
     const handleChangeInputImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -50,7 +56,7 @@ export function WriteContent() {
     }
 
     const handleResetAll = () => {
-        form.resetFields();
+        formWritecontent.resetFields();
         setContent('')
         setImage('')
     }
@@ -71,11 +77,17 @@ export function WriteContent() {
         console.log(draftData)
     };
 
+    useEffect(() => {
+        id?.id && data ? formWritecontent?.setFieldsValue(data) : formWritecontent?.setFieldsValue({
+            title: '',
+            description: '',
+        })
+    },[data, id?.id])
 
     return (
         <div className={styles.container}>
             <Form
-                form={form}
+                form={formWritecontent}
                 name="writeContent"
                 scrollToFirstError
                 style={{ paddingBlock: 32, width: '100%' }}

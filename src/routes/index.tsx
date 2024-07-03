@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { aboutweUrl, layoutUrl, postdetailUrl, signinUrl, signupUrl, topicsUrl, writecontentUrl } from "./urls";
+import { aboutweUrl, editcontentUrl, layoutUrl, postdetailUrl, signinUrl, signupUrl, topicsUrl, writecontentUrl } from "./urls";
 import { AboutWe, DetailPost, Home, Layout, Signin, Signup, Topics, WriteContent } from "@/pages";
 import { Error } from "@/components/error/Error";
 
@@ -38,6 +38,10 @@ export const routerConfig = createBrowserRouter([
             },
             {
                 path: writecontentUrl,
+                element: <WriteContent />
+            },
+            {
+                path: editcontentUrl,
                 element: <WriteContent />
             },
         ]
