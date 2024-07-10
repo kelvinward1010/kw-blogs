@@ -5,6 +5,7 @@ import styles from './Layout.module.scss';
 import { Outlet } from "react-router-dom";
 import { ButtonConfig } from '@/components/buttonconfig';
 import { ArrowUpOutlined } from '@ant-design/icons';
+import { ScrollToTop } from '@/hooks/useScrollToTop';
 
 
 export function Layout() {
@@ -38,6 +39,7 @@ export function Layout() {
             {showButton && (
                 <ButtonConfig icon={<ArrowUpOutlined />} onClick={scrollToTop} className={styles.scrollToTop}/>
             )}
+            <ScrollToTop />
         </div>
     )
 }
