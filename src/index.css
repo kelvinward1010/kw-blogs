@@ -42,3 +42,8 @@
   background: teal;
   color: white;
 }
+
+/* drawer */
+.ant-drawer-close{
+  color: white !important;
+}
