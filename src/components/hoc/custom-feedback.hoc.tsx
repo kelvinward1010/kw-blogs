@@ -13,18 +13,18 @@ type TitleProps = {
 function TitleCustomization({ children }: TitleProps) {
     return <Title level={5} className="title-feedback">{children}</Title>;
 }
-  
+
 
 export const customConditionalFeedbackHigh =
     (loadingFeedBack?: string, noDataFeedBack?: string, dataEmptyFeedback?: string) =>
         (Component: React.ComponentType<{ data: IBasetListPost }>) =>
-            (props: any) => {
+            (props: { data: IBasetListPost }) => {
                 const { t } = useTranslation();
-                const { data } = props;
+                const { data, isLoading } = props.data;
 
-                if (data?.isLoading) return <TitleCustomization>{loadingFeedBack ?? t("feedback.loading")}</TitleCustomization>
-                if (!data?.data) return <TitleCustomization>{noDataFeedBack ?? t("feedback.nodatafeedback")}</TitleCustomization>
-                if (!data?.data.length) return <TitleCustomization>{dataEmptyFeedback ?? t("feedback.emptydata")}</TitleCustomization>
+                if (isLoading) return <TitleCustomization>{loadingFeedBack ?? t("feedback.loading")}</TitleCustomization>
+                if (!data) return <TitleCustomization>{noDataFeedBack ?? t("feedback.nodatafeedback")}</TitleCustomization>
+                if (!data.length) return <TitleCustomization>{dataEmptyFeedback ?? t("feedback.emptydata")}</TitleCustomization>
                 return <Component {...props} />
             }
 

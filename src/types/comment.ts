@@ -1,9 +1,9 @@
 export type IComment = {
     id: string | number;
-    content: any;
+    content: string;
     images?: string[];
     comments_replies?: IComment[];
-    parent?: any;
+    parent?: string;
     level: number;
     authorID: string | number;
     time_created: string;
