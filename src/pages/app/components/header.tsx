@@ -32,7 +32,7 @@ type labelRender = SelectProps["labelRender"];
 export function Header(): JSX.Element {
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
-    const { isVisible, windowWidth } = useFollowWidth(558);
+    const { isVisible, windowWidth } = useFollowWidth(768);
     const [open, setOpen] = useState<boolean>(false);
     const isVisiableUser = false;
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");

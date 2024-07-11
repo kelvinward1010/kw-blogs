@@ -1,4 +1,4 @@
-.container{
+.container {
     min-width: calc(100vw - 30px);
     width: auto;
     min-height: 60px;
@@ -12,7 +12,7 @@
     padding: 3px 10px;
     gap: 10px;
 
-    .maintitle{
+    .maintitle {
         cursor: pointer;
     }
 
@@ -23,27 +23,26 @@
         cursor: pointer;
     }
 
-    nav li .title:hover{
+    nav li .title:hover {
         color: teal;
     }
-    
-    .right_head{
+
+    .right_head {
         display: flex;
 
-        .avatar{
+        .avatar {
             cursor: pointer;
         }
     }
-    
 }
 
-@media screen and (max-width: 558px) {
-    .container{
+@media screen and (max-width: 768px) {
+    .container {
         align-items: center;
         justify-content: space-between;
         text-align: center;
 
-        .responsiveRight{
+        .responsiveRight {
             display: inline-flex;
         }
     }
