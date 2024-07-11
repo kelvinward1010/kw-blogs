@@ -27,11 +27,9 @@
         "sass": "^1.77.5"
     },
     "devDependencies": {
-        "@eslint/compat": "^1.1.0",
         "@eslint/js": "^9.6.0",
         "@types/react": "^18.2.66",
         "@types/react-dom": "^18.2.22",
-        "@typescript-eslint/eslint-plugin": "^7.2.0",
         "@typescript-eslint/parser": "^7.2.0",
         "@vitejs/plugin-react-swc": "^3.5.0",
         "eslint": "^9.6.0",
@@ -52,7 +50,7 @@
         "src/**/*.{ts,tsx}": [
             "eslint --fix"
         ],
-        "*.{ts,tsx,css,json,scss,css}": [
+        "src/**/*.{ts,tsx,css,json,scss,css}": [
             "prettier --write"
         ]
     }
