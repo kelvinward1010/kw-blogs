@@ -1,11 +1,12 @@
 .bouncing-loader {
     display: flex;
     justify-content: center;
+    margin-top: 5px;
 }
 
 .bouncing-loader > div {
-    width: 16px;
-    height: 16px;
+    width: 10px;
+    height: 10px;
     margin: 3px 6px;
     border-radius: 50%;
     background-color: #a3a1a1;
