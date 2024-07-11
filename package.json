@@ -1,59 +1,56 @@
 {
-  "name": "appblogs",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "lint": "tsc && eslint --ext .js,.jsx,.ts,.tsx src --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview",
-    "format": "prettier --write \"**/*.{ts,tsx,css,scss,json}\"",
-    "prepare": "husky"
-  },
-  "dependencies": {
-    "@ant-design/icons": "^5.3.7",
-    "@ckeditor/ckeditor5-react": "^8.0.0",
-    "@ckeditor/ckeditor5-upload": "^42.0.0",
-    "@tabler/icons-react": "^3.6.0",
-    "antd": "^5.18.1",
-    "antd-style": "^3.6.2",
-    "i18next": "^23.11.5",
-    "i18next-browser-languagedetector": "^8.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-i18next": "^14.1.2",
-    "react-router-dom": "^6.23.1",
-    "sass": "^1.77.5"
-  },
-  "devDependencies": {
-    "@eslint/compat": "^1.1.0",
-    "@eslint/js": "^9.6.0",
-    "@types/react": "^18.2.66",
-    "@types/react-dom": "^18.2.22",
-    "@typescript-eslint/eslint-plugin": "^7.2.0",
-    "@typescript-eslint/parser": "^7.2.0",
-    "@vitejs/plugin-react-swc": "^3.5.0",
-    "eslint": "^9.6.0",
-    "eslint-plugin-prettier": "^5.1.3",
-    "eslint-plugin-react": "^7.34.3",
-    "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-react-refresh": "^0.4.6",
-    "globals": "^15.8.0",
-    "husky": "^9.0.11",
-    "lint-staged": "^15.2.7",
-    "prettier": "^3.3.2",
-    "typescript": "^5.2.2",
-    "typescript-eslint": "^7.16.0",
-    "vite": "^5.2.0",
-    "vite-plugin-svgr": "^4.2.0"
-  },
-  "lint-staged": {
-    "src/**/*.{ts,tsx}": [
-      "eslint --fix"
-    ],
-    "*.{ts,tsx,css,json,scss,css}": [
-      "prettier --write"
-    ]
-  }
+    "name": "appblogs",
+    "private": true,
+    "version": "0.0.0",
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "build": "tsc && vite build",
+        "lint": "tsc && eslint --ext .js,.jsx,.ts,.tsx src --report-unused-disable-directives --max-warnings 0",
+        "preview": "vite preview",
+        "format": "prettier --write \"**/*.{ts,tsx,css,scss,json}\"",
+        "prepare": "husky"
+    },
+    "dependencies": {
+        "@ant-design/icons": "^5.3.7",
+        "@ckeditor/ckeditor5-react": "^8.0.0",
+        "@ckeditor/ckeditor5-upload": "^42.0.0",
+        "@tabler/icons-react": "^3.6.0",
+        "antd": "^5.18.1",
+        "antd-style": "^3.6.2",
+        "i18next": "^23.11.5",
+        "i18next-browser-languagedetector": "^8.0.0",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-i18next": "^14.1.2",
+        "react-router-dom": "^6.23.1",
+        "sass": "^1.77.5"
+    },
+    "devDependencies": {
+        "@eslint/compat": "^1.1.0",
+        "@eslint/js": "^9.6.0",
+        "@types/react": "^18.2.66",
+        "@types/react-dom": "^18.2.22",
+        "@typescript-eslint/eslint-plugin": "^7.2.0",
+        "@typescript-eslint/parser": "^7.2.0",
+        "@vitejs/plugin-react-swc": "^3.5.0",
+        "eslint": "^9.6.0",
+        "eslint-plugin-prettier": "^5.1.3",
+        "eslint-plugin-react": "^7.34.3",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.4.6",
+        "globals": "^15.8.0",
+        "husky": "^9.0.11",
+        "lint-staged": "^15.2.7",
+        "prettier": "^3.3.2",
+        "typescript": "^5.2.2",
+        "typescript-eslint": "^7.16.0",
+        "vite": "^5.2.0",
+        "vite-plugin-svgr": "^4.2.0"
+    },
+    "lint-staged": {
+        "*.{ts,tsx,css,json,scss,css}": [
+            "prettier --write"
+        ]
+    }
 }

@@ -1,11 +1,11 @@
 {
-  "arrowParens": "always",
-  "printWidth": 80,
-  "proseWrap": "preserve",
-  "tabWidth": 2,
-  "trailingComma": "all",
-  "endOfLine": "auto",
-  "importOrder": ["^@/(.*)$", "^[./]"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+    "arrowParens": "always",
+    "printWidth": 80,
+    "proseWrap": "preserve",
+    "tabWidth": 4,
+    "trailingComma": "all",
+    "endOfLine": "auto",
+    "importOrder": ["^@/(.*)$", "^[./]"],
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }
