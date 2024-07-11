@@ -4,6 +4,7 @@ import { TopicsSelect } from "../components/TopicsSelect";
 import styles from "./Topics.module.scss";
 
 export function Topics() {
+    const t = 9;
     return (
         <div className={styles.container}>
             <Row gutter={[8, 16]} wrap style={{ width: "calc(100vw - 20px)" }}>
