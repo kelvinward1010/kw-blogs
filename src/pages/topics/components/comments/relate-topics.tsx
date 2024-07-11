@@ -1,12 +1,11 @@
-import { Row, Typography } from 'antd';
+import { Typography } from 'antd';
 import styles from './relate-topics.module.scss';
 import { IBasetListPost, IPost } from '@/types/post';
-import { useNavigate } from 'react-router-dom';
-import { topicsUrl } from '@/routes/urls';
 import { posts } from '../../data';
-import { customConditionalFeedbackHigh } from '@/utils/custom-feedback.hoc';
+import { customConditionalFeedbackHigh } from '@/components/hoc/custom-feedback.hoc';
+import { CardPost } from '@/components/card-post/CardPost';
 
-const { Title, Text } = Typography;
+const { Title } = Typography;
 
 export function RelateTopics() {
 
@@ -35,33 +34,13 @@ export function RelateTopics() {
     )
 }
 
-
-
-const News: React.FC<{data: IPost}> = ({
-    data,
-}) => {
-
-    const navigate = useNavigate();
-    const handleGoPost = () => navigate(`${topicsUrl}/${data.id}`);
-
-    return (
-        <div className={styles.container_news} onClick={handleGoPost}>
-            <Title className={`${styles.text} ${styles.title}`} level={4}>{data.title}</Title>
-            <Row wrap justify={'space-between'}>
-                    <img width={'100%'} className={styles.img_center} src={data.image_thumbnail} alt={data.title} />
-            </Row>
-            <Text className={`${styles.text} ${styles.content}`}>&nbsp;&nbsp;&nbsp;&nbsp;{data?.content}</Text>
-        </div>
-    )
-}
-
 const BaseListNews: React.FC<{data: IBasetListPost}> = ({
     data
 }) => {
     return (
         <div className={styles.container_listnews}>
             {data?.data.map((post: IPost) => (
-                <News key={post.id} data={post}/>
+                <CardPost key={post.id} data={post}/>
             ))}
         </div>
     );

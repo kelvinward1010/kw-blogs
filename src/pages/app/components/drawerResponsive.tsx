@@ -1,6 +1,6 @@
 import stylesss from './drawer-responsive.module.scss';
 import { ButtonConfig } from "@/components/buttonconfig";
-import { aboutweUrl, layoutUrl, signinUrl, signupUrl, topicsUrl } from '@/routes/urls';
+import { aboutweUrl, layoutUrl, signinUrl, signupUrl, topicsUrl, writecontentUrl } from '@/routes/urls';
 import { MenuFoldOutlined } from "@ant-design/icons";
 import { Button, Drawer, Flex, Typography } from "antd";
 import { createStyles } from "antd-style";
@@ -15,6 +15,7 @@ interface DrawerResponsiveProps {
     setOpen: any;
     open: boolean;
     windowWidth: number;
+    isVisiableUser: boolean;
 }
 
 const useStyle = createStyles(({ token }) => ({
@@ -28,7 +29,8 @@ const useStyle = createStyles(({ token }) => ({
 export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
     setOpen,
     open,
-    windowWidth
+    windowWidth,
+    isVisiableUser,
 }) => {
 
     const { styles } = useStyle();
@@ -58,6 +60,10 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
             navigate(aboutweUrl);
             setOpen(false);
         },
+        goWriteContent: () => {
+            navigate(writecontentUrl)
+            setOpen(false);
+        }
     };
 
     const showDrawer = () => {
@@ -81,10 +87,19 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                     <li onClick={navigationFunctions.goTopics}><Text className={`${stylesss.title}`} strong>{t("head.menu.topics")}</Text></li>
                     <li onClick={navigationFunctions.goAboutWe}><Text className={`${stylesss.title}`} strong>{t("head.menu.aboutwe")}</Text></li>
                 </nav>
-                <Flex gap={'small'} justify={'center'} align={'center'}>
-                    <Button onClick={navigationFunctions.goSignin}>{t("head.lefthead.signin")}</Button>
-                    <Button onClick={navigationFunctions.goSignup}>{t("head.lefthead.signup")}</Button>
-                </Flex>
+                {isVisiableUser ? (
+                    <>
+                        <Flex gap={'small'} justify={'center'} align={'center'}>
+                            <Button onClick={navigationFunctions.goWriteContent}>{t("head.lefthead.writecontent")}</Button>
+                            <Button onClick={navigationFunctions.goSignup}>{t("head.lefthead.logout")}</Button>
+                        </Flex>
+                    </>
+                ) : (
+                    <Flex gap={'small'} justify={'center'} align={'center'}>
+                        <Button onClick={navigationFunctions.goSignin}>{t("head.lefthead.signin")}</Button>
+                        <Button onClick={navigationFunctions.goSignup}>{t("head.lefthead.signup")}</Button>
+                    </Flex>
+                )}
             </Drawer>
         </div>
     )

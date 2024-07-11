@@ -12,5 +12,10 @@
             "signup": "Đăng Ký",
             "signin": "Đăng Nhập"
         }
+    },
+    "feedback": {
+        "loading": "Đang tải...",
+        "nodatafeedback": "Không có dữ liệu trả về...",
+        "emptydata": "Dữ liệu trả về trống..."
     }
 }

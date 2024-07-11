@@ -12,5 +12,10 @@
             "signup": "Sign Up",
             "signin": "Sign In"
         }
+    },
+    "feedback": {
+        "loading": "Loanding...",
+        "nodatafeedback": "No Data Feedback",
+        "emptydata": "Data Is Empty..."
     }
 }

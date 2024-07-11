@@ -4,7 +4,7 @@ import { Post } from './Post';
 import styles from './PostsTopics.module.scss';
 import { useSearchParams } from 'react-router-dom';
 import { useMemo } from 'react';
-import { customConditionalFeedbackHigh } from '@/utils/custom-feedback.hoc';
+import { customConditionalFeedbackHigh } from '@/components/hoc/custom-feedback.hoc';
 
 export function PostsTopics() {
     const [topicsParams,__] = useSearchParams();
@@ -25,8 +25,8 @@ export function PostsTopics() {
 
     const ListPost = customConditionalFeedbackHigh(
         'Loading Todos...',
-        'No Todos loaded yet.',
-        'Todos are empty.',
+        'No post loaded yet...',
+        'Post are empty...',
     )(BaseListPost);
 
     return (

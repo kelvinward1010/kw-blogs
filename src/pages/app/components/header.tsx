@@ -10,8 +10,7 @@ import { OPTIONS_LANGUAGES } from '@/config';
 import { ENIcon, VIIcon } from '@/assets/png';
 import { useFollowWidth } from '@/hooks/useFollowWidth';
 import { useState } from 'react';
-import { DrawerResponsive } from './drawer-responsive';
-
+import { DrawerResponsive } from './drawerResponsive';
 const { Title, Text } = Typography;
 type labelRender = SelectProps['labelRender'];
 
@@ -21,7 +20,7 @@ export function Header(): JSX.Element {
     const navigate = useNavigate();
     const { isVisible, windowWidth } = useFollowWidth(558)
     const [open, setOpen] = useState<boolean>(false);
-    const user = true;
+    const isVisiableUser = false;
     const currentLanguage = localStorage.getItem('i18nextLng-kwnews');
 
     const goSignup = () => navigate(signupUrl);
@@ -101,7 +100,7 @@ export function Header(): JSX.Element {
                         </nav>
                         <div className={styles.right_head}>
                             <FormLanguages />
-                            {user ? (
+                            {isVisiableUser ? (
                                 <Dropdown
                                     menu={{
                                         items,
@@ -123,7 +122,12 @@ export function Header(): JSX.Element {
                 ) : (
                     <div className={styles.responsiveRight}>
                         <FormLanguages />
-                        <DrawerResponsive windowWidth={windowWidth} setOpen={setOpen} open={open} />
+                        <DrawerResponsive 
+                            windowWidth={windowWidth} 
+                            setOpen={setOpen} 
+                            open={open} 
+                            isVisiableUser={isVisiableUser}
+                        />
                     </div>
                 )}
         </div>

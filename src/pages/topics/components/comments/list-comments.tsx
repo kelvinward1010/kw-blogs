@@ -3,9 +3,9 @@ import styles from './list-comments.module.scss';
 import { Avatar, Col, Flex, Row, Typography } from 'antd';
 import { UserAddOutlined } from '@ant-design/icons';
 import { comments } from '../../data';
-import { customConditionalCommentsFeedbackHigh } from '@/utils/custom-feedback.hoc';
 import { useState } from 'react';
 import { FormComment } from './form-comment';
+import { customConditionalCommentsFeedbackHigh } from '@/components/hoc/custom-feedback.hoc';
 
 const { Text } = Typography;
 
