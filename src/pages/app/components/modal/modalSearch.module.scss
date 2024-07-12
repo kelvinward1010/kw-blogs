@@ -1,0 +1,61 @@
+.buttonModalOpen {
+    margin-right: 10px;
+}
+
+.containerModal {
+    .boxTags {
+        border: 1px solid teal;
+        padding: 5px;
+        border-radius: 5px;
+
+        .tags_input {
+            border: 1px solid gray;
+        }
+    }
+
+    .boxShow {
+        display: flex;
+        margin-top: 10px;
+        width: 100%;
+        max-height: 600px;
+        height: auto;
+
+        .bound {
+            margin-top: 30px;
+            text-align: center;
+        }
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .boxLeft {
+        width: 100%;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .boxRight {
+        display: none;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .boxLeft {
+        width: 100%;
+        max-width: 200px;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+    .boxRight {
+        width: 100%;
+        height: auto;
+        overflow-y: auto;
+        overflow-x: hidden;
+        margin-left: 5px;
+        border-radius: 5px;
+        border: 1px solid teal;
+        padding: 5px;
+    }
+}

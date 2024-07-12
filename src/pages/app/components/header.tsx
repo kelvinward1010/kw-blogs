@@ -1,12 +1,4 @@
-import {
-    Avatar,
-    Button,
-    Dropdown,
-    Flex,
-    Select,
-    SelectProps,
-    Typography,
-} from "antd";
+import { Avatar, Dropdown, Flex, Select, SelectProps, Typography } from "antd";
 import styles from "./header.module.scss";
 import { useNavigate } from "react-router-dom";
 import {
@@ -26,6 +18,7 @@ import { ENIcon, VIIcon } from "@/assets/png";
 import { useFollowWidth } from "@/hooks/useFollowWidth";
 import { useState } from "react";
 import { DrawerResponsive } from "./drawerResponsive";
+import { ModalSearch } from "./modal/modalSearch";
 
 const { Title, Text } = Typography;
 type labelRender = SelectProps["labelRender"];
@@ -35,6 +28,7 @@ export function Header(): JSX.Element {
     const navigate = useNavigate();
     const { isVisible, windowWidth } = useFollowWidth(768);
     const [open, setOpen] = useState<boolean>(false);
+    const [openModalSearch, setOpenModalSearch] = useState<boolean>(false);
     const isVisiableUser = false;
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");
 
@@ -50,30 +44,57 @@ export function Header(): JSX.Element {
         i18n.reloadResources();
     };
 
-    const items = [
-        {
-            label: (
-                <>
-                    <ButtonConfig
-                        onClick={() => navigate(writecontentUrl)}
-                        lable={t("head.lefthead.writecontent")}
-                    />
-                </>
-            ),
-            key: "0",
-        },
-        {
-            label: (
-                <>
-                    <ButtonConfig
-                        className={"button-config"}
-                        lable={t("head.lefthead.logout")}
-                    />
-                </>
-            ),
-            key: "1",
-        },
-    ];
+    const items = isVisiableUser
+        ? [
+              {
+                  label: (
+                      <>
+                          <ButtonConfig
+                              onClick={() => navigate(writecontentUrl)}
+                              lable={t("head.lefthead.writecontent")}
+                          />
+                      </>
+                  ),
+                  key: "0",
+              },
+              {
+                  label: (
+                      <>
+                          <ButtonConfig
+                              className={"button-config"}
+                              lable={t("head.lefthead.logout")}
+                          />
+                      </>
+                  ),
+                  key: "1",
+              },
+          ]
+        : [
+              {
+                  label: (
+                      <>
+                          <ButtonConfig
+                              className={"button-config"}
+                              lable={t("head.lefthead.signin")}
+                              onClick={goSignin}
+                          />
+                      </>
+                  ),
+                  key: "0",
+              },
+              {
+                  label: (
+                      <>
+                          <ButtonConfig
+                              className={"button-config"}
+                              lable={t("head.lefthead.signup")}
+                              onClick={goSignup}
+                          />
+                      </>
+                  ),
+                  key: "1",
+              },
+          ];
 
     const configLableLanguages = (icon: any, lable: any) => {
         return (
@@ -136,39 +157,32 @@ export function Header(): JSX.Element {
                         </li>
                     </nav>
                     <div className={styles.right_head}>
+                        <ModalSearch
+                            setOpenModal={setOpenModalSearch}
+                            openModal={openModalSearch}
+                        />
                         <FormLanguages />
-                        {isVisiableUser ? (
-                            <Dropdown
-                                menu={{
-                                    items,
-                                }}
-                                trigger={["click"]}
+                        <Dropdown
+                            menu={{
+                                items,
+                            }}
+                            trigger={["click"]}
+                        >
+                            <Avatar
+                                className={styles.avatar}
+                                icon={<UserOutlined />}
                             >
-                                <Avatar
-                                    className={styles.avatar}
-                                    icon={<UserOutlined />}
-                                >
-                                    {cutString("KW")}
-                                </Avatar>
-                            </Dropdown>
-                        ) : (
-                            <Flex
-                                gap={"small"}
-                                justify={"center"}
-                                align={"center"}
-                            >
-                                <Button onClick={goSignin}>
-                                    {t("head.lefthead.signin")}
-                                </Button>
-                                <Button onClick={goSignup}>
-                                    {t("head.lefthead.signup")}
-                                </Button>
-                            </Flex>
-                        )}
+                                {cutString("KW")}
+                            </Avatar>
+                        </Dropdown>
                     </div>
                 </>
             ) : (
                 <div className={styles.responsiveRight}>
+                    <ModalSearch
+                        setOpenModal={setOpenModalSearch}
+                        openModal={openModalSearch}
+                    />
                     <FormLanguages />
                     <DrawerResponsive
                         windowWidth={windowWidth}
