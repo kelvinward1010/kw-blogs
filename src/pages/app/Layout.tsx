@@ -1,15 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Footer } from './components/footer';
-import { Header } from './components/header';
-import styles from './Layout.module.scss';
+import { useEffect, useState } from "react";
+import { Footer } from "./components/footer";
+import { Header } from "./components/header";
+import styles from "./Layout.module.scss";
 import { Outlet } from "react-router-dom";
-import { ButtonConfig } from '@/components/buttonconfig';
-import { ArrowUpOutlined } from '@ant-design/icons';
-import { ScrollToTop } from '@/hooks/useScrollToTop';
-
+import { ButtonConfig } from "@/components/buttonconfig";
+import { ArrowUpOutlined } from "@ant-design/icons";
+import { ScrollToTop } from "@/hooks/useScrollToTop";
 
 export function Layout() {
-
     const [showButton, setShowButton] = useState(false);
 
     const handleScroll = () => {
@@ -17,13 +15,13 @@ export function Layout() {
     };
 
     const scrollToTop = () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        window.scrollTo({ top: 0, behavior: "smooth" });
     };
 
     useEffect(() => {
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener("scroll", handleScroll);
         return () => {
-            window.removeEventListener('scroll', handleScroll);
+            window.removeEventListener("scroll", handleScroll);
         };
     }, []);
 
@@ -37,9 +35,13 @@ export function Layout() {
             </div>
             <Footer />
             {showButton && (
-                <ButtonConfig icon={<ArrowUpOutlined />} onClick={scrollToTop} className={styles.scrollToTop}/>
+                <ButtonConfig
+                    icon={<ArrowUpOutlined />}
+                    onClick={scrollToTop}
+                    className={styles.scrollToTop}
+                />
             )}
             <ScrollToTop />
         </div>
-    )
+    );
 }

@@ -1,4 +1,4 @@
-import { Button, Flex, Form, Input, Modal, Tag } from "antd";
+import { Flex, Form, Input, Modal, Tag } from "antd";
 import styles from "./modalSearch.module.scss";
 import { useEffect, useMemo, useState } from "react";
 import { topicsData } from "@/config";
@@ -7,7 +7,8 @@ import { IBasetListPost, IPost } from "@/types/post";
 import { PostInSearch } from "./postInSearch";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { PostPreview } from "@/components/post-preview/PostPreview";
-import { BouncingDotsLoader } from "@/components/bouncing-dots-loader/bouncingDotsLoader";
+import { SearchOutlined } from "@ant-design/icons";
+import { ButtonConfig } from "@/components/buttonconfig";
 
 interface ModalSearchProps {
     setOpenModal: any;
@@ -55,6 +56,7 @@ export function ModalSearch(data: ModalSearchProps) {
                         setMouseEnterID={setMouseID}
                         key={post.id}
                         dataPost={post}
+                        setOpenModal={setOpenModal}
                     />
                 ))}
             </div>
@@ -80,13 +82,12 @@ export function ModalSearch(data: ModalSearchProps) {
 
     return (
         <>
-            <Button
+            <ButtonConfig
                 className={styles.buttonModalOpen}
-                type="primary"
+                type={"default"}
                 onClick={handleOk}
-            >
-                Search
-            </Button>
+                lable={<SearchOutlined />}
+            />
             <Modal
                 title="Search"
                 open={openModal}
@@ -128,8 +129,7 @@ export function ModalSearch(data: ModalSearchProps) {
                                 <PostPreview id={mouseID} />
                             ) : (
                                 <div className={styles.bound}>
-                                    <span>Waiting</span>
-                                    <BouncingDotsLoader />
+                                    <span>Waiting to preview</span>
                                 </div>
                             )}
                         </div>

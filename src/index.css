@@ -1,49 +1,54 @@
-*{
-  margin: 0;
+* {
+    margin: 0;
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 7px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 4px grey;
+    box-shadow: inset 0 0 4px grey;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: grey;
+    background: grey;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: black;
+    background: black;
 }
 
 .topics_tag .ant-tag {
-  cursor:  pointer !important;
+    cursor: pointer !important;
 }
-.topics_tag .ant-tag:hover{
-  background: teal;
-  color: white;
-}
-
-.button-config{
-  width: 100%;
+.topics_tag .ant-tag:hover {
+    background: teal;
+    color: white;
 }
 
-.button-submit{
-  background: rgb(21, 166, 166);
-  color: white;
+.button-config {
+    width: 100%;
 }
 
-.button-submit:hover{
-  background: teal;
-  color: white;
+.button-submit {
+    background: rgb(21, 166, 166);
+    color: white;
+}
+
+.button-submit:hover {
+    background: teal;
+    color: white;
 }
 
 /* drawer */
-.ant-drawer-close{
-  color: white !important;
+.ant-drawer-close {
+    color: white !important;
+}
+
+/*Checked tags*/
+.ant-tag-checkable-checked {
+    background-color: teal !important;
 }

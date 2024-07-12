@@ -26,7 +26,7 @@ export const Topics = lazyLoad(
 );
 
 export const DetailPost = lazyLoad(
-    () => import("./topics/views/detail-post"),
+    () => import("./topics/views/DetailPost"),
     (module) => module.DetailPost,
 );
 

@@ -21,7 +21,7 @@ export function PostPreview(data: PostPreviewProps) {
     return (
         <div className={styles.container}>
             {dataPost ? (
-                <div onClick={goPost}>
+                <div className={styles.post} onClick={goPost}>
                     <Title level={4}>{dataPost?.title}</Title>
                     <Text>{dataPost?.time_created}</Text>
                     <Row className={styles.content}>

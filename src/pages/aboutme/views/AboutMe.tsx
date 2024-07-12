@@ -28,7 +28,7 @@ export function AboutMe() {
                 <Text>Members: Kelvin Ward.</Text>
             </div>
             <br />
-            <Title level={5}>2. Contact with we.</Title>
+            <Title level={5}>2. Contact with me.</Title>
             <div className={styles.content}>
                 <a
                     className={styles.link_cnt}
@@ -42,7 +42,7 @@ export function AboutMe() {
                 <Text>Email: kelvinward1010@gmail.com</Text>
             </div>
             <br />
-            <Title level={5}>3. Send we your messages.</Title>
+            <Title level={5}>3. Send me your messages.</Title>
             <div className={styles.content}>
                 <Form
                     form={form}
