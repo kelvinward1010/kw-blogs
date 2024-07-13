@@ -1,10 +1,10 @@
-
-import { Button, Form, Input, Typography, notification } from 'antd';
-import styles from './Signin.module.scss'
-import { useNavigate } from 'react-router-dom';
-import { WarningOutlined } from '@ant-design/icons';
-import { signupUrl } from '@/routes/urls';
-
+import { Button, Form, Input, Typography, notification } from "antd";
+import styles from "./Signin.module.scss";
+import { useNavigate } from "react-router-dom";
+import { WarningOutlined } from "@ant-design/icons";
+import { signupUrl } from "@/routes/urls";
+import { useLoginAccount } from "@/services/auth/login.service";
+import storage from "@/utils/storage";
 
 const { Text } = Typography;
 
@@ -14,26 +14,40 @@ type FieldType = {
 };
 
 export function Signin(): JSX.Element {
-
     const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
+    const configLoginAccount = useLoginAccount({
+        config: {
+            onSuccess: (res) => {
+                const data = res?.data;
+                notification.success({
+                    message: "Login successfully!",
+                });
+                storage.setToken(data.access_token);
+                navigate(-1);
+            },
+            onError: (e) => {
+                notification.error({
+                    message: e.response?.data?.detail,
+                });
+            },
+        },
+    });
 
+    const onFinish = (values: FieldType) => {
         const data = {
             email: values.email,
-            password: values.password
-        }
-        console.log(data)
+            password: values.password,
+        };
+        configLoginAccount.mutate(data);
     };
 
     const onFinishFailed = (errorInfo: any) => {
         notification.error({
             message: `Could not sign in. Please try again!`,
             description: ` ${errorInfo}`,
-            icon: (
-                <WarningOutlined className='warning' />
-            )
-        })
+            icon: <WarningOutlined className="warning" />,
+        });
     };
 
     return (
@@ -52,7 +66,12 @@ export function Signin(): JSX.Element {
                     <Form.Item<FieldType>
                         label="Email"
                         name="email"
-                        rules={[{ required: true, message: 'Please input your email!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your email!",
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>
@@ -60,7 +79,12 @@ export function Signin(): JSX.Element {
                     <Form.Item<FieldType>
                         label="Password"
                         name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your password!",
+                            },
+                        ]}
                     >
                         <Input.Password />
                     </Form.Item>
@@ -74,9 +98,14 @@ export function Signin(): JSX.Element {
 
                 <div className={styles.have_account}>
                     <Text>Don't have a account!</Text>
-                    <Text onClick={() => navigate(signupUrl)} className={styles.fix_text}>Sign Up</Text>
+                    <Text
+                        onClick={() => navigate(signupUrl)}
+                        className={styles.fix_text}
+                    >
+                        Sign Up
+                    </Text>
                 </div>
             </div>
         </div>
-    )
+    );
 }

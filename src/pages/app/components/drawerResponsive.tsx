@@ -1,5 +1,6 @@
 import stylesss from "./drawer-responsive.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
+import { ModalWarning } from "@/components/modals/modalWarning";
 import {
     aboutmeUrl,
     layoutUrl,
@@ -22,6 +23,9 @@ interface DrawerResponsiveProps {
     open: boolean;
     windowWidth: number;
     isVisiableUser: boolean;
+    openModalLogout: boolean;
+    setOpenModalLogout: (modal: boolean) => void;
+    onClickLogout: () => void;
 }
 
 const useStyle = createStyles(({ token }) => ({
@@ -36,6 +40,9 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
     open,
     windowWidth,
     isVisiableUser,
+    openModalLogout,
+    setOpenModalLogout,
+    onClickLogout,
 }) => {
     const { styles } = useStyle();
     const { t } = useTranslation();
@@ -82,6 +89,18 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
         header: styles["my-drawer-header"],
     };
 
+    const handleOpenModalLogout = () => {
+        setOpenModalLogout(true);
+    };
+
+    const ButtonLogOut = () => {
+        return (
+            <Button onClick={handleOpenModalLogout}>
+                {t("head.lefthead.logout")}
+            </Button>
+        );
+    };
+
     return (
         <div>
             <ButtonConfig
@@ -123,9 +142,13 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                             >
                                 {t("head.lefthead.writecontent")}
                             </Button>
-                            <Button onClick={navigationFunctions.goSignup}>
-                                {t("head.lefthead.logout")}
-                            </Button>
+                            <ModalWarning
+                                ComponentElement={ButtonLogOut}
+                                message="Are you sure you want to log out?"
+                                open={openModalLogout}
+                                setOpen={setOpenModalLogout}
+                                onClick={onClickLogout}
+                            />
                         </Flex>
                     </>
                 ) : (

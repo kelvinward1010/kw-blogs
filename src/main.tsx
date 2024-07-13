@@ -6,11 +6,15 @@ import { routerConfig } from "./routes/index.tsx";
 import "./locale/i18n";
 import { ConfigProvider } from "antd";
 import { theme } from "./theme.tsx";
+import { queryClient } from "./lib/react-query.ts";
+import { QueryClientProvider } from "react-query";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ConfigProvider theme={theme}>
-            <RouterProvider router={routerConfig} />
+            <QueryClientProvider client={queryClient}>
+                <RouterProvider router={routerConfig} />
+            </QueryClientProvider>
         </ConfigProvider>
     </React.StrictMode>,
 );

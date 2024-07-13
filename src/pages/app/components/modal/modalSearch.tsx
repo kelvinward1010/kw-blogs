@@ -11,7 +11,7 @@ import { SearchOutlined } from "@ant-design/icons";
 import { ButtonConfig } from "@/components/buttonconfig";
 
 interface ModalSearchProps {
-    setOpenModal: any;
+    setOpenModal: (open: boolean) => void;
     openModal: boolean;
 }
 

@@ -1,15 +1,14 @@
-
-import { Button, Form, Input, Typography, notification } from 'antd';
-import styles from './Signup.module.scss';
-import { useNavigate } from 'react-router-dom';
-import { WarningOutlined } from '@ant-design/icons';
-import { signinUrl } from '@/routes/urls';
-
+import { Button, Form, Input, Typography, notification } from "antd";
+import styles from "./Signup.module.scss";
+import { useNavigate } from "react-router-dom";
+import { WarningOutlined } from "@ant-design/icons";
+import { signinUrl } from "@/routes/urls";
+import { useRegisterAccount } from "@/services/auth/register.service";
 
 const { Text } = Typography;
 
 type FieldType = {
-    name?: string
+    name?: string;
     email?: string;
     password?: string;
     confirmPassword?: string;
@@ -17,39 +16,52 @@ type FieldType = {
 
 const formItemLayout = {
     labelCol: {
-      xs: { span: 24 },
-      sm: { span: 10 },
+        xs: { span: 24 },
+        sm: { span: 10 },
     },
     wrapperCol: {
-      xs: { span: 24 },
-      sm: { span: 14 },
+        xs: { span: 24 },
+        sm: { span: 14 },
     },
 };
 
-
 export function Signup() {
-
     const [form] = Form.useForm();
 
     const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
+    const configRegisterAccount = useRegisterAccount({
+        config: {
+            onSuccess: () => {
+                notification.success({
+                    message: "Registered successfully!",
+                });
+            },
+            onError: (e) => {
+                notification.error({
+                    message: e.response?.data?.detail,
+                });
+            },
+        },
+    });
+
+    const onFinish = (values: FieldType) => {
         const data = {
             name: values.name,
             email: values.email,
-            password: values.password
-        }
-        console.log(data)
+            password: values.password,
+            image: "",
+            position: "",
+        };
+        configRegisterAccount.mutate(data);
     };
 
     const onFinishFailed = (errorInfo: any) => {
         notification.error({
             message: `Could not sign up. Please try again!`,
             description: ` ${errorInfo}`,
-            icon: (
-                <WarningOutlined className='warning'/>
-            )
-        })
+            icon: <WarningOutlined className="warning" />,
+        });
     };
 
     return (
@@ -67,7 +79,12 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Name"
                         name="name"
-                        rules={[{ required: true, message: 'Please input your name!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your name!",
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>
@@ -75,7 +92,12 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Email"
                         name="email"
-                        rules={[{ required: true, message: 'Please input your email!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your email!",
+                            },
+                        ]}
                     >
                         <Input />
                     </Form.Item>
@@ -83,7 +105,12 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Password"
                         name="password"
-                        rules={[{ required: true, message: 'Please input your password!' }]}
+                        rules={[
+                            {
+                                required: true,
+                                message: "Please input your password!",
+                            },
+                        ]}
                     >
                         <Input.Password />
                     </Form.Item>
@@ -91,19 +118,26 @@ export function Signup() {
                     <Form.Item<FieldType>
                         name="confirmPassword"
                         label="Confirm Password"
-                        dependencies={['password']}
+                        dependencies={["password"]}
                         hasFeedback
                         rules={[
                             {
                                 required: true,
-                                message: 'Please confirm your password!',
+                                message: "Please confirm your password!",
                             },
                             ({ getFieldValue }) => ({
                                 validator(_, value) {
-                                    if (!value || getFieldValue('password') === value) {
+                                    if (
+                                        !value ||
+                                        getFieldValue("password") === value
+                                    ) {
                                         return Promise.resolve();
                                     }
-                                    return Promise.reject(new Error('The new password that you entered do not match!'));
+                                    return Promise.reject(
+                                        new Error(
+                                            "The new password that you entered do not match!",
+                                        ),
+                                    );
                                 },
                             }),
                         ]}
@@ -120,9 +154,14 @@ export function Signup() {
 
                 <div className={styles.have_account}>
                     <Text>Have a account!</Text>
-                    <Text onClick={() => navigate(signinUrl)} className={styles.fix_text}>Sign Up</Text>
+                    <Text
+                        onClick={() => navigate(signinUrl)}
+                        className={styles.fix_text}
+                    >
+                        Sign Up
+                    </Text>
                 </div>
             </div>
         </div>
-    )
+    );
 }

@@ -19,6 +19,7 @@ import { useFollowWidth } from "@/hooks/useFollowWidth";
 import { useState } from "react";
 import { DrawerResponsive } from "./drawerResponsive";
 import { ModalSearch } from "./modal/modalSearch";
+import storage from "@/utils/storage";
 
 const { Title, Text } = Typography;
 type labelRender = SelectProps["labelRender"];
@@ -29,7 +30,8 @@ export function Header(): JSX.Element {
     const { isVisible, windowWidth } = useFollowWidth(768);
     const [open, setOpen] = useState<boolean>(false);
     const [openModalSearch, setOpenModalSearch] = useState<boolean>(false);
-    const isVisiableUser = false;
+    const [openModalLogout, setOpenModalLogout] = useState<boolean>(false);
+    const isVisiableUser = true;
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");
 
     const goSignup = () => navigate(signupUrl);
@@ -42,6 +44,11 @@ export function Header(): JSX.Element {
     const handleChangeLanguages = (value: string) => {
         i18n.changeLanguage(value);
         i18n.reloadResources();
+    };
+
+    const handleLogout = () => {
+        storage.clearToken();
+        setOpenModalLogout(false);
     };
 
     const items = isVisiableUser
@@ -63,6 +70,7 @@ export function Header(): JSX.Element {
                           <ButtonConfig
                               className={"button-config"}
                               lable={t("head.lefthead.logout")}
+                              onClick={handleLogout}
                           />
                       </>
                   ),
@@ -189,6 +197,9 @@ export function Header(): JSX.Element {
                         setOpen={setOpen}
                         open={open}
                         isVisiableUser={isVisiableUser}
+                        onClickLogout={handleLogout}
+                        openModalLogout={openModalLogout}
+                        setOpenModalLogout={setOpenModalLogout}
                     />
                 </div>
             )}
