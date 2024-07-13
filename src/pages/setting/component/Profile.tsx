@@ -23,10 +23,9 @@ export function Profile() {
     const [image, setImage] = useState<any>();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const getUserFromLocalstorage: any = useSelector(
+    const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
     );
-    const user: IUser | null = getUserFromLocalstorage?.user;
 
     const formLabel = (value: string) => <Text strong>{value}</Text>;
 

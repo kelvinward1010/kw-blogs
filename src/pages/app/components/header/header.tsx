@@ -46,10 +46,9 @@ export function Header(): JSX.Element {
     const [openModalLogout, setOpenModalLogout] = useState<boolean>(false);
 
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");
-    const getUserFromLocalstorage: any = useSelector(
+    const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
     );
-    const user: IUser | null = getUserFromLocalstorage?.user;
 
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
@@ -216,7 +215,7 @@ export function Header(): JSX.Element {
                             <Avatar
                                 className={styles.avatar}
                                 icon={<UserOutlined />}
-                                src={user?.image}
+                                src={user?.image || undefined}
                             />
                         </Dropdown>
                     </div>
