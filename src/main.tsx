@@ -8,12 +8,19 @@ import { ConfigProvider } from "antd";
 import { theme } from "./theme.tsx";
 import { queryClient } from "./lib/react-query.ts";
 import { QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
+import { persistor, store } from "./redux/store.ts";
+import { PersistGate } from "redux-persist/integration/react";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
     <React.StrictMode>
         <ConfigProvider theme={theme}>
             <QueryClientProvider client={queryClient}>
-                <RouterProvider router={routerConfig} />
+                <Provider store={store}>
+                    <PersistGate loading={null} persistor={persistor}>
+                        <RouterProvider router={routerConfig} />
+                    </PersistGate>
+                </Provider>
             </QueryClientProvider>
         </ConfigProvider>
     </React.StrictMode>,

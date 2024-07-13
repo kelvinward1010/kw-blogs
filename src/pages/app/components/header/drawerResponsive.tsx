@@ -1,4 +1,4 @@
-import stylesss from "./drawer-responsive.module.scss";
+import stylesss from "./drawerResponsive.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { ModalWarning } from "@/components/modals/modalWarning";
 import {

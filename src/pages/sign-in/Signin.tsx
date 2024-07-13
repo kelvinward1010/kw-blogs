@@ -4,7 +4,10 @@ import { useNavigate } from "react-router-dom";
 import { WarningOutlined } from "@ant-design/icons";
 import { signupUrl } from "@/routes/urls";
 import { useLoginAccount } from "@/services/auth/login.service";
-import storage from "@/utils/storage";
+import storage, { storageRefreshToken } from "@/utils/storage";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { loginAcc } from "@/redux/reducers/authSlice";
 
 const { Text } = Typography;
 
@@ -14,6 +17,7 @@ type FieldType = {
 };
 
 export function Signin(): JSX.Element {
+    const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();
 
     const configLoginAccount = useLoginAccount({
@@ -24,6 +28,12 @@ export function Signin(): JSX.Element {
                     message: "Login successfully!",
                 });
                 storage.setToken(data.access_token);
+                storageRefreshToken.setToken(data.refresh_token);
+                dispatch(
+                    loginAcc({
+                        user: data?.user,
+                    }),
+                );
                 navigate(-1);
             },
             onError: (e) => {

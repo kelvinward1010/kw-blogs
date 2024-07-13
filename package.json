@@ -15,6 +15,7 @@
         "@ant-design/icons": "^5.3.7",
         "@ckeditor/ckeditor5-react": "^8.0.0",
         "@ckeditor/ckeditor5-upload": "^42.0.0",
+        "@reduxjs/toolkit": "^2.2.6",
         "@tabler/icons-react": "^3.6.0",
         "antd": "^5.18.1",
         "antd-style": "^3.6.2",
@@ -25,7 +26,9 @@
         "react-dom": "^18.2.0",
         "react-i18next": "^14.1.2",
         "react-query": "^3.39.3",
+        "react-redux": "^9.1.2",
         "react-router-dom": "^6.23.1",
+        "redux-persist": "^6.0.0",
         "sass": "^1.77.5"
     },
     "devDependencies": {

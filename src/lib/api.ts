@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { BASE_URL, URL_API_REFRESHTOKEN } from "@/constant/config";
-import storage from "@/utils/storage";
+import storage, { storageRefreshToken } from "@/utils/storage";
 
 export const apiClient = axios.create({
     baseURL: BASE_URL,
@@ -28,12 +28,16 @@ apiClient.interceptors.response.use(
         if (error?.response?.status === 401) {
             try {
                 // Gọi API để lấy token mới
-                const refreshTokenResponse =
-                    await apiClient.post(URL_API_REFRESHTOKEN);
-                const newToken = refreshTokenResponse.data.token;
+                const refreshtoken = storageRefreshToken.getToken();
 
-                // Lưu token mới vào Redux store
-                // dispatch({ type: 'SET_TOKEN', payload: newToken });
+                const refreshTokenResponse = await apiClient.post(
+                    URL_API_REFRESHTOKEN,
+                    refreshtoken,
+                );
+                const newToken = refreshTokenResponse.data.access_token;
+
+                //Lưu token mới vào Redux store
+                //dispatch(updateToken({access_token: newToken}));
 
                 // Lưu token mới vào local storage
                 storage.setToken(newToken);

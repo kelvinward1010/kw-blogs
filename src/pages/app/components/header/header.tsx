@@ -1,4 +1,12 @@
-import { Avatar, Dropdown, Flex, Select, SelectProps, Typography } from "antd";
+import {
+    Avatar,
+    Dropdown,
+    Flex,
+    notification,
+    Select,
+    SelectProps,
+    Typography,
+} from "antd";
 import styles from "./header.module.scss";
 import { useNavigate } from "react-router-dom";
 import {
@@ -8,8 +16,7 @@ import {
     signupUrl,
     topicsUrl,
     writecontentUrl,
-} from "../../../routes/urls";
-import { cutString } from "@/utils/string";
+} from "../../../../routes/urls";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { UserOutlined } from "@ant-design/icons";
 import { useTranslation } from "react-i18next";
@@ -18,21 +25,29 @@ import { ENIcon, VIIcon } from "@/assets/png";
 import { useFollowWidth } from "@/hooks/useFollowWidth";
 import { useState } from "react";
 import { DrawerResponsive } from "./drawerResponsive";
-import { ModalSearch } from "./modal/modalSearch";
-import storage from "@/utils/storage";
+import { ModalSearch } from "../modal/modalSearch";
+import storage, { storageRefreshToken } from "@/utils/storage";
+import { AppDispatch, RootState } from "@/redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { IUser } from "@/types/user";
+import { logout } from "@/redux/reducers/authSlice";
 
 const { Title, Text } = Typography;
 type labelRender = SelectProps["labelRender"];
 
 export function Header(): JSX.Element {
+    const dispatch: AppDispatch = useDispatch();
     const { t, i18n } = useTranslation();
     const navigate = useNavigate();
     const { isVisible, windowWidth } = useFollowWidth(768);
     const [open, setOpen] = useState<boolean>(false);
     const [openModalSearch, setOpenModalSearch] = useState<boolean>(false);
     const [openModalLogout, setOpenModalLogout] = useState<boolean>(false);
-    const isVisiableUser = true;
+
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");
+    const user: IUser | null = useSelector(
+        (state: RootState) => state.auth.user,
+    );
 
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
@@ -46,63 +61,70 @@ export function Header(): JSX.Element {
         i18n.reloadResources();
     };
 
+    const isVisiableUser = storage.getToken() ? true : false;
+
     const handleLogout = () => {
         storage.clearToken();
+        storageRefreshToken.clearToken();
         setOpenModalLogout(false);
+        dispatch(logout());
+        notification.success({
+            message: "Logged out",
+        });
     };
 
-    const items = isVisiableUser
-        ? [
-              {
-                  label: (
-                      <>
-                          <ButtonConfig
-                              onClick={() => navigate(writecontentUrl)}
-                              lable={t("head.lefthead.writecontent")}
-                          />
-                      </>
-                  ),
-                  key: "0",
-              },
-              {
-                  label: (
-                      <>
-                          <ButtonConfig
-                              className={"button-config"}
-                              lable={t("head.lefthead.logout")}
-                              onClick={handleLogout}
-                          />
-                      </>
-                  ),
-                  key: "1",
-              },
-          ]
-        : [
-              {
-                  label: (
-                      <>
-                          <ButtonConfig
-                              className={"button-config"}
-                              lable={t("head.lefthead.signin")}
-                              onClick={goSignin}
-                          />
-                      </>
-                  ),
-                  key: "0",
-              },
-              {
-                  label: (
-                      <>
-                          <ButtonConfig
-                              className={"button-config"}
-                              lable={t("head.lefthead.signup")}
-                              onClick={goSignup}
-                          />
-                      </>
-                  ),
-                  key: "1",
-              },
-          ];
+    const items = [
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        onClick={() => navigate(writecontentUrl)}
+                        lable={t("head.lefthead.writecontent")}
+                    />
+                </>
+            ),
+            key: "0",
+        },
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        className={"button-config"}
+                        lable={t("head.lefthead.logout")}
+                        onClick={handleLogout}
+                    />
+                </>
+            ),
+            key: "1",
+        },
+    ];
+
+    const unUser = [
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        className={"button-config"}
+                        lable={t("head.lefthead.signin")}
+                        onClick={goSignin}
+                    />
+                </>
+            ),
+            key: "0",
+        },
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        className={"button-config"}
+                        lable={t("head.lefthead.signup")}
+                        onClick={goSignup}
+                    />
+                </>
+            ),
+            key: "1",
+        },
+    ];
 
     const configLableLanguages = (icon: any, lable: any) => {
         return (
@@ -172,16 +194,14 @@ export function Header(): JSX.Element {
                         <FormLanguages />
                         <Dropdown
                             menu={{
-                                items,
+                                items: user ? items : unUser,
                             }}
                             trigger={["click"]}
                         >
                             <Avatar
                                 className={styles.avatar}
                                 icon={<UserOutlined />}
-                            >
-                                {cutString("KW")}
-                            </Avatar>
+                            />
                         </Dropdown>
                     </div>
                 </>

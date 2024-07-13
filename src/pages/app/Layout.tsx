@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Footer } from "./components/footer";
-import { Header } from "./components/header";
+import { Header } from "./components/header/header";
 import styles from "./Layout.module.scss";
 import { Outlet } from "react-router-dom";
 import { ButtonConfig } from "@/components/buttonconfig";
