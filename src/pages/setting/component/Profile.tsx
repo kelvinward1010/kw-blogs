@@ -85,7 +85,6 @@ export function Profile() {
                 image: image,
                 position: values.position,
             };
-            console.log(draftData);
             configUpdateAccount.mutate(draftData);
         },
         [user, image],

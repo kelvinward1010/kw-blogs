@@ -37,7 +37,7 @@ apiClient.interceptors.response.use(
                     draftData,
                 );
                 const newToken = refreshTokenResponse.data?.data?.token;
-                console.log(newToken);
+
                 //Lưu token mới vào Redux store
                 //dispatch(updateToken({access_token: newToken}));
 
