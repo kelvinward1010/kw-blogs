@@ -4,15 +4,24 @@ import { MutationConfig } from "@/lib/react-query";
 import { useMutation } from "react-query";
 
 interface UpdateAccountProps {
+    id?: string;
     name?: string;
     email?: string;
-    password?: string;
     image?: string;
     position?: string;
 }
 
 export const updateAccount = async (data: UpdateAccountProps): Promise<any> => {
-    const res = await apiClient.post(`${URL_API_UPDATEUSER}`, data);
+    const draftData = {
+        name: data.name,
+        email: data.email,
+        image: data.image,
+        position: data.position,
+    };
+    const res = await apiClient.put(
+        `${URL_API_UPDATEUSER}/${data.id}`,
+        draftData,
+    );
     return res;
 };
 

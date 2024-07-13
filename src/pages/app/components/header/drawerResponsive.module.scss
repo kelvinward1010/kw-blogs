@@ -17,4 +17,16 @@
     nav li .title:hover {
         color: teal;
     }
+
+    .title {
+        width: 100%;
+    }
+
+    .navacc {
+        border-top: 1px solid teal;
+
+        .navacc_title {
+            text-align: center;
+        }
+    }
 }

@@ -39,3 +39,8 @@ export const WriteContent = lazyLoad(
     () => import("./write-content/views/write-content"),
     (module) => module.WriteContent,
 );
+
+export const Setting = lazyLoad(
+    () => import("./setting/view/Setting"),
+    (module) => module.Setting,
+);

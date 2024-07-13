@@ -8,9 +8,15 @@
         },
         "lefthead": {
             "writecontent": "Viết nội dung của bạn",
+            "setting": "Setting",
             "logout": "Đăng xuất",
             "signup": "Đăng Ký",
-            "signin": "Đăng Nhập"
+            "signin": "Đăng Nhập",
+            "youraccounttitle": "Your Account",
+            "settinginside": {
+                "profile": "Thông tin cá nhân",
+                "changepassword": "Thay đổi mật khẩu"
+            }
         }
     },
     "feedback": {

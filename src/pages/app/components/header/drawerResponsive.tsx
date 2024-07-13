@@ -4,6 +4,7 @@ import { ModalWarning } from "@/components/modals/modalWarning";
 import {
     aboutmeUrl,
     layoutUrl,
+    settingUrl,
     signinUrl,
     signupUrl,
     topicsUrl,
@@ -16,7 +17,7 @@ import { DrawerClassNames } from "antd/es/drawer/DrawerPanel";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
 
-const { Text } = Typography;
+const { Text, Title } = Typography;
 
 interface DrawerResponsiveProps {
     setOpen: any;
@@ -75,6 +76,10 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
             navigate(writecontentUrl);
             setOpen(false);
         },
+        goSetting: () => {
+            navigate(settingUrl);
+            setOpen(false);
+        },
     };
 
     const showDrawer = () => {
@@ -91,13 +96,18 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
 
     const handleOpenModalLogout = () => {
         setOpenModalLogout(true);
+        setOpen(false);
     };
 
-    const ButtonLogOut = () => {
+    const FormLogOut = () => {
         return (
-            <Button onClick={handleOpenModalLogout}>
+            <Text
+                onClick={handleOpenModalLogout}
+                className={`${stylesss.title}`}
+                strong
+            >
                 {t("head.lefthead.logout")}
-            </Button>
+            </Text>
         );
     };
 
@@ -136,30 +146,42 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                 </nav>
                 {isVisiableUser ? (
                     <>
-                        <Flex gap={"small"} justify={"center"} align={"center"}>
-                            <Button
-                                onClick={navigationFunctions.goWriteContent}
-                            >
-                                {t("head.lefthead.writecontent")}
-                            </Button>
-                            <ModalWarning
-                                ComponentElement={ButtonLogOut}
-                                message="Are you sure you want to log out?"
-                                open={openModalLogout}
-                                setOpen={setOpenModalLogout}
-                                onClick={onClickLogout}
-                            />
-                        </Flex>
+                        <nav className={stylesss.navacc}>
+                            <Title level={5} className={stylesss.navacc_title}>
+                                {t("head.lefthead.youraccounttitle")}
+                            </Title>
+                            <li onClick={navigationFunctions.goSetting}>
+                                <Text className={`${stylesss.title}`} strong>
+                                    {t("head.lefthead.setting")}
+                                </Text>
+                            </li>
+                            <li onClick={navigationFunctions.goWriteContent}>
+                                <Text className={`${stylesss.title}`} strong>
+                                    {t("head.lefthead.writecontent")}
+                                </Text>
+                            </li>
+                            <li>
+                                <ModalWarning
+                                    ComponentElement={FormLogOut}
+                                    message="Are you sure you want to log out?"
+                                    open={openModalLogout}
+                                    setOpen={setOpenModalLogout}
+                                    onClick={onClickLogout}
+                                />
+                            </li>
+                        </nav>
                     </>
                 ) : (
-                    <Flex gap={"small"} justify={"center"} align={"center"}>
-                        <Button onClick={navigationFunctions.goSignin}>
-                            {t("head.lefthead.signin")}
-                        </Button>
-                        <Button onClick={navigationFunctions.goSignup}>
-                            {t("head.lefthead.signup")}
-                        </Button>
-                    </Flex>
+                    <>
+                        <Flex gap={"small"} justify={"center"} align={"center"}>
+                            <Button onClick={navigationFunctions.goSignin}>
+                                {t("head.lefthead.signin")}
+                            </Button>
+                            <Button onClick={navigationFunctions.goSignup}>
+                                {t("head.lefthead.signup")}
+                            </Button>
+                        </Flex>
+                    </>
                 )}
             </Drawer>
         </div>

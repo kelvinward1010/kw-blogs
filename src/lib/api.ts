@@ -29,13 +29,15 @@ apiClient.interceptors.response.use(
             try {
                 // Gọi API để lấy token mới
                 const refreshtoken = storageRefreshToken.getToken();
-
+                const draftData = {
+                    refresh_token: refreshtoken,
+                };
                 const refreshTokenResponse = await apiClient.post(
-                    URL_API_REFRESHTOKEN,
-                    refreshtoken,
+                    `${URL_API_REFRESHTOKEN}`,
+                    draftData,
                 );
-                const newToken = refreshTokenResponse.data.access_token;
-
+                const newToken = refreshTokenResponse.data?.data?.token;
+                console.log(newToken);
                 //Lưu token mới vào Redux store
                 //dispatch(updateToken({access_token: newToken}));
 

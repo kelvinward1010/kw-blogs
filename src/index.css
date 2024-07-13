@@ -52,3 +52,12 @@
 .ant-tag-checkable-checked {
     background-color: teal !important;
 }
+
+/*Tabs*/
+
+.ant-tabs-tab-active .ant-tabs-tab-btn .ant-typography {
+    color: teal !important;
+}
+.ant-tabs-tab-active .ant-tabs-tab-btn .ant-tabs-tab-icon {
+    color: teal !important;
+}

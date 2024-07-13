@@ -8,9 +8,15 @@
         },
         "lefthead": {
             "writecontent": "Write your content",
+            "setting": "Setting",
             "logout": "Log Out",
             "signup": "Sign Up",
-            "signin": "Sign In"
+            "signin": "Sign In",
+            "youraccounttitle": "Your Account",
+            "settinginside": {
+                "profile": "Profile",
+                "changepassword": "Change Password"
+            }
         }
     },
     "feedback": {

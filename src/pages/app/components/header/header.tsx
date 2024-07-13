@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import {
     aboutmeUrl,
     layoutUrl,
+    settingUrl,
     signinUrl,
     signupUrl,
     topicsUrl,
@@ -29,8 +30,8 @@ import { ModalSearch } from "../modal/modalSearch";
 import storage, { storageRefreshToken } from "@/utils/storage";
 import { AppDispatch, RootState } from "@/redux/store";
 import { useDispatch, useSelector } from "react-redux";
-import { IUser } from "@/types/user";
 import { logout } from "@/redux/reducers/authSlice";
+import { IUser } from "@/types/user";
 
 const { Title, Text } = Typography;
 type labelRender = SelectProps["labelRender"];
@@ -45,9 +46,10 @@ export function Header(): JSX.Element {
     const [openModalLogout, setOpenModalLogout] = useState<boolean>(false);
 
     const currentLanguage = localStorage.getItem("i18nextLng-kwnews");
-    const user: IUser | null = useSelector(
+    const getUserFromLocalstorage: any = useSelector(
         (state: RootState) => state.auth.user,
     );
+    const user: IUser | null = getUserFromLocalstorage?.user;
 
     const goSignup = () => navigate(signupUrl);
     const goSignin = () => navigate(signinUrl);
@@ -78,12 +80,25 @@ export function Header(): JSX.Element {
             label: (
                 <>
                     <ButtonConfig
+                        className={"button-config"}
+                        onClick={() => navigate(settingUrl)}
+                        lable={t("head.lefthead.setting")}
+                    />
+                </>
+            ),
+            key: "0",
+        },
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        className={"button-config"}
                         onClick={() => navigate(writecontentUrl)}
                         lable={t("head.lefthead.writecontent")}
                     />
                 </>
             ),
-            key: "0",
+            key: "1",
         },
         {
             label: (
@@ -95,7 +110,7 @@ export function Header(): JSX.Element {
                     />
                 </>
             ),
-            key: "1",
+            key: "2",
         },
     ];
 
@@ -201,6 +216,7 @@ export function Header(): JSX.Element {
                             <Avatar
                                 className={styles.avatar}
                                 icon={<UserOutlined />}
+                                src={user?.image}
                             />
                         </Dropdown>
                     </div>

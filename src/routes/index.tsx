@@ -1,9 +1,10 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import {
     aboutmeUrl,
     editcontentUrl,
     layoutUrl,
     postdetailUrl,
+    settingUrl,
     signinUrl,
     signupUrl,
     topicsUrl,
@@ -14,12 +15,27 @@ import {
     DetailPost,
     Home,
     Layout,
+    Setting,
     Signin,
     Signup,
     Topics,
     WriteContent,
 } from "@/pages";
 import { Error } from "@/components/error/Error";
+import { IUser } from "@/types/user";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
+
+interface RouteProps {
+    children: React.ReactNode;
+}
+
+const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
+    const user: IUser | null = useSelector(
+        (state: RootState) => state.auth.user,
+    );
+    return user ? <>{children}</> : <Navigate to={layoutUrl} replace />;
+};
 
 export const routerConfig = createBrowserRouter([
     {
@@ -53,11 +69,27 @@ export const routerConfig = createBrowserRouter([
             },
             {
                 path: writecontentUrl,
-                element: <WriteContent />,
+                element: (
+                    <ProtectedRoute>
+                        <WriteContent />
+                    </ProtectedRoute>
+                ),
             },
             {
                 path: editcontentUrl,
-                element: <WriteContent />,
+                element: (
+                    <ProtectedRoute>
+                        <WriteContent />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: settingUrl,
+                element: (
+                    <ProtectedRoute>
+                        <Setting />
+                    </ProtectedRoute>
+                ),
             },
         ],
     },
