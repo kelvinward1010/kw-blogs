@@ -7,7 +7,11 @@ import { ButtonConfig } from "@/components/buttonconfig";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import { ScrollToTop } from "@/hooks/useScrollToTop";
 
-export function Layout() {
+interface Props {
+    children?: React.ReactNode;
+}
+
+export function Layout({ children }: Props) {
     const [showButton, setShowButton] = useState(false);
 
     const handleScroll = () => {
@@ -32,6 +36,7 @@ export function Layout() {
             </div>
             <div className={styles.main}>
                 <Outlet />
+                {children}
             </div>
             <Footer />
             {showButton && (

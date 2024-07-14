@@ -50,12 +50,12 @@ apiClient.interceptors.response.use(
                 return apiClient(originalRequest);
             } catch (refreshError) {
                 console.error("Lỗi khi lấy token mới:", refreshError);
-                // Xử lý lỗi khi lấy token mới (ví dụ: đăng xuất người dùng)
                 // dispatch({ type: 'LOGOUT' });
-                // Điều hướng đến trang đăng nhập nếu cần
                 // history.push('/login');
                 return Promise.reject(error);
             }
+        } else if (error?.response?.status === 404) {
+            return error?.response;
         }
         return Promise.reject(error);
     },

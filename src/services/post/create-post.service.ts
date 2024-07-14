@@ -6,9 +6,10 @@ import { useMutation } from "react-query";
 interface CreatePostProps {
     topic?: string[];
     title?: string;
+    authorID?: string;
     description?: string;
-    image: string;
-    content: string;
+    image?: string;
+    content?: string;
 }
 
 export const createPost = async (data: CreatePostProps): Promise<any> => {

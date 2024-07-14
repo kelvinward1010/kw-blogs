@@ -2,7 +2,7 @@ import { IPost } from "@/types/post";
 import styles from "./Post.module.scss";
 import { Col, Row, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
-import { topicsUrl } from "@/routes/urls";
+import { postUrl } from "@/routes/urls";
 import { LinkPreview } from "@/components/previewlink/PreviewLink";
 import { PostPreview } from "@/components/post-preview/PostPreview";
 
@@ -14,7 +14,7 @@ interface PostProps {
 
 export const Post: React.FC<PostProps> = ({ data }) => {
     const navigate = useNavigate();
-    const handleGoPost = () => navigate(`${topicsUrl}/${data?.id}`);
+    const handleGoPost = () => navigate(`${postUrl}/${data?.id}`);
 
     const PopupPreviewForm = (
         onMouseEnter: () => void,

@@ -1,6 +1,6 @@
 import stylesss from "./drawerResponsive.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
-import { ModalWarning } from "@/components/modals/modalWarning";
+import { ModalSmall } from "@/components/modals/modalSmall";
 import {
     aboutmeUrl,
     layoutUrl,
@@ -161,7 +161,7 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                                 </Text>
                             </li>
                             <li>
-                                <ModalWarning
+                                <ModalSmall
                                     ComponentElement={FormLogOut}
                                     message="Are you sure you want to log out?"
                                     open={openModalLogout}

@@ -1,10 +1,11 @@
 import { Modal, Typography } from "antd";
-import styles from "./modalWarning.module.scss";
+import styles from "./modalSmall.module.scss";
 import { ButtonConfig } from "../buttonconfig";
 
-interface ModalWarningProps {
-    ComponentElement: React.ComponentType;
+interface ModalSmallProps {
+    ComponentElement?: React.ComponentType;
     title?: string;
+    titleButton?: string;
     message?: string;
     open: boolean;
     setOpen: (open: boolean) => void;
@@ -13,19 +14,20 @@ interface ModalWarningProps {
 
 const { Title } = Typography;
 
-export function ModalWarning({
+export function ModalSmall({
     ComponentElement,
     title,
     message,
     open,
     setOpen,
     onClick,
-}: ModalWarningProps) {
+    titleButton,
+}: ModalSmallProps) {
     const handleCancel = () => setOpen(false);
 
     return (
         <div>
-            <ComponentElement />
+            {ComponentElement && <ComponentElement />}
             <Modal
                 title={title}
                 open={open}
@@ -40,7 +42,7 @@ export function ModalWarning({
                     </Title>
                     <ButtonConfig
                         className={styles.button}
-                        lable={"OK"}
+                        lable={titleButton ?? "OK"}
                         onClick={onClick}
                         type={"default"}
                     />

@@ -1,14 +1,20 @@
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { EditorConfig } from "../components/editor";
 import styles from "./write-content.module.scss";
-import { Flex, Form, Input, Select, Typography } from "antd";
+import { Flex, Form, Input, notification, Select, Typography } from "antd";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { dataURLtoBlob } from "@/utils/blob";
 import { UploadOutlined } from "@ant-design/icons";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IPost } from "@/types/post";
 import { posts } from "@/pages/topics/data";
 import { TOPICSOPTIONS } from "@/config";
+import { useCreatePost } from "@/services/post/create-post.service";
+import { ModalSmall } from "@/components/modals/modalSmall";
+import { postUrl } from "@/routes/urls";
+import { IUser } from "@/types/user";
+import { RootState } from "@/redux/store";
+import { useSelector } from "react-redux";
 
 type FieldType = {
     topic?: string[];
@@ -19,11 +25,18 @@ type FieldType = {
 const { Text } = Typography;
 
 export function WriteContent() {
+    const navigate = useNavigate();
     const [formWritecontent] = Form.useForm();
     const id: any = useParams();
     const [content, setContent] = useState<any>();
     const [image, setImage] = useState<any>();
+    const [openModal, setOpenModal] = useState<boolean>(false);
+    const [idNewPost, setIdNewPost] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
+
+    const user: IUser | null = useSelector(
+        (state: RootState) => state.auth.user,
+    );
 
     const formLabel = (value: string) => <Text strong>{value}</Text>;
 
@@ -66,6 +79,24 @@ export function WriteContent() {
         setImage("");
     };
 
+    const configCreatePost = useCreatePost({
+        config: {
+            onSuccess: (res) => {
+                const data = res?.data?.data;
+                notification.success({
+                    message: "Created post!",
+                });
+                setIdNewPost(data?._id);
+                setOpenModal(true);
+            },
+            onError: (e) => {
+                notification.error({
+                    message: e.response?.data?.detail,
+                });
+            },
+        },
+    });
+
     const onFinish = (values: FieldType) => {
         const dataUrl = image;
         const blob: Blob = dataURLtoBlob(dataUrl);
@@ -73,12 +104,19 @@ export function WriteContent() {
         formData.append("file", blob, "image.png");
 
         const draftData = {
+            topic: values.topic,
             title: values.title,
+            authorID: user?._id,
             description: values.description,
             content: content,
             image_thumbnail: image,
         };
-        console.log(draftData);
+        configCreatePost.mutate(draftData);
+    };
+
+    const handleGoToSeePost = () => {
+        navigate(`${postUrl}/${idNewPost}`);
+        setOpenModal(false);
     };
 
     useEffect(() => {
@@ -92,6 +130,14 @@ export function WriteContent() {
 
     return (
         <div className={styles.container}>
+            {openModal && (
+                <ModalSmall
+                    message="Do you want to see your post was created, right now?"
+                    open={openModal}
+                    setOpen={setOpenModal}
+                    onClick={handleGoToSeePost}
+                />
+            )}
             <Form
                 form={formWritecontent}
                 name="writeContent"

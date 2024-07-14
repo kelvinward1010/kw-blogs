@@ -21,10 +21,10 @@ import {
     Topics,
     WriteContent,
 } from "@/pages";
-import { Error } from "@/components/error/Error";
 import { IUser } from "@/types/user";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import { ErrorBoundaryPage } from "@/components/error/boundary-error";
 
 interface RouteProps {
     children: React.ReactNode;
@@ -41,7 +41,11 @@ export const routerConfig = createBrowserRouter([
     {
         path: layoutUrl,
         element: <Layout />,
-        errorElement: <Error />,
+        errorElement: (
+            <Layout>
+                <ErrorBoundaryPage />
+            </Layout>
+        ),
         children: [
             {
                 path: signupUrl,

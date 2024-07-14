@@ -4,7 +4,7 @@ import { Row, Typography } from "antd";
 import styles from "./PostPreview.module.scss";
 import { Error404 } from "../error/404";
 import { useNavigate } from "react-router-dom";
-import { topicsUrl } from "@/routes/urls";
+import { postUrl } from "@/routes/urls";
 
 const { Text, Title } = Typography;
 
@@ -16,7 +16,7 @@ export function PostPreview(data: PostPreviewProps) {
     const navigate = useNavigate();
     const dataPost: IPost | undefined = posts.find((p) => p.id === data.id);
 
-    const goPost = () => navigate(`${topicsUrl}/${data.id}`);
+    const goPost = () => navigate(`${postUrl}/${data.id}`);
 
     return (
         <div className={styles.container}>

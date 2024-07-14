@@ -1,4 +1,4 @@
-import { topicsUrl } from "@/routes/urls";
+import { postUrl } from "@/routes/urls";
 import { IPost } from "@/types/post";
 import { Row, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 
 export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
     const navigate = useNavigate();
-    const handleGoPost = () => navigate(`${topicsUrl}/${data.id}`);
+    const handleGoPost = () => navigate(`${postUrl}/${data.id}`);
 
     return (
         <div className={styles.container_news} onClick={handleGoPost}>

@@ -2,19 +2,18 @@ import { layoutUrl } from "@/routes/urls";
 import { Button, Result } from "antd";
 import { useNavigate } from "react-router-dom";
 
-export function Error404() {
+export function Error500() {
     const navigate = useNavigate();
 
-    const handleGoHome = (e: React.MouseEvent<HTMLButtonElement>) => {
-        e.stopPropagation();
+    const handleGoHome = () => {
         navigate(layoutUrl);
     };
 
     return (
         <Result
-            status="404"
-            title="404"
-            subTitle="Sorry, the page you visited does not exist."
+            status={"500"}
+            title="500"
+            subTitle="Sorry, something went wrong."
             extra={
                 <Button onClick={handleGoHome} type="primary" key="console">
                     Go Home

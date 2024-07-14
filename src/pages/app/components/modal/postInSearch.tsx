@@ -2,7 +2,7 @@ import { IPost } from "@/types/post";
 import { Typography } from "antd";
 import styles from "./postInSearch.module.scss";
 import { useNavigate } from "react-router-dom";
-import { topicsUrl } from "@/routes/urls";
+import { postUrl } from "@/routes/urls";
 
 interface PostInSearchProps {
     dataPost: IPost;
@@ -21,7 +21,7 @@ export function PostInSearch(data: PostInSearchProps) {
     };
 
     const goPost = () => {
-        navigate(`${topicsUrl}/${dataPost.id}`);
+        navigate(`${postUrl}/${dataPost.id}`);
         setOpenModal(false);
     };
 

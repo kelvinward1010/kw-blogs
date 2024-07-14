@@ -6,7 +6,8 @@ export const homeUrl = "/home";
 export const topicsUrl = "/topics";
 export const aboutmeUrl = "/about-we";
 
-export const postdetailUrl = `${topicsUrl}/:id`;
+export const postUrl = "/post";
+export const postdetailUrl = `${postUrl}/:id`;
 export const editcontentUrl = "/write-content/:id";
 export const writecontentUrl = "/write-content";
 
