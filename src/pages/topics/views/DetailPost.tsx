@@ -6,7 +6,7 @@ import { Comments } from "../components/comments/comments";
 import { useNavigate, useParams } from "react-router-dom";
 import { writecontentUrl } from "@/routes/urls";
 import { useGetPost } from "@/services/post/get-post.service";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IUser } from "@/types/user";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
