@@ -54,7 +54,6 @@ export function Profile() {
         config: {
             onSuccess: (res) => {
                 const data = res?.data;
-                console.log(data);
                 notification.success({
                     message: "Updated successfully!",
                 });
@@ -92,14 +91,15 @@ export function Profile() {
 
     useEffect(() => {
         if (user) {
-            formProfile.setFieldsValue({
+            const darftData = {
                 name: user?.name,
                 email: user?.email,
                 position: user?.position,
-            });
+            };
+            formProfile.setFieldsValue(darftData);
             setImage(user?.image);
         }
-    }, [user, dispatch]);
+    }, [user]);
 
     return (
         <div className={styles.container}>
@@ -117,7 +117,7 @@ export function Profile() {
                 <Form.Item wrapperCol={{ offset: 0 }}>
                     <Flex gap="small">
                         <ButtonConfig
-                            className={styles.submit}
+                            className={"button-submit"}
                             type="primary"
                             htmlType={"submit"}
                             lable={"Submit"}

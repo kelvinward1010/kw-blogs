@@ -160,7 +160,7 @@ export function Header(): JSX.Element {
         return (
             <Select
                 defaultValue={currentLanguage}
-                style={{ width: 100, marginRight: "10px" }}
+                style={{ width: 90, marginRight: "10px" }}
                 onChange={handleChangeLanguages}
                 options={OPTIONS_LANGUAGES}
                 labelRender={lableRender}
