@@ -73,10 +73,6 @@ export function Profile() {
 
     const onFinish = useCallback(
         (values: FieldType) => {
-            // const dataUrl = image;
-            // const blob: Blob = dataURLtoBlob(dataUrl);
-            // const formData = new FormData();
-            // formData.append("file", blob, "image.png");
             const draftData = {
                 id: user?._id,
                 name: values.name,
@@ -129,6 +125,29 @@ export function Profile() {
                         />
                     </Flex>
                 </Form.Item>
+                <Form.Item label={formLabel("Image")}>
+                    <ButtonConfig
+                        icon={<UploadOutlined />}
+                        iconPosition={"start"}
+                        onClick={handleButtonClick}
+                        lable={"Click to upload"}
+                    >
+                        <input
+                            style={{ display: "none" }}
+                            ref={fileInputRef}
+                            accept="image/*"
+                            type={"file"}
+                            onChange={handleChangeInputImage}
+                        />
+                    </ButtonConfig>
+                    {image && (
+                        <Image
+                            width={200}
+                            src={image}
+                            style={{ margin: "0 0 0 10px" }}
+                        />
+                    )}
+                </Form.Item>
                 <Form.Item<FieldType>
                     label={formLabel("Name")}
                     name="name"
@@ -153,30 +172,6 @@ export function Profile() {
                     name="position"
                 >
                     <Input />
-                </Form.Item>
-
-                <Form.Item label={formLabel("Image")}>
-                    <ButtonConfig
-                        icon={<UploadOutlined />}
-                        iconPosition={"start"}
-                        onClick={handleButtonClick}
-                        lable={"Click to upload"}
-                    >
-                        <input
-                            style={{ display: "none" }}
-                            ref={fileInputRef}
-                            accept="image/*"
-                            type={"file"}
-                            onChange={handleChangeInputImage}
-                        />
-                    </ButtonConfig>
-                    {image && (
-                        <Image
-                            width={200}
-                            src={image}
-                            style={{ margin: "0 0 0 10px" }}
-                        />
-                    )}
                 </Form.Item>
             </Form>
         </div>
