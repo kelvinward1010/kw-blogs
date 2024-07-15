@@ -12,13 +12,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { getUser } from "@/services/user/get-user.service";
 import { formatDate } from "@/utils/date";
+import { IPost2 } from "@/types/post";
 
 const { Title, Text } = Typography;
 
 export function DetailPost(): JSX.Element {
     const navigate = useNavigate();
     const id = useParams()?.id;
-    const [data, setData] = useState<any>();
+    const [data, setData] = useState<IPost2>();
     const [dataUser, setDataUser] = useState<any>();
 
     const user: IUser | null = useSelector(
@@ -71,7 +72,9 @@ export function DetailPost(): JSX.Element {
                 </Row>
                 <Text>Author: {compareUser ? user?.name : dataUser?.name}</Text>
                 <br />
-                <Text>Time: {formatDate(data?.createdAt)}</Text>
+                <Text>
+                    Time: {data?.createdAt && formatDate(data.createdAt)}
+                </Text>
             </div>
             <Row justify={"center"}>
                 {data?.image_thumbnail && (

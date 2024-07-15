@@ -1,38 +1,47 @@
-import { IPost } from "@/types/post";
-import { Typography } from "antd";
+import { IPost2 } from "@/types/post";
+import { Button, Typography } from "antd";
 import styles from "./postInSearch.module.scss";
 import { useNavigate } from "react-router-dom";
 import { postUrl } from "@/routes/urls";
+import { ExportOutlined } from "@ant-design/icons";
+import { formatDate } from "@/utils/date";
 
 interface PostInSearchProps {
-    dataPost: IPost;
-    setMouseEnterID: any;
+    dataPost: IPost2;
+    setClickPostID: any;
     setOpenModal: any;
 }
 
-const { Title, Text } = Typography;
+const { Text } = Typography;
 
 export function PostInSearch(data: PostInSearchProps) {
     const navigate = useNavigate();
-    const { dataPost, setMouseEnterID, setOpenModal } = data;
+    const { dataPost, setClickPostID, setOpenModal } = data;
 
-    const handleMouseEnter = () => {
-        setMouseEnterID(dataPost.id);
+    const handleClickPost = () => {
+        setClickPostID(dataPost._id);
     };
 
-    const goPost = () => {
-        navigate(`${postUrl}/${dataPost.id}`);
+    const goPost = (e: any) => {
+        e.preventDefault();
+        navigate(`${postUrl}/${dataPost._id}`);
         setOpenModal(false);
     };
 
     return (
-        <div
-            onClick={goPost}
-            className={styles.container}
-            onMouseEnter={handleMouseEnter}
-        >
-            <Title level={4}>{dataPost?.title}</Title>
-            <Text>{dataPost?.time_created}</Text>
+        <div className={styles.container} onClick={handleClickPost}>
+            <div className={styles.box}>
+                <Text strong className={styles.title}>
+                    {dataPost?.title}
+                </Text>
+                <Text className={styles.titme}>
+                    Time:{" "}
+                    {dataPost?.createdAt && formatDate(dataPost.createdAt)}
+                </Text>
+            </div>
+            <Button onClick={goPost} icon={<ExportOutlined />}>
+                Explore
+            </Button>
         </div>
     );
 }

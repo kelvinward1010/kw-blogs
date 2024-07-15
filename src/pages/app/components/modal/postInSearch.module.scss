@@ -7,10 +7,19 @@
     margin-top: 5px;
     border-radius: 5px;
 
-    .title {
-        display: -webkit-box;
-        -webkit-line-clamp: 2;
-        -webkit-box-orient: vertical;
+    .box {
+        margin-bottom: 5px;
+
+        .title {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            font-size: 17px;
+        }
+
+        .time {
+            font-size: 10px;
+        }
     }
 }
 

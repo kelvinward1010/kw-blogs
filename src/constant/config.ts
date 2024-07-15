@@ -15,7 +15,7 @@ export const URL_API_UPDATEUSER = `${URL_API_USER}/update-user`;
 
 //POST
 export const URL_API_POST = "post";
-export const URL_API_SEARCHPOST = `${URL_API_POST}/search-post`;
+export const URL_API_SEARCHPOST = `${URL_API_POST}/search-posts`;
 export const URL_API_NEWESTPOST = `${URL_API_POST}/newest-post`;
 export const URL_API_CREATEPOST = `${URL_API_POST}/create-post`;
 export const URL_API_POSTID = `${URL_API_POST}/post`;

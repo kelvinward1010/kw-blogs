@@ -1,20 +1,40 @@
-import { posts } from "@/pages/topics/data";
-import { IPost } from "@/types/post";
-import { Row, Typography } from "antd";
+import { IPost2 } from "@/types/post";
+import { notification, Row, Typography } from "antd";
 import styles from "./PostPreview.module.scss";
 import { Error404 } from "../error/404";
 import { useNavigate } from "react-router-dom";
 import { postUrl } from "@/routes/urls";
+import { useGetPost } from "@/services/post/get-post.service";
+import { useState } from "react";
 
 const { Text, Title } = Typography;
 
 interface PostPreviewProps {
-    id?: string | number;
+    id?: string;
 }
 
 export function PostPreview(data: PostPreviewProps) {
+    const { id } = data;
     const navigate = useNavigate();
-    const dataPost: IPost | undefined = posts.find((p) => p.id === data.id);
+    const [dataPost, setDataPost] = useState<IPost2>();
+
+    {
+        id &&
+            useGetPost({
+                id,
+                config: {
+                    onSuccess: (res) => {
+                        const data = res?.data?.data;
+                        setDataPost(data);
+                    },
+                    onError: (e: any) => {
+                        notification.error({
+                            message: e?.response?.data?.detail,
+                        });
+                    },
+                },
+            });
+    }
 
     const goPost = () => navigate(`${postUrl}/${data.id}`);
 
@@ -23,9 +43,15 @@ export function PostPreview(data: PostPreviewProps) {
             {dataPost ? (
                 <div className={styles.post} onClick={goPost}>
                     <Title level={4}>{dataPost?.title}</Title>
-                    <Text>{dataPost?.time_created}</Text>
+                    <Text>{dataPost.createdAt}</Text>
                     <Row className={styles.content}>
-                        <Text>{dataPost?.content}</Text>
+                        {dataPost?.content && (
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: dataPost?.content,
+                                }}
+                            />
+                        )}
                     </Row>
                 </div>
             ) : (

@@ -1,14 +1,14 @@
 import { Flex, Form, Input, Modal, Tag } from "antd";
 import styles from "./modalSearch.module.scss";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { topicsData } from "@/config";
-import { posts } from "@/pages/topics/data";
-import { IBasetListPost, IPost } from "@/types/post";
+import { IBasetListPost2, IPost2 } from "@/types/post";
 import { PostInSearch } from "./postInSearch";
-import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
+import { customConditionalFeedbackHigh2 } from "@/components/hoc/custom-feedback.hoc";
 import { PostPreview } from "@/components/post-preview/PostPreview";
 import { SearchOutlined } from "@ant-design/icons";
 import { ButtonConfig } from "@/components/buttonconfig";
+import { searchPosts } from "@/services/post/search-posts.service";
 
 interface ModalSearchProps {
     setOpenModal: (open: boolean) => void;
@@ -23,7 +23,9 @@ export function ModalSearch(data: ModalSearchProps) {
     const [formSearchTitle] = Form.useForm<FieldType>();
     const { openModal, setOpenModal } = data;
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-    const [mouseID, setMouseID] = useState<string | number>();
+    const [clickID, setClickID] = useState<string>();
+    const [dataPosts, setDataPosts] = useState<IPost2[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const titleValueSearch = Form.useWatch("title", formSearchTitle);
     const handleOk = () => setOpenModal(true);
@@ -36,25 +38,35 @@ export function ModalSearch(data: ModalSearchProps) {
         setSelectedTopics(nextSelectedTags);
     };
 
-    const filteredPosts = useMemo(() => {
-        if (selectedTopics.length > 0) {
-            return posts.filter((post: IPost) =>
-                post.topic.some((topic) => selectedTopics.includes(topic)),
-            );
-        } else {
-            return posts;
+    const handleSearch = () => {
+        setIsLoading(true);
+        if (selectedTopics.length > 0 || titleValueSearch !== undefined) {
+            const dataSearch = {
+                title: titleValueSearch,
+                topic: selectedTopics,
+            };
+            setTimeout(async () => {
+                await searchPosts(dataSearch).then((res) => {
+                    setDataPosts(res?.data);
+                    setIsLoading(false);
+                });
+            }, 2000);
         }
-    }, [posts, selectedTopics]);
+    };
 
-    const BaseListPostSearch: React.FC<{ data: IBasetListPost }> = ({
+    useEffect(() => {
+        handleSearch();
+    }, [titleValueSearch, selectedTopics]);
+
+    const BaseListPostSearch: React.FC<{ data: IBasetListPost2 }> = ({
         data,
     }) => {
         return (
             <div className={styles.list_post}>
-                {data?.data.map((post: IPost) => (
+                {data?.data.map((post: IPost2) => (
                     <PostInSearch
-                        setMouseEnterID={setMouseID}
-                        key={post.id}
+                        setClickPostID={setClickID}
+                        key={post._id}
                         dataPost={post}
                         setOpenModal={setOpenModal}
                     />
@@ -64,21 +76,21 @@ export function ModalSearch(data: ModalSearchProps) {
     };
 
     const draft = {
-        isLoading: false,
-        data: filteredPosts,
+        isLoading: isLoading,
+        data: dataPosts,
     };
 
-    const ListPostSearch = customConditionalFeedbackHigh(
+    const ListPostSearch = customConditionalFeedbackHigh2(
         "Loading posts...",
         "No post loaded yet...",
         "Post are empty...",
     )(BaseListPostSearch);
 
     useEffect(() => {
-        if (filteredPosts.length <= 0) {
-            setMouseID("");
+        if (dataPosts.length <= 0) {
+            setClickID("");
         }
-    }, [mouseID, filteredPosts]);
+    }, [dataPosts]);
 
     return (
         <>
@@ -106,27 +118,34 @@ export function ModalSearch(data: ModalSearchProps) {
                     <Form.Item name="title">
                         <Input placeholder="Search title post..." />
                     </Form.Item>
+                    <Flex
+                        gap={4}
+                        wrap
+                        align="center"
+                        className={styles.boxTags}
+                    >
+                        {topicsData.map<React.ReactNode>((tag) => (
+                            <Tag.CheckableTag
+                                key={tag}
+                                checked={selectedTopics.includes(tag)}
+                                onChange={(checked) =>
+                                    handleChange(tag, checked)
+                                }
+                                className={styles.tags_input}
+                            >
+                                #{tag}
+                            </Tag.CheckableTag>
+                        ))}
+                    </Flex>
                 </Form>
-                <Flex gap={4} wrap align="center" className={styles.boxTags}>
-                    {topicsData.map<React.ReactNode>((tag) => (
-                        <Tag.CheckableTag
-                            key={tag}
-                            checked={selectedTopics.includes(tag)}
-                            onChange={(checked) => handleChange(tag, checked)}
-                            className={styles.tags_input}
-                        >
-                            #{tag}
-                        </Tag.CheckableTag>
-                    ))}
-                </Flex>
                 {(titleValueSearch || selectedTopics.length > 0) && (
                     <div className={styles.boxShow}>
                         <div className={styles.boxLeft}>
                             <ListPostSearch data={draft} />
                         </div>
                         <div className={styles.boxRight}>
-                            {mouseID !== "" && mouseID !== undefined ? (
-                                <PostPreview id={mouseID} />
+                            {clickID !== "" && clickID !== undefined ? (
+                                <PostPreview id={clickID} />
                             ) : (
                                 <div className={styles.bound}>
                                     <span>Waiting to preview</span>
