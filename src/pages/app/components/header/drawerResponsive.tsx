@@ -4,6 +4,7 @@ import { ModalSmall } from "@/components/modals/modalSmall";
 import {
     aboutmeUrl,
     layoutUrl,
+    mypostsUrl,
     settingUrl,
     signinUrl,
     signupUrl,
@@ -80,6 +81,10 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
             navigate(settingUrl);
             setOpen(false);
         },
+        goMyPosts: () => {
+            navigate(mypostsUrl);
+            setOpen(false);
+        },
     };
 
     const showDrawer = () => {
@@ -150,14 +155,19 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                             <Title level={5} className={stylesss.navacc_title}>
                                 {t("head.lefthead.youraccounttitle")}
                             </Title>
-                            <li onClick={navigationFunctions.goSetting}>
-                                <Text className={`${stylesss.title}`} strong>
-                                    {t("head.lefthead.setting")}
-                                </Text>
-                            </li>
                             <li onClick={navigationFunctions.goWriteContent}>
                                 <Text className={`${stylesss.title}`} strong>
                                     {t("head.lefthead.writecontent")}
+                                </Text>
+                            </li>
+                            <li onClick={navigationFunctions.goMyPosts}>
+                                <Text className={`${stylesss.title}`} strong>
+                                    {t("head.lefthead.myposts")}
+                                </Text>
+                            </li>
+                            <li onClick={navigationFunctions.goSetting}>
+                                <Text className={`${stylesss.title}`} strong>
+                                    {t("head.lefthead.setting")}
                                 </Text>
                             </li>
                             <li>

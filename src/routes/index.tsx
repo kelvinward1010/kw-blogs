@@ -3,6 +3,7 @@ import {
     aboutmeUrl,
     editcontentUrl,
     layoutUrl,
+    mypostsUrl,
     postdetailUrl,
     settingUrl,
     signinUrl,
@@ -15,6 +16,7 @@ import {
     DetailPost,
     Home,
     Layout,
+    MyPosts,
     Setting,
     Signin,
     Signup,
@@ -92,6 +94,14 @@ export const routerConfig = createBrowserRouter([
                 element: (
                     <ProtectedRoute>
                         <Setting />
+                    </ProtectedRoute>
+                ),
+            },
+            {
+                path: mypostsUrl,
+                element: (
+                    <ProtectedRoute>
+                        <MyPosts />
                     </ProtectedRoute>
                 ),
             },

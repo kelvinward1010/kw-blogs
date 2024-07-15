@@ -12,7 +12,8 @@
             "logout": "Đăng xuất",
             "signup": "Đăng Ký",
             "signin": "Đăng Nhập",
-            "youraccounttitle": "Your Account",
+            "youraccounttitle": "Tài Khoản của tôi",
+            "myposts": "Bài viết của tôi",
             "settinginside": {
                 "profile": "Thông tin cá nhân",
                 "changepassword": "Thay đổi mật khẩu"

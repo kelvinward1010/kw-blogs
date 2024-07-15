@@ -26,7 +26,7 @@ export const Topics = lazyLoad(
 );
 
 export const DetailPost = lazyLoad(
-    () => import("./topics/views/DetailPost"),
+    () => import("./detailpost/views/DetailPost"),
     (module) => module.DetailPost,
 );
 
@@ -43,4 +43,9 @@ export const WriteContent = lazyLoad(
 export const Setting = lazyLoad(
     () => import("./setting/view/Setting"),
     (module) => module.Setting,
+);
+
+export const MyPosts = lazyLoad(
+    () => import("./myposts/views/MyPosts"),
+    (module) => module.MyPosts,
 );

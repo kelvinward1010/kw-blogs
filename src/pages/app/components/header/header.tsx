@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import {
     aboutmeUrl,
     layoutUrl,
+    mypostsUrl,
     settingUrl,
     signinUrl,
     signupUrl,
@@ -80,8 +81,8 @@ export function Header(): JSX.Element {
                 <>
                     <ButtonConfig
                         className={"button-config"}
-                        onClick={() => navigate(settingUrl)}
-                        lable={t("head.lefthead.setting")}
+                        onClick={() => navigate(writecontentUrl)}
+                        lable={t("head.lefthead.writecontent")}
                     />
                 </>
             ),
@@ -92,12 +93,24 @@ export function Header(): JSX.Element {
                 <>
                     <ButtonConfig
                         className={"button-config"}
-                        onClick={() => navigate(writecontentUrl)}
-                        lable={t("head.lefthead.writecontent")}
+                        onClick={() => navigate(mypostsUrl)}
+                        lable={t("head.lefthead.myposts")}
                     />
                 </>
             ),
             key: "1",
+        },
+        {
+            label: (
+                <>
+                    <ButtonConfig
+                        className={"button-config"}
+                        onClick={() => navigate(settingUrl)}
+                        lable={t("head.lefthead.setting")}
+                    />
+                </>
+            ),
+            key: "2",
         },
         {
             label: (
@@ -109,7 +122,7 @@ export function Header(): JSX.Element {
                     />
                 </>
             ),
-            key: "2",
+            key: "3",
         },
     ];
 

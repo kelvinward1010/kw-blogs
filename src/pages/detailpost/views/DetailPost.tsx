@@ -1,7 +1,7 @@
 import { Col, Image, notification, Row, Typography } from "antd";
 import styles from "./DetailPost.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
-import { RelateTopics } from "../components/comments/relate-topics";
+import { RelateTopics } from "../components/relate-topics";
 import { Comments } from "../components/comments/comments";
 import { useNavigate, useParams } from "react-router-dom";
 import { writecontentUrl } from "@/routes/urls";

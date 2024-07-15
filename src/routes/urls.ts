@@ -12,5 +12,5 @@ export const editcontentUrl = "/write-content/:id";
 export const writecontentUrl = "/write-content";
 
 export const settingUrl = "/setting";
-export const settingProfileUrl = `${settingUrl}/profile`;
-export const settingChangePassword = `${settingUrl}/change-password`;
+
+export const mypostsUrl = "/my-posts";

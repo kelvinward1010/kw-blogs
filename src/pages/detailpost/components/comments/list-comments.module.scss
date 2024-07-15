@@ -1,33 +1,32 @@
-.container{
+.container {
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
     overflow-x: hidden;
 
-    .seemorecomments{
+    .seemorecomments {
         cursor: pointer;
     }
 
-    .seemorecomments:hover{
+    .seemorecomments:hover {
         text-decoration: underline;
         color: teal;
     }
 }
-
 
 .container1 {
     margin-top: 10px;
     width: 95%;
     height: fit-content;
 
-    .right{
+    .right {
         margin-left: 5px;
 
-        .acincmt{
+        .acincmt {
             cursor: pointer;
         }
 
-        .acincmt:hover{
+        .acincmt:hover {
             text-decoration: underline;
             color: teal;
         }

@@ -3,8 +3,8 @@ import styles from "./Setting.module.scss";
 import { KeyOutlined, UserSwitchOutlined } from "@ant-design/icons";
 import { useFollowWidth } from "@/hooks/useFollowWidth";
 import { useTranslation } from "react-i18next";
-import { Profile } from "../component/Profile";
-import { ChangePassword } from "../component/ChangePassword";
+import { Profile } from "../components/Profile";
+import { ChangePassword } from "../components/ChangePassword";
 
 const { Text } = Typography;
 
