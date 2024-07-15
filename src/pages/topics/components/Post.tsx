@@ -45,7 +45,7 @@ export const Post: React.FC<PostProps> = ({ data }) => {
                 </Col>
                 <Col span={16}>
                     {LinkPreview({
-                        Component: <PostPreview id={data?.id} />,
+                        Component: <PostPreview id={String(data?.id)} />,
                         TitleLink: PopupPreviewForm,
                     })}
                     <Text strong className={styles.author}>
