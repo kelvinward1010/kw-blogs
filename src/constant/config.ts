@@ -20,4 +20,4 @@ export const URL_API_NEWESTPOST = `${URL_API_POST}/newest-posts-search`;
 export const URL_API_CREATEPOST = `${URL_API_POST}/create-post`;
 export const URL_API_POSTID = `${URL_API_POST}/post`;
 export const URL_API_POSTUPDATED = `${URL_API_POST}/update`;
-export const URL_API_DELETE = `${URL_API_POST}/delete`;
+export const URL_API_DELETEPOST = `${URL_API_POST}/delete`;
