@@ -86,7 +86,7 @@ export function DetailPost(): JSX.Element {
                         )}
                     </Col>
                 </Row>
-                <Text>Author: {compareUser ? user?.name : dataUser?.name}</Text>
+                <Text>Author: {dataUser?.name}</Text>
                 <br />
                 <Text>
                     Time: {data?.createdAt && formatDate(data.createdAt)}
