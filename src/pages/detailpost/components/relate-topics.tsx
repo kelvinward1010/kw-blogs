@@ -1,17 +1,19 @@
 import { Typography } from "antd";
 import styles from "./relate-topics.module.scss";
 import { IBasetListPost, IPost } from "@/types/post";
-import { posts } from "../../topics/data";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { CardPost } from "@/components/card-post/CardPost";
 
 const { Title } = Typography;
 
-export function RelateTopics() {
-    const data = posts.slice(0, 4);
+interface RelateTopicsProps {
+    data: IPost[];
+    isLoading: boolean;
+}
 
+export function RelateTopics({ data, isLoading }: RelateTopicsProps) {
     const draftData = {
-        isLoading: false,
+        isLoading: isLoading,
         data: data,
     };
 
@@ -37,7 +39,7 @@ const BaseListNews: React.FC<{ data: IBasetListPost }> = ({ data }) => {
     return (
         <div className={styles.container_listnews}>
             {data?.data.map((post: IPost) => (
-                <CardPost key={post.id} data={post} />
+                <CardPost key={post._id} data={post} />
             ))}
         </div>
     );

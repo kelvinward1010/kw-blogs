@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { postUrl } from "@/routes/urls";
 import { LinkPreview } from "@/components/previewlink/PreviewLink";
 import { PostPreview } from "@/components/post-preview/PostPreview";
+import { formatDate } from "@/utils/date";
 
 const { Title, Text } = Typography;
 
@@ -14,7 +15,7 @@ interface PostProps {
 
 export const Post: React.FC<PostProps> = ({ data }) => {
     const navigate = useNavigate();
-    const handleGoPost = () => navigate(`${postUrl}/${data?.id}`);
+    const handleGoPost = () => navigate(`${postUrl}/${data?._id}`);
 
     const PopupPreviewForm = (
         onMouseEnter: () => void,
@@ -45,13 +46,13 @@ export const Post: React.FC<PostProps> = ({ data }) => {
                 </Col>
                 <Col span={16}>
                     {LinkPreview({
-                        Component: <PostPreview id={String(data?.id)} />,
+                        Component: <PostPreview id={String(data?._id)} />,
                         TitleLink: PopupPreviewForm,
                     })}
-                    <Text strong className={styles.author}>
-                        Author: {data?.authorID}
+                    <Text>
+                        Time: {data.createdAt && formatDate(data.createdAt)}
                     </Text>
-                    <Text className={styles.content}>{data?.content}</Text>
+                    <Text className={styles.content}>{data?.description}</Text>
                 </Col>
             </Row>
         </div>

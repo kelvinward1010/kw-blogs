@@ -4,6 +4,46 @@
     gap: 10px;
     display: flex;
     flex-wrap: wrap;
+
+    .container1 {
+        box-shadow:
+            rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+            rgb(209, 213, 219) 0px 0px 0px 1px inset;
+        padding: 0 0 5px 0;
+
+        .title {
+            margin: 8px;
+        }
+
+        .flex_tags {
+            margin: 8px;
+
+            .tags_input {
+                border: 1px solid teal;
+            }
+        }
+    }
+
+    .container2 {
+        height: 100%;
+        max-height: calc(100vh - 120px);
+        overflow-y: auto;
+        padding: 10px 10px 10px 0;
+        box-shadow:
+            rgba(0, 0, 0, 0.05) 0px 0px 0px 1px,
+            rgb(209, 213, 219) 0px 0px 0px 1px inset;
+
+        .list_post {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .acts_more {
+            text-decoration: underline;
+            cursor: pointer;
+        }
+    }
 }
 
 @media screen and (max-width: 1023px) {

@@ -1,11 +1,12 @@
-import { IPost2 } from "@/types/post";
+import { IPost } from "@/types/post";
 import { notification, Row, Typography } from "antd";
 import styles from "./PostPreview.module.scss";
-import { Error404 } from "../error/404";
 import { useNavigate } from "react-router-dom";
 import { postUrl } from "@/routes/urls";
 import { useGetPost } from "@/services/post/get-post.service";
 import { useState } from "react";
+import { BouncingDotsLoader } from "../bouncing-dots-loader/bouncingDotsLoader";
+import { formatDate } from "@/utils/date";
 
 const { Text, Title } = Typography;
 
@@ -16,7 +17,7 @@ interface PostPreviewProps {
 export function PostPreview(data: PostPreviewProps) {
     const { id } = data;
     const navigate = useNavigate();
-    const [dataPost, setDataPost] = useState<IPost2>();
+    const [dataPost, setDataPost] = useState<IPost>();
 
     {
         id &&
@@ -43,7 +44,10 @@ export function PostPreview(data: PostPreviewProps) {
             {dataPost ? (
                 <div className={styles.post} onClick={goPost}>
                     <Title level={4}>{dataPost?.title}</Title>
-                    <Text>{dataPost.createdAt}</Text>
+                    <Text>
+                        Time:{" "}
+                        {dataPost.createdAt && formatDate(dataPost.createdAt)}
+                    </Text>
                     <Row className={styles.content}>
                         {dataPost?.content && (
                             <div
@@ -55,7 +59,7 @@ export function PostPreview(data: PostPreviewProps) {
                     </Row>
                 </div>
             ) : (
-                <Error404 />
+                <BouncingDotsLoader />
             )}
         </div>
     );

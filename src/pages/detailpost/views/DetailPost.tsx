@@ -12,15 +12,19 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import { getUser } from "@/services/user/get-user.service";
 import { formatDate } from "@/utils/date";
-import { IPost2 } from "@/types/post";
+import { IPost } from "@/types/post";
+import { searchNewestPosts } from "@/services/post/newest-posts-search.service";
+import { filterPostsRelatedById } from "@/utils/array";
 
 const { Title, Text } = Typography;
 
 export function DetailPost(): JSX.Element {
     const navigate = useNavigate();
     const id = useParams()?.id;
-    const [data, setData] = useState<IPost2>();
+    const [data, setData] = useState<IPost>();
     const [dataUser, setDataUser] = useState<any>();
+    const [dataRelated, setDataRelated] = useState<IPost[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
@@ -53,6 +57,18 @@ export function DetailPost(): JSX.Element {
         if (data?.authorID) {
             getUser(data?.authorID).then((user) => {
                 setDataUser(user);
+            });
+        }
+        if (data?.topic) {
+            setIsLoading(true);
+            const dataSearch = {
+                topic: data?.topic,
+                limit: 4,
+            };
+            searchNewestPosts(dataSearch).then((search) => {
+                const dataFilltered = filterPostsRelatedById(search?.data, id);
+                setDataRelated(dataFilltered);
+                setIsLoading(false);
             });
         }
     }, [data]);
@@ -91,7 +107,7 @@ export function DetailPost(): JSX.Element {
                 )}
             </Row>
             <Comments />
-            <RelateTopics />
+            <RelateTopics data={dataRelated} isLoading={isLoading} />
         </div>
     );
 }

@@ -2,9 +2,9 @@ import { Flex, Form, Input, Modal, Tag } from "antd";
 import styles from "./modalSearch.module.scss";
 import { useEffect, useState } from "react";
 import { topicsData } from "@/config";
-import { IBasetListPost2, IPost2 } from "@/types/post";
+import { IBasetListPost, IPost } from "@/types/post";
 import { PostInSearch } from "./postInSearch";
-import { customConditionalFeedbackHigh2 } from "@/components/hoc/custom-feedback.hoc";
+import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { PostPreview } from "@/components/post-preview/PostPreview";
 import { SearchOutlined } from "@ant-design/icons";
 import { ButtonConfig } from "@/components/buttonconfig";
@@ -24,7 +24,7 @@ export function ModalSearch(data: ModalSearchProps) {
     const { openModal, setOpenModal } = data;
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
     const [clickID, setClickID] = useState<string>();
-    const [dataPosts, setDataPosts] = useState<IPost2[]>([]);
+    const [dataPosts, setDataPosts] = useState<IPost[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     const titleValueSearch = Form.useWatch("title", formSearchTitle);
@@ -58,12 +58,12 @@ export function ModalSearch(data: ModalSearchProps) {
         handleSearch();
     }, [titleValueSearch, selectedTopics]);
 
-    const BaseListPostSearch: React.FC<{ data: IBasetListPost2 }> = ({
+    const BaseListPostSearch: React.FC<{ data: IBasetListPost }> = ({
         data,
     }) => {
         return (
             <div className={styles.list_post}>
-                {data?.data.map((post: IPost2) => (
+                {data?.data.map((post: IPost) => (
                     <PostInSearch
                         setClickPostID={setClickID}
                         key={post._id}
@@ -80,7 +80,7 @@ export function ModalSearch(data: ModalSearchProps) {
         data: dataPosts,
     };
 
-    const ListPostSearch = customConditionalFeedbackHigh2(
+    const ListPostSearch = customConditionalFeedbackHigh(
         "Loading posts...",
         "No post loaded yet...",
         "Post are empty...",

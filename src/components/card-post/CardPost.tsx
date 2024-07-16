@@ -8,7 +8,7 @@ const { Title, Text } = Typography;
 
 export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
     const navigate = useNavigate();
-    const handleGoPost = () => navigate(`${postUrl}/${data.id}`);
+    const handleGoPost = () => navigate(`${postUrl}/${data._id}`);
 
     return (
         <div className={styles.container_news} onClick={handleGoPost}>
@@ -24,7 +24,7 @@ export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
                 />
             </Row>
             <Text className={`${styles.text} ${styles.content}`}>
-                &nbsp;&nbsp;&nbsp;&nbsp;{data?.content}
+                &nbsp;&nbsp;&nbsp;&nbsp;{data?.description}
             </Text>
         </div>
     );

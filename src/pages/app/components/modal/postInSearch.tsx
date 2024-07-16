@@ -1,4 +1,4 @@
-import { IPost2 } from "@/types/post";
+import { IPost } from "@/types/post";
 import { Button, Typography } from "antd";
 import styles from "./postInSearch.module.scss";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,7 @@ import { ExportOutlined } from "@ant-design/icons";
 import { formatDate } from "@/utils/date";
 
 interface PostInSearchProps {
-    dataPost: IPost2;
+    dataPost: IPost;
     setClickPostID: any;
     setOpenModal: any;
 }

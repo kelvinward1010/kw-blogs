@@ -89,3 +89,14 @@ export const OPTIONS_LANGUAGES: OptionLanguages[] = [
         icon: VIIcon,
     },
 ];
+
+export const OPTIONS_NEWOROLD = [
+    {
+        label: "Newest available",
+        value: -1,
+    },
+    {
+        label: "Oldest avaiable",
+        value: 1,
+    },
+];

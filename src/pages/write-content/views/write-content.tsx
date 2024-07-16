@@ -7,7 +7,6 @@ import { dataURLtoBlob } from "@/utils/blob";
 import { UploadOutlined } from "@ant-design/icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { IPost } from "@/types/post";
-import { posts } from "@/pages/topics/data";
 import { TOPICSOPTIONS } from "@/config";
 import { useCreatePost } from "@/services/post/create-post.service";
 import { ModalSmall } from "@/components/modals/modalSmall";
@@ -15,6 +14,7 @@ import { postUrl } from "@/routes/urls";
 import { IUser } from "@/types/user";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
+import { useGetPost } from "@/services/post/get-post.service";
 
 type FieldType = {
     topic?: string[];
@@ -27,20 +27,19 @@ const { Text } = Typography;
 export function WriteContent() {
     const navigate = useNavigate();
     const [formWritecontent] = Form.useForm();
-    const id: any = useParams();
+    const id: any = useParams()?.id;
     const [content, setContent] = useState<any>();
     const [image, setImage] = useState<any>();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [idNewPost, setIdNewPost] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
+    const [data, setData] = useState<IPost>();
 
     const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
     );
 
     const formLabel = (value: string) => <Text strong>{value}</Text>;
-
-    const data: IPost = posts?.[id?.id];
 
     const handleChangeInputImage = (e: ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
@@ -119,14 +118,34 @@ export function WriteContent() {
         setOpenModal(false);
     };
 
+    {
+        id &&
+            useGetPost({
+                id,
+                config: {
+                    onSuccess: (res) => {
+                        const data: IPost = res?.data?.data;
+                        setData(data);
+                        setContent(data?.content);
+                        setImage(data?.image_thumbnail);
+                    },
+                    onError: (e: any) => {
+                        notification.error({
+                            message: e?.response?.data?.detail,
+                        });
+                    },
+                },
+            });
+    }
+
     useEffect(() => {
-        id?.id && data
+        id && data
             ? formWritecontent?.setFieldsValue(data)
             : formWritecontent?.setFieldsValue({
                   title: "",
                   description: "",
               });
-    }, [data, id?.id]);
+    }, [data, id]);
 
     return (
         <div className={styles.container}>
