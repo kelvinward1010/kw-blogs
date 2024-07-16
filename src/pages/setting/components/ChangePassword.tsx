@@ -23,7 +23,7 @@ export function ChangePassword() {
         config: {
             onSuccess: () => {
                 notification.success({
-                    message: "Changed password successfully!",
+                    message: "Changed password!",
                 });
                 formChangePassword.resetFields();
             },

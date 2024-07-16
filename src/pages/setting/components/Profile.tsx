@@ -55,7 +55,7 @@ export function Profile() {
             onSuccess: (res) => {
                 const data = res?.data;
                 notification.success({
-                    message: "Updated successfully!",
+                    message: "Updated!",
                 });
                 dispatch(
                     updateUser({
