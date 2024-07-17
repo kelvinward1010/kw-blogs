@@ -14,7 +14,8 @@ import { postUrl } from "@/routes/urls";
 import { IUser } from "@/types/user";
 import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
-import { useGetPost } from "@/services/post/get-post.service";
+import { getPost } from "@/services/post/get-post.service";
+import { useUpdatePost } from "@/services/post/update-post.service";
 
 type FieldType = {
     topic?: string[];
@@ -27,13 +28,12 @@ const { Text } = Typography;
 export function WriteContent() {
     const navigate = useNavigate();
     const [formWritecontent] = Form.useForm();
-    const id: any = useParams()?.id;
+    const id: string | undefined = useParams()?.id;
     const [content, setContent] = useState<any>();
     const [image, setImage] = useState<any>();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [idNewPost, setIdNewPost] = useState<string>("");
     const fileInputRef = useRef<HTMLInputElement>(null);
-    const [data, setData] = useState<IPost>();
 
     const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
@@ -96,6 +96,24 @@ export function WriteContent() {
         },
     });
 
+    const configUpdatePost = useUpdatePost({
+        config: {
+            onSuccess: (res) => {
+                const data = res?.data?.data;
+                notification.success({
+                    message: "Updated post!",
+                });
+                setIdNewPost(data?._id);
+                setOpenModal(true);
+            },
+            onError: (e) => {
+                notification.error({
+                    message: e.response?.data?.detail,
+                });
+            },
+        },
+    });
+
     const onFinish = (values: FieldType) => {
         const dataUrl = image;
         const blob: Blob = dataURLtoBlob(dataUrl);
@@ -110,7 +128,15 @@ export function WriteContent() {
             content: content,
             image_thumbnail: image,
         };
-        configCreatePost.mutate(draftData);
+        if (id) {
+            const addInDraftUpdate = {
+                ...draftData,
+                id: id,
+            };
+            configUpdatePost.mutate(addInDraftUpdate);
+        } else {
+            configCreatePost.mutate(draftData);
+        }
     };
 
     const handleGoToSeePost = () => {
@@ -118,34 +144,24 @@ export function WriteContent() {
         setOpenModal(false);
     };
 
-    {
-        id &&
-            useGetPost({
-                id,
-                config: {
-                    onSuccess: (res) => {
-                        const data: IPost = res?.data?.data;
-                        setData(data);
-                        setContent(data?.content);
-                        setImage(data?.image_thumbnail);
-                    },
-                    onError: (e: any) => {
-                        notification.error({
-                            message: e?.response?.data?.detail,
-                        });
-                    },
-                },
-            });
-    }
-
     useEffect(() => {
-        id && data
-            ? formWritecontent?.setFieldsValue(data)
-            : formWritecontent?.setFieldsValue({
-                  title: "",
-                  description: "",
-              });
-    }, [data, id]);
+        if (!id) {
+            formWritecontent?.setFieldsValue({
+                topic: [],
+                title: "",
+                description: "",
+            });
+            setContent("");
+            setImage("");
+        } else {
+            getPost(id).then((post) => {
+                const data: IPost = post?.data?.data;
+                formWritecontent?.setFieldsValue(data);
+                setContent(data?.content);
+                setImage(data?.image_thumbnail);
+            });
+        }
+    }, [id]);
 
     return (
         <div className={styles.container}>

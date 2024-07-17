@@ -51,6 +51,8 @@ export function ModalSearch(data: ModalSearchProps) {
                     setIsLoading(false);
                 });
             }, 2000);
+        } else {
+            setClickID("");
         }
     };
 

@@ -46,7 +46,7 @@ export function Topics() {
                 setDataPosts(res?.data);
                 setIsLoading(false);
             });
-        }, 2000);
+        }, 1500);
     };
 
     const draft = {
@@ -60,6 +60,14 @@ export function Topics() {
         "Post are empty...",
     )(BaseListPost);
 
+    function FormLable(lable: string) {
+        return (
+            <Text strong className={styles.title}>
+                {lable}
+            </Text>
+        );
+    }
+
     useEffect(() => {
         handleSearch();
     }, [selectedTopics, limit, neworoldValue]);
@@ -67,9 +75,7 @@ export function Topics() {
         <div className={styles.container}>
             <div className={styles.box1}>
                 <div className={styles.container1}>
-                    <Text strong className={styles.title}>
-                        Topics:
-                    </Text>
+                    {FormLable("Topics:")}
                     <Flex
                         gap={4}
                         wrap
@@ -94,8 +100,13 @@ export function Topics() {
                         form={formInTopics}
                         layout="vertical"
                         autoComplete="off"
+                        style={{ padding: "0 10px" }}
                     >
-                        <Form.Item name="neworold" initialValue={-1}>
+                        <Form.Item
+                            label={FormLable("Timest:")}
+                            name="neworold"
+                            initialValue={-1}
+                        >
                             <Select
                                 allowClear
                                 style={{

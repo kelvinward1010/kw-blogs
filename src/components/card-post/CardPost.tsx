@@ -15,7 +15,7 @@ export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
             <Title className={`${styles.text} ${styles.title}`} level={4}>
                 {data.title}
             </Title>
-            <Row wrap justify={"space-between"}>
+            <Row justify={"center"} className={styles.image_thumbnail}>
                 <img
                     width={"100%"}
                     className={styles.img_center}

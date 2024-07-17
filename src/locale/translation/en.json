@@ -17,6 +17,10 @@
             "settinginside": {
                 "profile": "Profile",
                 "changepassword": "Change Password"
+            },
+            "mypostsinside": {
+                "favoritesposts": "Favorites posts",
+                "yourpostscreated": "Your posts created"
             }
         }
     },

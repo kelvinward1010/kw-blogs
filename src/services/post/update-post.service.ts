@@ -9,7 +9,7 @@ interface UpdatePostProps {
     title?: string;
     authorID?: string;
     description?: string;
-    image?: string;
+    image_thumbnail?: string;
     content?: string;
 }
 
@@ -19,10 +19,10 @@ export const updatePost = async (data: UpdatePostProps): Promise<any> => {
         title: data.title,
         authorID: data.authorID,
         description: data.description,
-        image: data.image,
+        image_thumbnail: data.image_thumbnail,
         content: data.content,
     };
-    const res = await apiClient.post(
+    const res = await apiClient.put(
         `${URL_API_POSTUPDATED}/${data.id}`,
         graftData,
     );

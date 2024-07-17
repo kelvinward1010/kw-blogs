@@ -8,7 +8,7 @@ interface CreatePostProps {
     title?: string;
     authorID?: string;
     description?: string;
-    image?: string;
+    image_thumbnail?: string;
     content?: string;
 }
 

@@ -8,7 +8,7 @@
         },
         "lefthead": {
             "writecontent": "Viết nội dung của bạn",
-            "setting": "Setting",
+            "setting": "Cài đặt",
             "logout": "Đăng xuất",
             "signup": "Đăng Ký",
             "signin": "Đăng Nhập",
@@ -17,6 +17,10 @@
             "settinginside": {
                 "profile": "Thông tin cá nhân",
                 "changepassword": "Thay đổi mật khẩu"
+            },
+            "mypostsinside": {
+                "favoritesposts": "Bài viết yêu thích",
+                "yourpostscreated": "Bài viết bạn đã tạo"
             }
         }
     },
