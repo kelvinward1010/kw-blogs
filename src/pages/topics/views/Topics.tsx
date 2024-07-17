@@ -75,33 +75,33 @@ export function Topics() {
         <div className={styles.container}>
             <div className={styles.box1}>
                 <div className={styles.container1}>
-                    {FormLable("Topics:")}
-                    <Flex
-                        gap={4}
-                        wrap
-                        align="center"
-                        className={styles.flex_tags}
-                    >
-                        {topicsData.map<React.ReactNode>((tag) => (
-                            <Tag.CheckableTag
-                                key={tag}
-                                checked={selectedTopics.includes(tag)}
-                                onChange={(checked) =>
-                                    handleChange(tag, checked)
-                                }
-                                className={styles.tags_input}
-                            >
-                                #{tag}
-                            </Tag.CheckableTag>
-                        ))}
-                    </Flex>
-                    <br />
                     <Form
                         form={formInTopics}
                         layout="vertical"
                         autoComplete="off"
                         style={{ padding: "0 10px" }}
                     >
+                        <Form.Item label={FormLable("Topics:")}>
+                            <Flex
+                                gap={4}
+                                wrap
+                                align="center"
+                                className={styles.flex_tags}
+                            >
+                                {topicsData.map<React.ReactNode>((tag) => (
+                                    <Tag.CheckableTag
+                                        key={tag}
+                                        checked={selectedTopics.includes(tag)}
+                                        onChange={(checked) =>
+                                            handleChange(tag, checked)
+                                        }
+                                        className={styles.tags_input}
+                                    >
+                                        #{tag}
+                                    </Tag.CheckableTag>
+                                ))}
+                            </Flex>
+                        </Form.Item>
                         <Form.Item
                             label={FormLable("Timest:")}
                             name="neworold"
