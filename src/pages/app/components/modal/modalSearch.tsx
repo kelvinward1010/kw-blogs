@@ -127,7 +127,10 @@ export function ModalSearch(data: ModalSearchProps) {
                     autoComplete="off"
                 >
                     <Form.Item name="title">
-                        <Input placeholder="Search title post..." />
+                        <Input
+                            placeholder="Search title post..."
+                            prefix={<SearchOutlined />}
+                        />
                     </Form.Item>
                     <Flex
                         gap={4}

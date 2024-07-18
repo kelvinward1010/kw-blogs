@@ -15,6 +15,7 @@ import { formatDate } from "@/utils/date";
 import { IPost } from "@/types/post";
 import { searchNewestPosts } from "@/services/post/newest-posts-search.service";
 import { filterPostsRelatedById } from "@/utils/array";
+import { HeartOutlined } from "@ant-design/icons";
 
 const { Title, Text } = Typography;
 
@@ -79,21 +80,24 @@ export function DetailPost(): JSX.Element {
     return (
         <div className={styles.container}>
             <div className={styles.headesay}>
-                <Row justify={"space-between"}>
+                <Row justify={"space-between"} align={"top"}>
                     <Col span={21}>
                         {data?.title && <Title level={3}>{data?.title}</Title>}
+                        <Text>Author: {dataUser?.name}</Text>
+                        <br />
+                        <Text>
+                            Time:{" "}
+                            {data?.createdAt && formatDate(data.createdAt)}
+                        </Text>
+                        <br />
                     </Col>
-                    <Col>
+                    <Col className={styles.actionsInPost}>
                         {compareUser && (
                             <ButtonConfig onClick={goEditPost} lable={"Edit"} />
                         )}
+                        <HeartOutlined className={styles.heartLike} />
                     </Col>
                 </Row>
-                <Text>Author: {dataUser?.name}</Text>
-                <br />
-                <Text>
-                    Time: {data?.createdAt && formatDate(data.createdAt)}
-                </Text>
             </div>
             <Row justify={"center"}>
                 {data?.image_thumbnail && (

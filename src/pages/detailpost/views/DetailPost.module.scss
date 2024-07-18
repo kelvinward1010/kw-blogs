@@ -5,6 +5,20 @@
 
     .headesay {
         margin-bottom: 30px;
+
+        .actionsInPost {
+            display: flex;
+            justify-content: flex-start;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
+
+            .heartLike {
+                font-size: 23px;
+                margin-top: 10px;
+                cursor: pointer;
+            }
+        }
     }
 
     .containerContent {

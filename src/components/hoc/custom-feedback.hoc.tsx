@@ -1,9 +1,10 @@
 import { IComment } from "@/types/comment";
 import { IBasetListPost } from "@/types/post";
-import { Typography } from "antd";
+import { Row, Typography } from "antd";
 import { useTranslation } from "react-i18next";
 import "./custom-feedback.hoc.css";
 import { BouncingDotsLoader } from "../bouncing-dots-loader/bouncingDotsLoader";
+import { DataNoneIcon } from "@/assets/jpg";
 
 const { Title } = Typography;
 
@@ -18,6 +19,23 @@ function TitleCustomization({ children }: TitleProps) {
                 {children}
             </Title>
             <BouncingDotsLoader />
+        </>
+    );
+}
+
+function TitleNoneDataCustomization({ children }: TitleProps) {
+    return (
+        <>
+            <Title level={5} className="title-feedback">
+                {children}
+            </Title>
+            <Row justify={"center"}>
+                <img
+                    className="data-none-image"
+                    src={DataNoneIcon}
+                    alt="icondata-none"
+                />
+            </Row>
         </>
     );
 }
@@ -47,9 +65,9 @@ export const customConditionalFeedbackHigh =
             );
         if (!data.length)
             return (
-                <TitleCustomization>
+                <TitleNoneDataCustomization>
                     {dataEmptyFeedback ?? t("feedback.emptydata")}
-                </TitleCustomization>
+                </TitleNoneDataCustomization>
             );
         return <Component {...props} />;
     };
