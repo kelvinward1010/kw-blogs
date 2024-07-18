@@ -55,7 +55,10 @@ export function DetailPost(): JSX.Element {
 
     useEffect(() => {
         if (data?.authorID) {
-            getUser(data?.authorID).then((user) => {
+            const dataGet = {
+                id: data?.authorID,
+            };
+            getUser(dataGet).then((user) => {
                 setDataUser(user?.data);
             });
         }

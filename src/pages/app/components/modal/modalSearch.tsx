@@ -9,6 +9,7 @@ import { PostPreview } from "@/components/post-preview/PostPreview";
 import { SearchOutlined } from "@ant-design/icons";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { searchPosts } from "@/services/post/search-posts.service";
+import axios from "axios";
 
 interface ModalSearchProps {
     setOpenModal: (open: boolean) => void;
@@ -26,6 +27,7 @@ export function ModalSearch(data: ModalSearchProps) {
     const [clickID, setClickID] = useState<string>();
     const [dataPosts, setDataPosts] = useState<IPost[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const cancelTokenSource = axios.CancelToken.source();
 
     const titleValueSearch = Form.useWatch("title", formSearchTitle);
     const handleOk = () => setOpenModal(true);
@@ -38,26 +40,33 @@ export function ModalSearch(data: ModalSearchProps) {
         setSelectedTopics(nextSelectedTags);
     };
 
-    const handleSearch = () => {
-        setIsLoading(true);
-        if (selectedTopics.length > 0 || titleValueSearch !== undefined) {
-            const dataSearch = {
-                title: titleValueSearch,
-                topic: selectedTopics,
-            };
-            setTimeout(async () => {
-                await searchPosts(dataSearch).then((res) => {
-                    setDataPosts(res?.data);
-                    setIsLoading(false);
-                });
-            }, 2000);
-        } else {
-            setClickID("");
-        }
-    };
-
     useEffect(() => {
-        handleSearch();
+        const getDataPosts = async () => {
+            setIsLoading(true);
+            if (selectedTopics.length > 0 || titleValueSearch !== undefined) {
+                const dataSearch = {
+                    title: titleValueSearch,
+                    topic: selectedTopics,
+                    tokencancel: cancelTokenSource.token,
+                };
+                await searchPosts(dataSearch)
+                    .then((res) => {
+                        setDataPosts(res?.data);
+                        setIsLoading(false);
+                    })
+                    .catch((error) => {
+                        if (axios.isCancel(error)) {
+                            cancelTokenSource.cancel();
+                        }
+                    });
+            } else {
+                setClickID("");
+            }
+        };
+        getDataPosts();
+        return () => {
+            cancelTokenSource.cancel();
+        };
     }, [titleValueSearch, selectedTopics]);
 
     const BaseListPostSearch: React.FC<{ data: IBasetListPost }> = ({

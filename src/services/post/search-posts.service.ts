@@ -9,11 +9,20 @@ interface SearchPostsProps {
     title?: string;
     limit?: number | string;
     neworold?: number | string;
+    tokencancel?: any;
 }
 
 export const searchPosts = async (data: SearchPostsProps): Promise<any> => {
-    let convertedQuery = convertToQueryString(data);
-    const res = await apiClient.get(`${URL_API_SEARCHPOST}${convertedQuery}`);
+    const convertedData = {
+        topic: data.topic,
+        title: data.title,
+        limit: data.limit,
+        neworold: data.neworold,
+    };
+    let convertedQuery = convertToQueryString(convertedData);
+    const res = await apiClient.get(`${URL_API_SEARCHPOST}${convertedQuery}`, {
+        cancelToken: data.tokencancel,
+    });
     return res?.data;
 };
 

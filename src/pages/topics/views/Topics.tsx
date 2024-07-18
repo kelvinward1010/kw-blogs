@@ -7,6 +7,7 @@ import { searchPosts } from "@/services/post/search-posts.service";
 import { IBasetListPost, IPost } from "@/types/post";
 import { Post } from "../components/Post";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
+import axios from "axios";
 
 const { Text } = Typography;
 
@@ -19,6 +20,7 @@ export function Topics() {
     const [dataPosts, setDataPosts] = useState<IPost[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [limit, setLimit] = useState<number>(10);
+    const cancelTokenSource = axios.CancelToken.source();
 
     const neworoldValue = Form.useWatch("neworold", formInTopics);
 
@@ -32,21 +34,6 @@ export function Topics() {
 
     const handleAddLimit = () => {
         setLimit(limit + 10);
-    };
-
-    const handleSearch = () => {
-        setIsLoading(true);
-        const dataSearch = {
-            topic: selectedTopics,
-            limit: limit,
-            neworold: neworoldValue,
-        };
-        setTimeout(async () => {
-            await searchPosts(dataSearch).then((res) => {
-                setDataPosts(res?.data);
-                setIsLoading(false);
-            });
-        }, 1500);
     };
 
     const draft = {
@@ -69,7 +56,29 @@ export function Topics() {
     }
 
     useEffect(() => {
-        handleSearch();
+        const getDataPosts = async () => {
+            setIsLoading(true);
+            const dataSearch = {
+                topic: selectedTopics,
+                limit: limit,
+                neworold: neworoldValue,
+                tokencancel: cancelTokenSource.token,
+            };
+            searchPosts(dataSearch)
+                .then((res) => {
+                    setDataPosts(res?.data);
+                    setIsLoading(false);
+                })
+                .catch((error) => {
+                    if (axios.isCancel(error)) {
+                        cancelTokenSource.cancel();
+                    }
+                });
+        };
+        getDataPosts();
+        return () => {
+            cancelTokenSource.cancel();
+        };
     }, [selectedTopics, limit, neworoldValue]);
     return (
         <div className={styles.container}>
