@@ -3,6 +3,7 @@ import styles from "./relate-topics.module.scss";
 import { IBasetListPost, IPost } from "@/types/post";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { CardPost } from "@/components/card-post/CardPost";
+import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
@@ -12,6 +13,7 @@ interface RelateTopicsProps {
 }
 
 export function RelateTopics({ data, isLoading }: RelateTopicsProps) {
+    const { t } = useTranslation();
     const draftData = {
         isLoading: isLoading,
         data: data,
@@ -27,7 +29,7 @@ export function RelateTopics({ data, isLoading }: RelateTopicsProps) {
         <div className={styles.container}>
             <div className={styles.center}>
                 <Title level={4} className={styles.title_main}>
-                    Articles with related topics
+                    {t("detailpost.postrelated")}
                 </Title>
                 <ListPost data={draftData} />
             </div>

@@ -25,7 +25,7 @@ export const Post: React.FC<PostProps> = ({ data }) => {
             <Title
                 className={styles.title}
                 onClick={handleGoPost}
-                level={3}
+                level={4}
                 onMouseEnter={onMouseEnter}
                 onMouseLeave={onMouseLeave}
             >

@@ -35,5 +35,8 @@
     "topics": {
         "nametopics": "Topics",
         "timest": "Time"
+    },
+    "detailpost": {
+        "postrelated": "Articles with related topics"
     }
 }

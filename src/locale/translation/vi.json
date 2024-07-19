@@ -35,5 +35,8 @@
     "topics": {
         "nametopics": "Các chủ đề",
         "timest": "Thời gian"
+    },
+    "detailpost": {
+        "postrelated": "Bài viết có chủ đề liên quan"
     }
 }

@@ -133,17 +133,17 @@ export function Topics() {
             <div className={styles.box2}>
                 <div className={styles.container2}>
                     <ListPost data={draft} />
-                    {dataPosts.length > 0 && (
-                        <Flex gap={15} align={"center"} justify={"center"}>
-                            <Text
-                                onClick={handleAddLimit}
-                                className={styles.acts_more}
-                            >
-                                More
-                            </Text>
-                        </Flex>
-                    )}
                 </div>
+                {dataPosts.length > 0 && (
+                    <Flex gap={15} align={"center"} justify={"center"}>
+                        <Text
+                            onClick={handleAddLimit}
+                            className={styles.acts_more}
+                        >
+                            More
+                        </Text>
+                    </Flex>
+                )}
             </div>
         </div>
     );

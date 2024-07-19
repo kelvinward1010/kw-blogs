@@ -159,7 +159,7 @@ export function Signup() {
                         onClick={() => navigate(signinUrl)}
                         className={styles.fix_text}
                     >
-                        Sign Up
+                        Sign In
                     </Text>
                 </div>
             </div>

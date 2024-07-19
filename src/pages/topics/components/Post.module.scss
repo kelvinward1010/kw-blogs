@@ -14,10 +14,17 @@
         object-fit: cover;
     }
 
+    .title {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        cursor: pointer;
+    }
+
     .title:hover {
         color: rgb(44, 135, 255);
         text-decoration: underline;
-        cursor: pointer;
     }
 
     .content {
