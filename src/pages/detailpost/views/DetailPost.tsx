@@ -6,7 +6,7 @@ import { Comments } from "../components/comments/comments";
 import { useNavigate, useParams } from "react-router-dom";
 import { writecontentUrl } from "@/routes/urls";
 import { useGetPost } from "@/services/post/get-post.service";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { IUser } from "@/types/user";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
@@ -15,7 +15,8 @@ import { formatDate } from "@/utils/date";
 import { IPost } from "@/types/post";
 import { searchNewestPosts } from "@/services/post/newest-posts-search.service";
 import { filterPostsRelatedById } from "@/utils/array";
-import { HeartOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { useLikePost } from "@/services/post/like-post.service";
 
 const { Title, Text } = Typography;
 
@@ -34,6 +35,8 @@ export function DetailPost(): JSX.Element {
     const compareUser =
         String(user?._id) === String(data?.authorID) ? true : false;
 
+    const isLiked = data?.likes.includes(user?._id as string);
+
     const goEditPost = () => navigate(`${writecontentUrl}/${id}`);
 
     {
@@ -44,6 +47,29 @@ export function DetailPost(): JSX.Element {
                     onSuccess: (res) => {
                         const data = res?.data?.data;
                         setData(data);
+                        if (data?.authorID) {
+                            const dataGet = {
+                                id: data?.authorID,
+                            };
+                            getUser(dataGet).then((user) => {
+                                setDataUser(user?.data);
+                            });
+                        }
+                        if (data?.topic) {
+                            setIsLoading(true);
+                            const dataSearch = {
+                                topic: data?.topic,
+                                limit: 4,
+                            };
+                            searchNewestPosts(dataSearch).then((search) => {
+                                const dataFilltered = filterPostsRelatedById(
+                                    search?.data,
+                                    id,
+                                );
+                                setDataRelated(dataFilltered);
+                                setIsLoading(false);
+                            });
+                        }
                     },
                     onError: (e: any) => {
                         notification.error({
@@ -54,28 +80,29 @@ export function DetailPost(): JSX.Element {
             });
     }
 
-    useEffect(() => {
-        if (data?.authorID) {
-            const dataGet = {
-                id: data?.authorID,
-            };
-            getUser(dataGet).then((user) => {
-                setDataUser(user?.data);
-            });
-        }
-        if (data?.topic) {
-            setIsLoading(true);
-            const dataSearch = {
-                topic: data?.topic,
-                limit: 4,
-            };
-            searchNewestPosts(dataSearch).then((search) => {
-                const dataFilltered = filterPostsRelatedById(search?.data, id);
-                setDataRelated(dataFilltered);
-                setIsLoading(false);
-            });
-        }
-    }, [data]);
+    const configLikePost = useLikePost({
+        config: {
+            onSuccess: (res) => {
+                const data = res?.data?.data;
+                setData(data);
+                notification.success({
+                    message: isLiked ? "Unlike" : "Like",
+                });
+            },
+            onError: (e) => {
+                notification.error({
+                    message: e.message,
+                });
+            },
+        },
+    });
+
+    const handleLikePost = () => {
+        configLikePost.mutate({
+            id: data?._id as string,
+            isLike: isLiked ? 0 : 1,
+        });
+    };
 
     return (
         <div className={styles.container}>
@@ -95,7 +122,17 @@ export function DetailPost(): JSX.Element {
                         {compareUser && (
                             <ButtonConfig onClick={goEditPost} lable={"Edit"} />
                         )}
-                        <HeartOutlined className={styles.heartLike} />
+                        {isLiked ? (
+                            <HeartFilled
+                                onClick={handleLikePost}
+                                className={styles.heartLike}
+                            />
+                        ) : (
+                            <HeartOutlined
+                                onClick={handleLikePost}
+                                className={styles.heartLike}
+                            />
+                        )}
                     </Col>
                 </Row>
             </div>

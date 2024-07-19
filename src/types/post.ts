@@ -6,6 +6,7 @@ export type IPost = {
     description: string;
     content: any;
     image_thumbnail: string;
+    likes: string[];
     createdAt: string;
     updatedAt: string;
 };

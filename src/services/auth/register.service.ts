@@ -9,6 +9,7 @@ interface RegisterAccountProps {
     password?: string;
     image: string;
     position: string;
+    favoritesposts: string[];
 }
 
 export const registerAccount = async (

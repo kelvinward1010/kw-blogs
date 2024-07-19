@@ -11,6 +11,7 @@ interface UpdatePostProps {
     description?: string;
     image_thumbnail?: string;
     content?: string;
+    likes?: string[];
 }
 
 export const updatePost = async (data: UpdatePostProps): Promise<any> => {
@@ -21,6 +22,7 @@ export const updatePost = async (data: UpdatePostProps): Promise<any> => {
         description: data.description,
         image_thumbnail: data.image_thumbnail,
         content: data.content,
+        likes: data.likes,
     };
     const res = await apiClient.put(
         `${URL_API_POSTUPDATED}/${data.id}`,

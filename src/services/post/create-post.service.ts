@@ -10,6 +10,7 @@ interface CreatePostProps {
     description?: string;
     image_thumbnail?: string;
     content?: string;
+    likes?: string[];
 }
 
 export const createPost = async (data: CreatePostProps): Promise<any> => {

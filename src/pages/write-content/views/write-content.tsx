@@ -33,6 +33,7 @@ export function WriteContent() {
     const [image, setImage] = useState<any>();
     const [openModal, setOpenModal] = useState<boolean>(false);
     const [idNewPost, setIdNewPost] = useState<string>("");
+    const [likes, setLikes] = useState<string[]>([]);
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const user: IUser | null = useSelector(
@@ -127,6 +128,7 @@ export function WriteContent() {
             description: values.description,
             content: content,
             image_thumbnail: image,
+            likes: likes,
         };
         if (id) {
             const addInDraftUpdate = {
@@ -153,10 +155,12 @@ export function WriteContent() {
             });
             setContent("");
             setImage("");
+            setLikes([]);
         } else {
             getPost(id).then((post) => {
                 const data: IPost = post?.data?.data;
                 formWritecontent?.setFieldsValue(data);
+                setLikes(data?.likes);
                 setContent(data?.content);
                 setImage(data?.image_thumbnail);
             });

@@ -23,3 +23,4 @@ export const URL_API_POSTUPDATED = `${URL_API_POST}/update`;
 export const URL_API_DELETEPOST = `${URL_API_POST}/delete`;
 export const URL_API_LIKEPOST = `${URL_API_POST}/like`;
 export const URL_API_YOURPOSTS = `${URL_API_POST}/your-posts`;
+export const URL_API_YOURFAVORITESPOSTS = `${URL_API_POST}/your-posts-favorites`;

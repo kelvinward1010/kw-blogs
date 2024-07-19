@@ -6,3 +6,7 @@ export function filterPostsRelatedById(
 ): IPost[] {
     return posts.filter((post) => post._id !== idToExclude);
 }
+
+export function checkIfIdExists(id: any, ids: string[]): boolean {
+    return ids.includes(id);
+}

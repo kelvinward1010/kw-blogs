@@ -4,6 +4,7 @@ export type IUser = {
     email: string;
     image: string;
     position: string;
+    favoritesposts: string[];
     createdAt: string;
     updatedAt: string;
 };

@@ -52,6 +52,7 @@ export function Signup() {
             password: values.password,
             image: "",
             position: "",
+            favoritesposts: [],
         };
         configRegisterAccount.mutate(data);
     };
