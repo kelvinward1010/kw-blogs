@@ -4,7 +4,11 @@ export const topicsData = [
     "Anime",
     "New",
     "Netflix",
+    "Music",
     "Love",
+    "Artist",
+    "Politics",
+    "History",
     "Science Fiction",
     "Fantasy",
     "Science",
@@ -36,8 +40,24 @@ export const TOPICSOPTIONS = [
         label: "Netflix",
     },
     {
+        value: "Music",
+        label: "Music",
+    },
+    {
         value: "Love",
         label: "Love",
+    },
+    {
+        value: "Artist",
+        label: "Artist",
+    },
+    {
+        value: "Politics",
+        label: "Politics",
+    },
+    {
+        value: "History",
+        label: "History",
     },
     {
         value: "Science Fiction",

@@ -17,6 +17,7 @@ import { filterPostsRelatedById } from "@/utils/array";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { useLikePost } from "@/services/post/like-post.service";
 import { ModalSmall } from "@/components/modals/modalSmall";
+import { queryClient } from "@/lib/react-query";
 
 const { Title, Text } = Typography;
 
@@ -86,6 +87,7 @@ export function DetailPost(): JSX.Element {
             onSuccess: (res) => {
                 const data = res?.data?.data;
                 setData(data);
+                queryClient.invalidateQueries(["your-favorites-posts"]);
                 notification.success({
                     message: isLiked ? "Unlike" : "Like",
                 });

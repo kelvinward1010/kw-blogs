@@ -25,7 +25,7 @@ export function Signin(): JSX.Element {
             onSuccess: (res) => {
                 const data = res?.data;
                 notification.success({
-                    message: "Login successfully!",
+                    message: "Loged In!",
                 });
                 storage.setToken(data.access_token);
                 storageRefreshToken.setToken(data.refresh_token);

@@ -9,7 +9,6 @@ interface UpdateAccountProps {
     email?: string;
     image?: string;
     position?: string;
-    favoritesposts?: string[];
 }
 
 export const updateAccount = async (data: UpdateAccountProps): Promise<any> => {
@@ -18,7 +17,6 @@ export const updateAccount = async (data: UpdateAccountProps): Promise<any> => {
         email: data.email,
         image: data.image,
         position: data.position,
-        favoritesposts: data.favoritesposts,
     };
     const res = await apiClient.put(
         `${URL_API_UPDATEUSER}/${data.id}`,
