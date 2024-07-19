@@ -63,7 +63,7 @@ export function DetailPost(): JSX.Element {
                             };
                             searchNewestPosts(dataSearch).then((search) => {
                                 const dataFilltered = filterPostsRelatedById(
-                                    search?.data,
+                                    search,
                                     id,
                                 );
                                 setDataRelated(dataFilltered);

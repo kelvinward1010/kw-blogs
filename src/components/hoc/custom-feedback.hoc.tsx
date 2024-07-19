@@ -25,7 +25,7 @@ function TitleCustomization({ children }: TitleProps) {
 
 function TitleNoneDataCustomization({ children }: TitleProps) {
     return (
-        <>
+        <div className={"container-nonedatafeedback"}>
             <Title level={5} className="title-feedback">
                 {children}
             </Title>
@@ -36,7 +36,7 @@ function TitleNoneDataCustomization({ children }: TitleProps) {
                     alt="icondata-none"
                 />
             </Row>
-        </>
+        </div>
     );
 }
 

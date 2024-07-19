@@ -1,6 +1,7 @@
 import { URL_API_YOURPOSTS } from "@/constant/config";
 import { apiClient } from "@/lib/api";
 import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
+import { IPost } from "@/types/post";
 import { convertToQueryString } from "@/utils/string";
 import { useQuery } from "react-query";
 
@@ -9,7 +10,9 @@ interface GetYourPostsProps {
     title?: string;
 }
 
-export const getYourPosts = async (data: GetYourPostsProps): Promise<any> => {
+export const getYourPosts = async (
+    data: GetYourPostsProps,
+): Promise<IPost[]> => {
     const converted = {
         title: data.title,
     };
@@ -17,7 +20,7 @@ export const getYourPosts = async (data: GetYourPostsProps): Promise<any> => {
     const res = await apiClient.get(
         `${URL_API_YOURPOSTS}/${data.id}${convertedQuery}`,
     );
-    return res?.data;
+    return res?.data?.data;
 };
 
 type QueryFnType = typeof getYourPosts;

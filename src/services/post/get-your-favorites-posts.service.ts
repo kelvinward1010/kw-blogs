@@ -1,11 +1,12 @@
 import { URL_API_YOURFAVORITESPOSTS } from "@/constant/config";
 import { apiClient } from "@/lib/api";
 import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
+import { IPost } from "@/types/post";
 import { useQuery } from "react-query";
 
-export const getYourFavoritesPosts = async (): Promise<any> => {
+export const getYourFavoritesPosts = async (): Promise<IPost[]> => {
     const res = await apiClient.get(`${URL_API_YOURFAVORITESPOSTS}`);
-    return res?.data;
+    return res?.data?.data;
 };
 
 type QueryFnType = typeof getYourFavoritesPosts;

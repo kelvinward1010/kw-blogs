@@ -1,31 +1,16 @@
 import styles from "./FavoritesPosts.module.scss";
-import { useState } from "react";
 import { IBasetListPost, IPost } from "@/types/post";
 import { useGetYourFavoritesOptions } from "@/services/post/get-your-favorites-posts.service";
-import { notification, Row } from "antd";
+import { Row } from "antd";
 import { CardPost } from "@/components/card-post/CardPost";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 
 export function FavoritesPosts() {
-    const [data, setData] = useState<IPost[]>([]);
-
-    useGetYourFavoritesOptions({
-        config: {
-            onSuccess: (res) => {
-                const data = res?.data;
-                setData(data);
-            },
-            onError: (e: any) => {
-                notification.error({
-                    message: e?.response?.data?.detail,
-                });
-            },
-        },
-    });
+    const { data: posts } = useGetYourFavoritesOptions({ config: {} });
 
     const draftData = {
         isLoading: false,
-        data: data,
+        data: posts as IPost[],
     };
     const ListPost = customConditionalFeedbackHigh()(
         BaseListYourFavoritesPosts,

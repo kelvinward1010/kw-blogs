@@ -2,13 +2,12 @@ import { IUser } from "@/types/user";
 import styles from "./YourPostsCreated.module.scss";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
-import { useState } from "react";
 import { IBasetListPost, IPost } from "@/types/post";
 import { useGetYourPosts } from "@/services/post/get-your-post.service";
-import { Form, Input, notification, Row } from "antd";
-import { CardPost } from "@/components/card-post/CardPost";
+import { Form, Input, Row } from "antd";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { SearchOutlined } from "@ant-design/icons";
+import { CardPostYouCreated } from "./CardPostYouCreated";
 
 type FieldType = {
     title?: string;
@@ -16,37 +15,25 @@ type FieldType = {
 
 export function YourPostsCreated() {
     const [formYourPosts] = Form.useForm<FieldType>();
-    const [data, setData] = useState<IPost[]>([]);
     const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
     );
 
     const titleValueSearch = Form.useWatch("title", formYourPosts);
 
-    {
-        user?._id &&
-            useGetYourPosts({
-                data: {
-                    id: user._id,
-                    title: titleValueSearch,
-                },
-                config: {
-                    onSuccess: (res) => {
-                        const data = res?.data;
-                        setData(data);
-                    },
-                    onError: (e: any) => {
-                        notification.error({
-                            message: e?.response?.data?.detail,
-                        });
-                    },
-                },
-            });
-    }
+    const queryFn = {
+        id: user?._id as string,
+        title: titleValueSearch,
+    };
+
+    const { data: posts } = useGetYourPosts({
+        data: queryFn,
+        config: {},
+    });
 
     const draftData = {
         isLoading: false,
-        data: data,
+        data: posts as IPost[],
     };
 
     const ListPost = customConditionalFeedbackHigh()(BaseListYourPosts);
@@ -72,7 +59,7 @@ const BaseListYourPosts: React.FC<{ data: IBasetListPost }> = ({ data }) => {
     return (
         <div className={styles.containeryourpost}>
             {data?.data.map((post: IPost) => (
-                <CardPost key={post._id} data={post} />
+                <CardPostYouCreated key={post._id} data={post} />
             ))}
         </div>
     );

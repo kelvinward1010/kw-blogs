@@ -1,36 +1,25 @@
 import { IBasetListPost, IPost } from "@/types/post";
 import styles from "./hot-news.module.scss";
-import { notification, Typography } from "antd";
+import { Typography } from "antd";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { CardPost } from "@/components/card-post/CardPost";
-import { useState } from "react";
 import { useSearchNewestPosts } from "@/services/post/newest-posts-search.service";
 
 const { Title } = Typography;
 
 export function HotNews() {
-    const [data, setData] = useState<IPost[]>([]);
+    const queryFn = {
+        limit: 4,
+    };
 
-    useSearchNewestPosts({
-        data: {
-            limit: 4,
-        },
-        config: {
-            onSuccess: (res) => {
-                const data = res?.data;
-                setData(data);
-            },
-            onError: (e: any) => {
-                notification.error({
-                    message: e?.response?.data?.detail,
-                });
-            },
-        },
+    const { data: posts } = useSearchNewestPosts({
+        data: queryFn,
+        config: {},
     });
 
     const draftData = {
         isLoading: false,
-        data: data,
+        data: posts as IPost[],
     };
 
     const ListPost = customConditionalFeedbackHigh()(BaseListNews);
