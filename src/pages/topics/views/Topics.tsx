@@ -8,10 +8,12 @@ import { IBasetListPost, IPost } from "@/types/post";
 import { Post } from "../components/Post";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const { Text } = Typography;
 
 export function Topics() {
+    const { t } = useTranslation();
     const [formInTopics] = Form.useForm();
     const [topicsParams, setTopicsParams] = useSearchParams();
     const keysSearchOnParams = topicsParams.getAll("topic");
@@ -90,7 +92,7 @@ export function Topics() {
                         autoComplete="off"
                         style={{ padding: "0 10px" }}
                     >
-                        <Form.Item label={FormLable("Topics:")}>
+                        <Form.Item label={FormLable(t("topics.nametopics"))}>
                             <Flex
                                 gap={4}
                                 wrap
@@ -112,7 +114,7 @@ export function Topics() {
                             </Flex>
                         </Form.Item>
                         <Form.Item
-                            label={FormLable("Timest:")}
+                            label={FormLable(t("topics.timest"))}
                             name="neworold"
                             initialValue={-1}
                         >

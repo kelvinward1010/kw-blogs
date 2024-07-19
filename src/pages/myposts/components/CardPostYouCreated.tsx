@@ -1,6 +1,6 @@
 import { postUrl } from "@/routes/urls";
 import { IPost } from "@/types/post";
-import { notification, Row, Typography } from "antd";
+import { Col, notification, Row, Typography } from "antd";
 import { useNavigate } from "react-router-dom";
 import styles from "./CardPostYouCreated.module.scss";
 import { DeleteFilled } from "@ant-design/icons";
@@ -54,17 +54,21 @@ export const CardPostYouCreated: React.FC<{ data: IPost }> = ({ data }) => {
                 className={styles.headcard}
                 align={"middle"}
             >
-                <Title
-                    onClick={handleGoPost}
-                    className={`${styles.text} ${styles.title}`}
-                    level={4}
-                >
-                    {data.title}
-                </Title>
-                <DeleteFilled
-                    onClick={() => setOpenModalDelete(true)}
-                    className={styles.actionDelete}
-                />
+                <Col span={21}>
+                    <Title
+                        onClick={handleGoPost}
+                        className={`${styles.text} ${styles.title}`}
+                        level={4}
+                    >
+                        {data.title}
+                    </Title>
+                </Col>
+                <Col span={2}>
+                    <DeleteFilled
+                        onClick={() => setOpenModalDelete(true)}
+                        className={styles.actionDelete}
+                    />
+                </Col>
             </Row>
             <Row justify={"center"} className={styles.image_thumbnail}>
                 <img

@@ -56,3 +56,7 @@
 .ant-tabs-tab-active .ant-tabs-tab-btn .ant-tabs-tab-icon {
     color: teal !important;
 }
+
+.skeleton-form {
+    margin-top: 10px;
+}

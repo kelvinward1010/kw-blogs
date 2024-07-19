@@ -1,10 +1,9 @@
-import { Col, Image, notification, Row, Typography } from "antd";
+import { Col, Image, notification, Row, Skeleton, Typography } from "antd";
 import styles from "./DetailPost.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { RelateTopics } from "../components/relate-topics";
-import { Comments } from "../components/comments/comments";
 import { useNavigate, useParams } from "react-router-dom";
-import { writecontentUrl } from "@/routes/urls";
+import { signinUrl, writecontentUrl } from "@/routes/urls";
 import { useGetPost } from "@/services/post/get-post.service";
 import { useState } from "react";
 import { IUser } from "@/types/user";
@@ -17,6 +16,7 @@ import { searchNewestPosts } from "@/services/post/newest-posts-search.service";
 import { filterPostsRelatedById } from "@/utils/array";
 import { HeartFilled, HeartOutlined } from "@ant-design/icons";
 import { useLikePost } from "@/services/post/like-post.service";
+import { ModalSmall } from "@/components/modals/modalSmall";
 
 const { Title, Text } = Typography;
 
@@ -27,6 +27,7 @@ export function DetailPost(): JSX.Element {
     const [dataUser, setDataUser] = useState<any>();
     const [dataRelated, setDataRelated] = useState<IPost[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [openModalIsUser, setOpenModalIsUser] = useState<boolean>(false);
 
     const user: IUser | null = useSelector(
         (state: RootState) => state.auth.user,
@@ -98,60 +99,97 @@ export function DetailPost(): JSX.Element {
     });
 
     const handleLikePost = () => {
-        configLikePost.mutate({
-            id: data?._id as string,
-            isLike: isLiked ? 0 : 1,
-        });
+        if (user?._id) {
+            configLikePost.mutate({
+                id: data?._id as string,
+                isLike: isLiked ? 0 : 1,
+            });
+        } else {
+            setOpenModalIsUser(true);
+        }
+    };
+
+    const handleGoSignIn = () => {
+        setOpenModalIsUser(false);
+        navigate(signinUrl);
     };
 
     return (
-        <div className={styles.container}>
-            <div className={styles.headesay}>
-                <Row justify={"space-between"} align={"top"}>
-                    <Col span={21}>
-                        {data?.title && <Title level={3}>{data?.title}</Title>}
-                        <Text>Author: {dataUser?.name}</Text>
-                        <br />
-                        <Text>
-                            Time:{" "}
-                            {data?.createdAt && formatDate(data.createdAt)}
-                        </Text>
-                        <br />
-                    </Col>
-                    <Col className={styles.actionsInPost}>
-                        {compareUser && (
-                            <ButtonConfig onClick={goEditPost} lable={"Edit"} />
-                        )}
-                        {isLiked ? (
-                            <HeartFilled
-                                onClick={handleLikePost}
-                                className={styles.heartLike}
+        <>
+            {dataRelated && dataUser ? (
+                <div className={styles.container}>
+                    {openModalIsUser && (
+                        <ModalSmall
+                            message="You need to sign in to like this post!"
+                            open={openModalIsUser}
+                            setOpen={setOpenModalIsUser}
+                            onClick={handleGoSignIn}
+                            titleButton={"OK"}
+                        />
+                    )}
+                    <div className={styles.headesay}>
+                        <Row justify={"space-between"} align={"top"}>
+                            <Col span={21}>
+                                {data?.title && (
+                                    <Title level={3}>{data?.title}</Title>
+                                )}
+                                <Text>Author: {dataUser?.name}</Text>
+                                <br />
+                                <Text>
+                                    Time:{" "}
+                                    {data?.createdAt &&
+                                        formatDate(data.createdAt)}
+                                </Text>
+                                <br />
+                            </Col>
+                            <Col className={styles.actionsInPost}>
+                                {compareUser && (
+                                    <ButtonConfig
+                                        onClick={goEditPost}
+                                        lable={"Edit"}
+                                    />
+                                )}
+                                {isLiked ? (
+                                    <HeartFilled
+                                        onClick={handleLikePost}
+                                        className={styles.heartLike}
+                                    />
+                                ) : (
+                                    <HeartOutlined
+                                        onClick={handleLikePost}
+                                        className={styles.heartLike}
+                                    />
+                                )}
+                            </Col>
+                        </Row>
+                    </div>
+                    <Row justify={"center"}>
+                        {data?.image_thumbnail && (
+                            <Image
+                                src={data?.image_thumbnail}
+                                style={{
+                                    margin: "0 10px",
+                                    height: "100%",
+                                    maxHeight: "600px",
+                                    width: "95%",
+                                }}
                             />
-                        ) : (
-                            <HeartOutlined
-                                onClick={handleLikePost}
-                                className={styles.heartLike}
+                        )}
+                    </Row>
+                    <Row justify={"start"} className={styles.containerContent}>
+                        {data?.content && (
+                            <div
+                                dangerouslySetInnerHTML={{
+                                    __html: data?.content,
+                                }}
                             />
                         )}
-                    </Col>
-                </Row>
-            </div>
-            <Row justify={"center"}>
-                {data?.image_thumbnail && (
-                    <Image
-                        width={"90%"}
-                        src={data?.image_thumbnail}
-                        style={{ margin: "0 10px" }}
-                    />
-                )}
-            </Row>
-            <Row justify={"start"} className={styles.containerContent}>
-                {data?.content && (
-                    <div dangerouslySetInnerHTML={{ __html: data?.content }} />
-                )}
-            </Row>
-            <Comments />
-            <RelateTopics data={dataRelated} isLoading={isLoading} />
-        </div>
+                    </Row>
+                    <RelateTopics data={dataRelated} isLoading={isLoading} />
+                </div>
+            ) : (
+                <Skeleton className={"skeleton-form"} active />
+            )}
+        </>
     );
 }

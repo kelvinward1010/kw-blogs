@@ -1,5 +1,5 @@
-import { Carousel } from 'antd';
-import styles from './head-home.module.scss';
+import { Carousel } from "antd";
+import styles from "./head-home.module.scss";
 
 export function HeadHome() {
     return (
@@ -7,29 +7,29 @@ export function HeadHome() {
             <Carousel autoplay>
                 <div className={styles.item}>
                     <img
-                        src="https://i.imgur.com/JZe3lvz.jpg"
+                        src="https://images.inc.com/uploaded_files/image/1920x1080/getty_649236630_398154.jpg"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://occ-0-2794-2219.1.nflxso.net/dnm/api/v6/E8vDc_W8CLv7-yMQu8KMEC7Rrr8/AAAABYM9KvP-bpz9dnTQP1O7OhpXl-Vs21ImIUtsfrrwF34WX36c4S7ceysPRTiFe4MamL8AKhiCvsPsS_ON75eGeuJfhSEmUp4l6bM0.jpg?r=0e5"
+                        src="https://miro.medium.com/v2/resize:fit:1400/1*_nlTYfyrnBdp_hjvwWmnEQ.jpeg"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://imgsrv.crunchyroll.com/cdn-cgi/image/format=auto,fit=contain,width=1200,height=675,quality=85/catalog/crunchyroll/a249096c7812deb8c3c2c907173f3774.jpe"
+                        src="https://www.aspistrategist.org.au/wp-content/uploads/2024/03/GettyImages-1628291798-scaled.jpg"
                         alt="Images"
                     />
                 </div>
                 <div className={styles.item}>
                     <img
-                        src="https://br.web.img3.acsta.net/pictures/20/09/14/10/31/4875617.jpg"
+                        src="https://www.cia-france.com/media/1492/les-films-incontournables-du-cinema-w_2524x884.jpg"
                         alt="Images"
                     />
                 </div>
             </Carousel>
         </div>
-    )
+    );
 }

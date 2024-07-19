@@ -28,5 +28,12 @@
         "loading": "Đang tải...",
         "nodatafeedback": "Không có dữ liệu trả về...",
         "emptydata": "Dữ liệu trả về trống..."
+    },
+    "home": {
+        "lastestnews": "Tin tức mới nhất"
+    },
+    "topics": {
+        "nametopics": "Các chủ đề",
+        "timest": "Thời gian"
     }
 }
