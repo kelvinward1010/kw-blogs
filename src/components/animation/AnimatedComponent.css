@@ -1,0 +1,7 @@
+.animated-config {
+    max-width: 410px;
+    min-height: 370px;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden;
+}

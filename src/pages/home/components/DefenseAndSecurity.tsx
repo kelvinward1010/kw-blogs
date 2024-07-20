@@ -3,18 +3,19 @@ import styles from "./style.module.scss";
 import { Skeleton, Typography } from "antd";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
 import { CardPost } from "@/components/card-post/CardPost";
-import { useSearchNewestPosts } from "@/services/post/newest-posts-search.service";
+import { useDefenseAndSecurityNewestPosts } from "@/services/post/newest-posts-search.service";
 import { useTranslation } from "react-i18next";
 
 const { Title } = Typography;
 
-export function HotNews() {
+export function DefenseAndSecurity() {
     const { t } = useTranslation();
     const queryFn = {
+        topic: ["Defense and security"],
         limit: 4,
     };
 
-    const { data: posts } = useSearchNewestPosts({
+    const { data: posts } = useDefenseAndSecurityNewestPosts({
         data: queryFn,
         config: {},
     });
@@ -29,7 +30,7 @@ export function HotNews() {
     return (
         <div className={styles.container}>
             <Title level={3} className={`${styles.title} ${styles.title_1}`}>
-                {t("home.lastestnews")}
+                {t("home.defenseandsecurity")}
             </Title>
             {posts ? (
                 <ListPost data={draftData} />

@@ -30,7 +30,9 @@
         "emptydata": "Dữ liệu trả về trống..."
     },
     "home": {
-        "lastestnews": "Tin tức mới nhất"
+        "lastestnews": "Tin tức mới nhất",
+        "politics": "Tin tức chính trị",
+        "defenseandsecurity": "Quốc phòng và an ninh"
     },
     "topics": {
         "nametopics": "Các chủ đề",

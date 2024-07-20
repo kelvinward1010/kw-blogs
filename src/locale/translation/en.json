@@ -30,7 +30,9 @@
         "emptydata": "Data Is Empty..."
     },
     "home": {
-        "lastestnews": "Lastest news"
+        "lastestnews": "Lastest news",
+        "politics": "Politics news",
+        "defenseandsecurity": "Defense and security"
     },
     "topics": {
         "nametopics": "Topics",

@@ -38,3 +38,29 @@ export const useSearchNewestPosts = ({
         queryFn: () => searchNewestPosts(data),
     });
 };
+
+export const usePoliticsNewestPosts = ({
+    data,
+    config,
+}: SearchNewestPostsOptions) => {
+    return useQuery<ExtractFnReturnType<QueryFnType>>({
+        onError: () => {},
+        onSuccess: () => {},
+        ...config,
+        queryKey: ["newest-posts-politics"],
+        queryFn: () => searchNewestPosts(data),
+    });
+};
+
+export const useDefenseAndSecurityNewestPosts = ({
+    data,
+    config,
+}: SearchNewestPostsOptions) => {
+    return useQuery<ExtractFnReturnType<QueryFnType>>({
+        onError: () => {},
+        onSuccess: () => {},
+        ...config,
+        queryKey: ["newest-posts-defenseandsecurity"],
+        queryFn: () => searchNewestPosts(data),
+    });
+};
