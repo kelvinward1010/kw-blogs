@@ -138,6 +138,9 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
                 "TableCellProperties",
             ],
         },
+        fontSize: {
+            options: [8, 10, 12, 14, 16, 18, 20, 24, 28, 32],
+        },
     };
 
     const handleChange = (value: string) => {
