@@ -24,3 +24,7 @@ export const URL_API_DELETEPOST = `${URL_API_POST}/delete`;
 export const URL_API_LIKEPOST = `${URL_API_POST}/like`;
 export const URL_API_YOURPOSTS = `${URL_API_POST}/your-posts`;
 export const URL_API_YOURFAVORITESPOSTS = `${URL_API_POST}/your-posts-favorites`;
+
+//FILE
+export const URL_API_FILE = "file";
+export const URL_API_UPLOADFILE = `${URL_API_FILE}/upload-file`;
