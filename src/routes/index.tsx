@@ -1,6 +1,6 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 import {
-    aboutmeUrl,
+    contactUrl,
     editcontentUrl,
     layoutUrl,
     mypostsUrl,
@@ -12,7 +12,7 @@ import {
     writecontentUrl,
 } from "./urls";
 import {
-    AboutMe,
+    Contact,
     DetailPost,
     Home,
     Layout,
@@ -66,8 +66,8 @@ export const routerConfig = createBrowserRouter([
                 element: <Topics />,
             },
             {
-                path: aboutmeUrl,
-                element: <AboutMe />,
+                path: contactUrl,
+                element: <Contact />,
             },
             {
                 path: postdetailUrl,

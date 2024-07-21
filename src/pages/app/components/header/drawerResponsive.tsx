@@ -2,7 +2,7 @@ import stylesss from "./drawerResponsive.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { ModalSmall } from "@/components/modals/modalSmall";
 import {
-    aboutmeUrl,
+    contactUrl,
     layoutUrl,
     mypostsUrl,
     settingUrl,
@@ -70,7 +70,7 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
             setOpen(false);
         },
         goAboutMe: () => {
-            navigate(aboutmeUrl);
+            navigate(contactUrl);
             setOpen(false);
         },
         goWriteContent: () => {
@@ -145,7 +145,7 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                     </li>
                     <li onClick={navigationFunctions.goAboutMe}>
                         <Text className={`${stylesss.title}`} strong>
-                            {t("head.menu.aboutme")}
+                            {t("head.menu.contact")}
                         </Text>
                     </li>
                 </nav>

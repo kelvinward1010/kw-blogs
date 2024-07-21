@@ -1,0 +1,41 @@
+.container {
+    padding: 10px;
+    min-height: calc(100vh - 140px);
+    height: auto;
+    width: 100%;
+    color: white;
+    background-image: url("../../../assets/jpg/contact.jpg");
+
+    .content {
+        margin-left: 15px;
+
+        .link_cnt {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            text-align: center;
+            text-decoration: none;
+            color: rgb(30, 30, 254);
+            width: fit-content;
+            margin-bottom: 5px;
+        }
+    }
+
+    .contentBox {
+        width: 100%;
+        height: 100%;
+        margin: 20px 0 0 15px;
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        text-align: center;
+
+        .box {
+            width: 450px;
+        }
+    }
+
+    .text {
+        color: white;
+    }
+}

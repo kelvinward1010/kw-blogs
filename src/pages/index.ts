@@ -30,9 +30,9 @@ export const DetailPost = lazyLoad(
     (module) => module.DetailPost,
 );
 
-export const AboutMe = lazyLoad(
-    () => import("./aboutme/views/AboutMe"),
-    (module) => module.AboutMe,
+export const Contact = lazyLoad(
+    () => import("./contact/views/Contact"),
+    (module) => module.Contact,
 );
 
 export const WriteContent = lazyLoad(

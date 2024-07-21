@@ -4,7 +4,7 @@ export const signinUrl = "/sign-in";
 export const layoutUrl = "/";
 export const homeUrl = "/home";
 export const topicsUrl = "/topics";
-export const aboutmeUrl = "/about-we";
+export const contactUrl = "/contact";
 
 export const postUrl = "/post";
 export const postdetailUrl = `${postUrl}/:id`;

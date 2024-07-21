@@ -1,7 +1,7 @@
-.container{
+.container {
     min-width: calc(100vw - 30px);
     width: auto;
-    min-height: 60px;
+    min-height: 54px;
     height: auto;
     background-color: teal;
     display: flex;
@@ -12,12 +12,12 @@
     padding: 0 10px;
     z-index: 1;
 
-    .title{
+    .title {
         color: white;
         font-size: 20px;
     }
 
-    .title2{
+    .title2 {
         color: white;
     }
 }

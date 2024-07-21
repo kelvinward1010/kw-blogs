@@ -10,7 +10,7 @@ import {
 import styles from "./header.module.scss";
 import { useNavigate } from "react-router-dom";
 import {
-    aboutmeUrl,
+    contactUrl,
     layoutUrl,
     mypostsUrl,
     settingUrl,
@@ -56,7 +56,7 @@ export function Header(): JSX.Element {
 
     const goHome = () => navigate(layoutUrl);
     const goTopics = () => navigate(topicsUrl);
-    const goAboutMe = () => navigate(aboutmeUrl);
+    const goAboutMe = () => navigate(contactUrl);
 
     const handleChangeLanguages = (value: string) => {
         i18n.changeLanguage(value);
@@ -209,7 +209,7 @@ export function Header(): JSX.Element {
                         </li>
                         <li onClick={goAboutMe}>
                             <Text className={`${styles.title}`} strong>
-                                {t("head.menu.aboutme")}
+                                {t("head.menu.contact")}
                             </Text>
                         </li>
                     </nav>

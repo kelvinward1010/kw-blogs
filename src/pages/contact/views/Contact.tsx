@@ -1,5 +1,5 @@
 import { Flex, Form, Input, Typography } from "antd";
-import styles from "./AboutMe.module.scss";
+import styles from "./Contact.module.scss";
 import { IconBrandFacebook } from "@tabler/icons-react";
 import { ButtonConfig } from "@/components/buttonconfig";
 
@@ -9,7 +9,7 @@ type FieldType = {
     message?: string;
 };
 
-export function AboutMe() {
+export function Contact() {
     const [form] = Form.useForm();
 
     const onFinish = (values: FieldType) => {
@@ -21,14 +21,25 @@ export function AboutMe() {
 
     return (
         <div className={styles.container}>
-            <Title level={5}>1. Development time.</Title>
+            <Title level={4} className={styles.text}>
+                1. Development.
+            </Title>
             <div className={styles.content}>
-                <Text>Time: In the afternoon (16/06/2024).</Text>
+                <Text className={styles.text}>
+                    I'm a fullstack web developer.
+                </Text>
                 <br />
-                <Text>Members: Kelvin Ward.</Text>
+                <Text className={styles.text}>
+                    Time start to buid this application: In the afternoon
+                    (16/06/2024).
+                </Text>
+                <br />
+                <Text className={styles.text}>Members: Kelvin Ward.</Text>
             </div>
             <br />
-            <Title level={5}>2. Contact with me.</Title>
+            <Title level={4} className={styles.text}>
+                2. Contact with me.
+            </Title>
             <div className={styles.content}>
                 <a
                     className={styles.link_cnt}
@@ -39,39 +50,36 @@ export function AboutMe() {
                     <IconBrandFacebook />
                     acebook
                 </a>
-                <Text>Email: kelvinward1010@gmail.com</Text>
+                <Text className={styles.text}>
+                    Email: kelvinward1010@gmail.com
+                </Text>
             </div>
-            <br />
-            <Title level={5}>3. Send me your messages.</Title>
-            <div className={styles.content}>
+            <div className={styles.contentBox}>
                 <Form
                     form={form}
                     name="send-we-messages"
                     scrollToFirstError
-                    style={{ paddingBlock: 32 }}
-                    labelCol={{ span: 5 }}
-                    wrapperCol={{ span: 10 }}
                     initialValues={{ remember: true }}
                     onFinish={onFinish}
                     autoComplete="off"
                     layout={"vertical"}
+                    className={styles.box}
                 >
-                    <Form.Item<FieldType> label="Your Messages" name="message">
-                        <Input.TextArea rows={6} />
+                    <Form.Item<FieldType> name="message">
+                        <Input.TextArea
+                            rows={5}
+                            placeholder="Your message"
+                            className={styles.inputsend}
+                        />
                     </Form.Item>
 
-                    <Form.Item wrapperCol={{ offset: 0 }}>
-                        <Flex gap="small">
+                    <Form.Item>
+                        <Flex gap="small" justify={"flex-start"}>
                             <ButtonConfig
-                                className={styles.submit}
+                                className={"button-submit"}
                                 type="primary"
                                 htmlType={"submit"}
                                 lable={"Submit"}
-                            />
-                            <ButtonConfig
-                                danger
-                                onClick={() => form.resetFields()}
-                                lable={"Reset"}
                             />
                         </Flex>
                     </Form.Item>
