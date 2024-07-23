@@ -1,5 +1,10 @@
 {
     "name_app": "KW Blogs",
+    "pagination": {
+        "previous": "Previous page",
+        "next": "Next page",
+        "go": "Go page"
+    },
     "head": {
         "menu": {
             "home": "Home",

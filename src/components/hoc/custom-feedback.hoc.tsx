@@ -14,12 +14,12 @@ type TitleProps = {
 
 function TitleCustomization({ children }: TitleProps) {
     return (
-        <>
+        <div className="titleCustomizationcontainer">
             <Title level={5} className="title-feedback">
                 {children}
             </Title>
             <BouncingDotsLoader />
-        </>
+        </div>
     );
 }
 

@@ -1,5 +1,10 @@
 {
     "name_app": "KW Blogs",
+    "pagination": {
+        "previous": "Trang trước",
+        "next": "Trang sau",
+        "go": "Đến trang"
+    },
     "head": {
         "menu": {
             "home": "Trang chủ",

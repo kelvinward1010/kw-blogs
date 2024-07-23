@@ -1,0 +1,33 @@
+.container {
+    .containeryourpost {
+        width: 100%;
+        height: 730px;
+        overflow-x: hidden;
+        overflow-y: auto;
+        display: flex;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .actions {
+        .buttonchangepage {
+            border: 1px solid teal;
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .gopage {
+            border: 1px solid teal;
+            padding: 2px 5px;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .gopage:hover {
+            background: teal;
+            color: white;
+        }
+    }
+}
