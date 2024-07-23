@@ -20,9 +20,9 @@ export function RelateTopics({ data, isLoading }: RelateTopicsProps) {
     };
 
     const ListPost = customConditionalFeedbackHigh(
-        "Loading Todos...",
-        "No Todos loaded yet.",
-        "Todos are empty.",
+        "Loading posts...",
+        "No posts loaded yet.",
+        "Posts are empty.",
     )(BaseListNews);
 
     return (
