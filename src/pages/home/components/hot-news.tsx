@@ -11,7 +11,7 @@ const { Title } = Typography;
 export function HotNews() {
     const { t } = useTranslation();
     const queryFn = {
-        limit: 4,
+        limit: 8,
     };
 
     const { data: posts } = useSearchNewestPosts({

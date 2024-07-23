@@ -12,9 +12,6 @@ export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
 
     return (
         <div className={styles.container_news} onClick={handleGoPost}>
-            <Title className={`${styles.text} ${styles.title}`} level={4}>
-                {data.title}
-            </Title>
             <Row justify={"center"} className={styles.image_thumbnail}>
                 <img
                     width={"100%"}
@@ -23,6 +20,9 @@ export const CardPost: React.FC<{ data: IPost }> = ({ data }) => {
                     alt={data.title}
                 />
             </Row>
+            <Title className={`${styles.text} ${styles.title}`} level={4}>
+                {data.title}
+            </Title>
             <Text className={`${styles.text} ${styles.content}`}>
                 &nbsp;&nbsp;&nbsp;&nbsp;{data?.description}
             </Text>

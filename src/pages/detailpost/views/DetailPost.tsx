@@ -1,4 +1,13 @@
-import { Col, Image, notification, Row, Skeleton, Typography } from "antd";
+import {
+    Avatar,
+    Col,
+    Flex,
+    Image,
+    notification,
+    Row,
+    Skeleton,
+    Typography,
+} from "antd";
 import styles from "./DetailPost.module.scss";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { RelateTopics } from "../components/relate-topics";
@@ -14,7 +23,7 @@ import { formatDate } from "@/utils/date";
 import { IPost } from "@/types/post";
 import { searchNewestPosts } from "@/services/post/newest-posts-search.service";
 import { filterPostsRelatedById } from "@/utils/array";
-import { HeartFilled, HeartOutlined } from "@ant-design/icons";
+import { HeartFilled, HeartOutlined, UserOutlined } from "@ant-design/icons";
 import { useLikePost } from "@/services/post/like-post.service";
 import { ModalSmall } from "@/components/modals/modalSmall";
 import { queryClient } from "@/lib/react-query";
@@ -135,14 +144,29 @@ export function DetailPost(): JSX.Element {
                                 {data?.title && (
                                     <Title level={3}>{data?.title}</Title>
                                 )}
-                                <Text>Author: {dataUser?.name}</Text>
-                                <br />
-                                <Text>
-                                    Time:{" "}
-                                    {data?.createdAt &&
-                                        formatDate(data.createdAt)}
-                                </Text>
-                                <br />
+                                <Flex
+                                    gap={20}
+                                    justify={"flex-start"}
+                                    align={"center"}
+                                >
+                                    <Flex
+                                        gap={5}
+                                        justify={"flex-start"}
+                                        align={"center"}
+                                    >
+                                        <Avatar
+                                            className={styles.avatar}
+                                            icon={<UserOutlined />}
+                                            src={dataUser?.image || undefined}
+                                        />
+                                        <Text>{dataUser?.name}</Text>
+                                    </Flex>
+                                    <Text>||</Text>
+                                    <Text>
+                                        {data?.createdAt &&
+                                            formatDate(data.createdAt)}
+                                    </Text>
+                                </Flex>
                             </Col>
                             <Col className={styles.actionsInPost}>
                                 {compareUser && (
