@@ -8,7 +8,7 @@ import { formatDate } from "@/utils/date";
 
 interface PostInSearchProps {
     dataPost: IPost;
-    setClickPostID: any;
+    setClickDataPost: any;
     setOpenModal: any;
 }
 
@@ -16,10 +16,10 @@ const { Text } = Typography;
 
 export function PostInSearch(data: PostInSearchProps) {
     const navigate = useNavigate();
-    const { dataPost, setClickPostID, setOpenModal } = data;
+    const { dataPost, setClickDataPost, setOpenModal } = data;
 
     const handleClickPost = () => {
-        setClickPostID(dataPost._id);
+        setClickDataPost(dataPost);
     };
 
     const goPost = (e: any) => {

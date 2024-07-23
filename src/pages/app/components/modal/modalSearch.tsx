@@ -24,7 +24,7 @@ export function ModalSearch(data: ModalSearchProps) {
     const [formSearchTitle] = Form.useForm<FieldType>();
     const { openModal, setOpenModal } = data;
     const [selectedTopics, setSelectedTopics] = useState<string[]>([]);
-    const [clickID, setClickID] = useState<string>();
+    const [clickData, setClickData] = useState<IPost | null>(null);
     const [dataPosts, setDataPosts] = useState<IPost[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const cancelTokenSource = axios.CancelToken.source();
@@ -60,7 +60,7 @@ export function ModalSearch(data: ModalSearchProps) {
                         }
                     });
             } else {
-                setClickID("");
+                setClickData(null);
             }
         };
         getDataPosts();
@@ -76,7 +76,7 @@ export function ModalSearch(data: ModalSearchProps) {
             <div className={styles.list_post}>
                 {data?.data.map((post: IPost) => (
                     <PostInSearch
-                        setClickPostID={setClickID}
+                        setClickDataPost={setClickData}
                         key={post._id}
                         dataPost={post}
                         setOpenModal={setOpenModal}
@@ -99,7 +99,7 @@ export function ModalSearch(data: ModalSearchProps) {
 
     useEffect(() => {
         if (dataPosts.length <= 0) {
-            setClickID("");
+            setClickData(null);
         }
     }, [dataPosts]);
 
@@ -158,8 +158,8 @@ export function ModalSearch(data: ModalSearchProps) {
                             <ListPostSearch data={draft} />
                         </div>
                         <div className={styles.boxRight}>
-                            {clickID !== "" && clickID !== undefined ? (
-                                <PostPreview id={clickID} />
+                            {clickData !== null && clickData !== undefined ? (
+                                <PostPreview dataPost={clickData} />
                             ) : (
                                 <div className={styles.bound}>
                                     <span>Waiting to preview</span>
