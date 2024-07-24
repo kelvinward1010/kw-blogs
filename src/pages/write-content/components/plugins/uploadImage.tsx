@@ -40,39 +40,43 @@
 // export { uploadPlugin };
 
 // Trong file uploadAdapter.ts
-import { uploadFile } from "@/services/file/uploadImage";
-import { FileLoader } from "@ckeditor/ckeditor5-upload/src/filerepository";
+import { BASE_URL, URL_API_UPLOADFILE } from "@/constant/config";
+import { Editor } from "@ckeditor/ckeditor5-core";
+import {
+    UploadAdapter,
+    FileLoader,
+} from "@ckeditor/ckeditor5-upload/src/filerepository";
+import axios from "axios";
 
-class MyUploadAdapter {
-    constructor(private loader: FileLoader) {}
-
-    upload() {
-        const formData = new FormData();
-        return this.loader.file.then(
-            (file: any) =>
-                new Promise((resolve, reject) => {
-                    formData.append("upload", file, file.name);
-
-                    return uploadFile(file)
-                        .then((res) => res.json())
-                        .then((d) => {
-                            if (d.url) {
-                                resolve({
-                                    default: d.url,
-                                });
-                            } else {
-                                reject(`Couldn't upload file: ${file.name}.`);
-                            }
-                        });
-                }),
-        );
-    }
+function uploadAdapter(loader: FileLoader): UploadAdapter {
+    return {
+        upload: () => {
+            return new Promise(async (resolve, reject) => {
+                try {
+                    const file = await loader.file;
+                    const response = await axios.request({
+                        method: "POST",
+                        url: `${BASE_URL}/${URL_API_UPLOADFILE}`,
+                        data: {
+                            files: file,
+                        },
+                        headers: {
+                            "Content-Type": "multipart/form-data",
+                        },
+                    });
+                    resolve({
+                        default: `${response.data.url}`,
+                    });
+                } catch (error) {
+                    reject("Hello");
+                }
+            });
+        },
+        abort: () => {},
+    };
 }
-
-export default function ThisCustomUploadAdapterPlugin(editor: any) {
-    editor.plugins.get("FileRepository").createUploadAdapter = (
-        loader: any,
-    ) => {
-        return new MyUploadAdapter(loader);
+export function uploadPlugin(editor: Editor) {
+    editor.plugins.get("FileRepository").createUploadAdapter = (loader) => {
+        return uploadAdapter(loader);
     };
 }
