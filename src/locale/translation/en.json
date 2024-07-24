@@ -30,7 +30,7 @@
         }
     },
     "feedback": {
-        "loading": "Loanding...",
+        "loading": "Loading...",
         "nodatafeedback": "No Data Feedback",
         "emptydata": "Data Is Empty..."
     },

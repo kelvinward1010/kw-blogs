@@ -25,6 +25,7 @@ import {
     Link,
     CodeBlock,
     TodoList,
+    Image,
     ImageInsertUI,
     Table,
     TableColumnResize,
@@ -34,6 +35,12 @@ import {
     TableCellProperties,
     TableColumnResizeEditing,
     Alignment,
+    Base64UploadAdapter,
+    ImageResize,
+    ImageEditing,
+    ImageResizeEditing,
+    ImageResizeButtons,
+    ImageToolbar,
 } from "ckeditor5";
 import { CKEditor, CKEditorContext } from "@ckeditor/ckeditor5-react";
 import { useRef } from "react";
@@ -59,6 +66,7 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
             Italic,
             Paragraph,
             Indent,
+            Image,
             IndentBlock,
             BlockQuote,
             Heading,
@@ -84,6 +92,12 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
             TableCellProperties,
             TableColumnResizeEditing,
             Alignment,
+            Base64UploadAdapter,
+            ImageResize,
+            ImageEditing,
+            ImageResizeEditing,
+            ImageResizeButtons,
+            ImageToolbar,
         ],
         toolbar: {
             items: [
@@ -109,7 +123,8 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
                 "code",
                 "|",
                 "link",
-                "uploadImage",
+                "insertImage",
+                "resizeImage",
                 "insertTable",
                 "blockQuote",
                 "codeBlock",
@@ -117,6 +132,7 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
                 "todoList",
                 "outdent",
                 "indent",
+                "|",
             ],
             shouldNotGroupWhenFull: true,
         },
@@ -129,6 +145,28 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
                 "imageTextAlternative",
             ],
         },
+        resizeOptions: [
+            {
+                name: "resizeImage:original",
+                value: null,
+                icon: "original",
+            },
+            {
+                name: "resizeImage:custom",
+                value: "custom",
+                icon: "custom",
+            },
+            {
+                name: "resizeImage:50",
+                value: "50",
+                icon: "medium",
+            },
+            {
+                name: "resizeImage:75",
+                value: "75",
+                icon: "large",
+            },
+        ],
         table: {
             contentToolbar: [
                 "tableColumn",
