@@ -41,9 +41,17 @@ import {
     ImageResizeEditing,
     ImageResizeButtons,
     ImageToolbar,
+    ImageBlock,
+    ImageInline,
+    ImageResizeHandles,
+    ImageBlockEditing,
+    ImageCaption,
+    ImageCaptionEditing,
+    ImageStyle,
 } from "ckeditor5";
 import { CKEditor, CKEditorContext } from "@ckeditor/ckeditor5-react";
 import { useRef } from "react";
+import "./style.css";
 
 interface EditorConfigurationProps {
     setContent?: any;
@@ -98,6 +106,13 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
             ImageResizeEditing,
             ImageResizeButtons,
             ImageToolbar,
+            ImageBlock,
+            ImageBlockEditing,
+            ImageInline,
+            ImageResizeHandles,
+            ImageCaption,
+            ImageCaptionEditing,
+            ImageStyle,
         ],
         toolbar: {
             items: [
@@ -124,6 +139,9 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
                 "|",
                 "link",
                 "insertImage",
+                "alignBlockLeft",
+                "alignBlockRight",
+                "alignCenter",
                 "resizeImage",
                 "insertTable",
                 "blockQuote",
@@ -137,10 +155,22 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
             shouldNotGroupWhenFull: true,
         },
         image: {
+            options: [
+                "inline",
+                "alignLeft",
+                "alignRight",
+                "alignCenter",
+                "alignBlockLeft",
+                "alignBlockRight",
+                "block",
+                "side",
+            ],
             toolbar: [
-                "imageStyle:full",
+                "imageStyle:inline",
+                "imageStyle:block",
                 "imageStyle:side",
                 "|",
+                "toggleImageCaption",
                 "imageTextAlternative",
             ],
         },
