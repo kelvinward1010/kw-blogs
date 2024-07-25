@@ -137,7 +137,6 @@ export const EditorConfig: React.FC<EditorConfigurationProps> = ({
             shouldNotGroupWhenFull: true,
         },
         image: {
-            upload: { types: ["mp4", "pdf", "mpeg", "jpg", "png"] },
             toolbar: [
                 "imageStyle:full",
                 "imageStyle:side",
