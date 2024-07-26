@@ -1,4 +1,4 @@
-import { IBasetListPost, IPost } from "@/types/post";
+import { IBasetListPost, IPostCard } from "@/types/post";
 import styles from "./style.module.scss";
 import { Skeleton, Typography } from "antd";
 import { customConditionalFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";
@@ -21,7 +21,7 @@ export function HotNews() {
 
     const draftData = {
         isLoading: false,
-        data: posts as IPost[],
+        data: posts as IPostCard[],
     };
 
     const ListPost = customConditionalFeedbackHigh()(BaseListNews);
@@ -43,7 +43,7 @@ export function HotNews() {
 const BaseListNews: React.FC<{ data: IBasetListPost }> = ({ data }) => {
     return (
         <div className={styles.container_listnews}>
-            {data?.data.map((post: IPost) => (
+            {data?.data.map((post: IPostCard) => (
                 <CardPost key={post._id} data={post} />
             ))}
         </div>
