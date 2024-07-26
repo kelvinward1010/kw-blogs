@@ -1,14 +1,19 @@
 .container {
-    position: relative;
     width: 100%;
     height: 100%;
-    min-height: 500px;
-    max-height: 700px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+
+    .box {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-height: 500px;
+        max-height: 1000px;
+        display: flex !important;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
 
     .title {
         color: white;
@@ -16,23 +21,45 @@
         padding: 10px;
         border-radius: 10px;
     }
-}
 
-.container::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url("../../../assets/jpg/blogs.jpg");
-    background-size: cover;
-    filter: blur(0px);
-    z-index: -1;
+    .box::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: blur(0px);
+        z-index: -1;
+    }
+
+    .img1::before {
+        background: url("../../../assets/jpg/blogs.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .img2::before {
+        background: url("../../../assets/jpg/blogs.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .img3::before {
+        background: url("../../../assets/jpg/blogs.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
+    .img4::before {
+        background: url("../../../assets/jpg/blogs.jpg");
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
 }
 
 @media screen and (max-width: 1024px) {
-    .container {
+    .box {
         min-height: 400px;
         max-height: 500px;
 
@@ -43,7 +70,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .container {
+    .box {
         min-height: 300px;
         max-height: 500px;
 
