@@ -1,7 +1,7 @@
 import { URL_API_SEARCHPOST } from "@/constant/config";
 import { apiClient } from "@/lib/api";
 import { ExtractFnReturnType, QueryConfig } from "@/lib/react-query";
-import { IPostCard } from "@/types/post";
+import { IPost } from "@/types/post";
 import { convertToQueryString } from "@/utils/string";
 import { useQuery } from "react-query";
 
@@ -13,7 +13,7 @@ interface SearchNewestPostsProps {
 
 export const searchNewestPosts = async (
     data: SearchNewestPostsProps,
-): Promise<IPostCard[]> => {
+): Promise<IPost[]> => {
     let convertedQuery = convertToQueryString(data);
     const res = await apiClient.get(`${URL_API_SEARCHPOST}${convertedQuery}`);
     return res?.data?.data;

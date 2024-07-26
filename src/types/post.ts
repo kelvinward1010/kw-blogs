@@ -15,7 +15,7 @@ export type IPostCard = Omit<IPost, "content" | "createdAt" | "updatedAt">;
 
 export interface IBasetListPost {
     isLoading: boolean;
-    data: IPost[] | IPostCard[];
+    data: IPost[];
 }
 
 export type IbaseList<T> = {
