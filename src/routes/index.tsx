@@ -39,6 +39,13 @@ const ProtectedRoute: React.FC<RouteProps> = ({ children }) => {
     return user ? <>{children}</> : <Navigate to={layoutUrl} replace />;
 };
 
+const ProtectedAuth: React.FC<RouteProps> = ({ children }) => {
+    const user: IUser | null = useSelector(
+        (state: RootState) => state.auth.user,
+    );
+    return user ? <Navigate to={layoutUrl} replace /> : <>{children}</>;
+};
+
 export const routerConfig = createBrowserRouter([
     {
         path: layoutUrl,
@@ -51,11 +58,19 @@ export const routerConfig = createBrowserRouter([
         children: [
             {
                 path: signupUrl,
-                element: <Signup />,
+                element: (
+                    <ProtectedAuth>
+                        <Signup />
+                    </ProtectedAuth>
+                ),
             },
             {
                 path: signinUrl,
-                element: <Signin />,
+                element: (
+                    <ProtectedAuth>
+                        <Signin />
+                    </ProtectedAuth>
+                ),
             },
             {
                 path: layoutUrl,
