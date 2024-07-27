@@ -2,4 +2,4 @@
 - npm i husky -D
 - npx husky init
 
-- npm i -D eslint-config-prettier prettier eslint-config-prettier
+- npm i -D eslint-config-prettier prettier eslint-plugin-react
