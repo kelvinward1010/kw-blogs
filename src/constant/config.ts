@@ -1,4 +1,4 @@
-export const BASE_URL = "https://fastapi-mvc.onrender.com/";
+export const BASE_URL = "https://backend-fastapi-kw-blogs.onrender.com/";
 
 //Auth
 export const URL_API_AUTH = "auth";
