@@ -176,15 +176,21 @@ export function DetailPost(): JSX.Element {
                                     />
                                 )}
                                 {isLiked ? (
-                                    <HeartFilled
-                                        onClick={handleLikePost}
-                                        className={styles.heartLike}
-                                    />
+                                    <>
+                                        <HeartFilled
+                                            onClick={handleLikePost}
+                                            className={styles.heartLike}
+                                        />
+                                        <p>{data?.likes?.length}</p>
+                                    </>
                                 ) : (
-                                    <HeartOutlined
-                                        onClick={handleLikePost}
-                                        className={styles.heartLike}
-                                    />
+                                    <>
+                                        <HeartOutlined
+                                            onClick={handleLikePost}
+                                            className={styles.heartLike}
+                                        />
+                                        <p>{data?.likes?.length}</p>
+                                    </>
                                 )}
                             </Col>
                         </Row>
