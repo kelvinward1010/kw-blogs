@@ -27,6 +27,7 @@ export function Layout({ children }: Props) {
     const refreshtoken = storageRefreshToken.getToken();
 
     const handleGoSignIn = () => {
+        setOpenModalAsk(false);
         navigate(signinUrl);
     };
 
