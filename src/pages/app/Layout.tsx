@@ -6,16 +6,20 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { ButtonConfig } from "@/components/buttonconfig";
 import { ArrowUpOutlined } from "@ant-design/icons";
 import { ScrollToTop } from "@/hooks/useScrollToTop";
-import { storageRefreshToken } from "@/utils/storage";
+import storage, { storageRefreshToken } from "@/utils/storage";
 import { jwtDecode } from "jwt-decode";
 import { ModalSmall } from "@/components/modals/modalSmall";
 import { signinUrl } from "@/routes/urls";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { logout } from "@/redux/reducers/authSlice";
 
 interface Props {
     children?: React.ReactNode;
 }
 
 export function Layout({ children }: Props) {
+    const dispatch: AppDispatch = useDispatch();
     const navigate = useNavigate();
     const currentTime = new Date();
     const [showButton, setShowButton] = useState(false);
@@ -48,6 +52,9 @@ export function Layout({ children }: Props) {
                 decodedRefreshToken?.exp < currentTime.getTime() / 1000 &&
                 refreshtoken
             ) {
+                storage.clearToken();
+                storageRefreshToken.clearToken();
+                dispatch(logout());
                 setOpenModalAsk(true);
             } else {
                 setOpenModalAsk(false);
