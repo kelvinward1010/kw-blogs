@@ -6,12 +6,12 @@ export const Layout = lazyLoad(
 );
 
 export const Signup = lazyLoad(
-    () => import("./sign-up/Signup"),
+    () => import("./auth/Signup"),
     (module) => module.Signup,
 );
 
 export const Signin = lazyLoad(
-    () => import("./sign-in/Signin"),
+    () => import("./auth/Signin"),
     (module) => module.Signin,
 );
 

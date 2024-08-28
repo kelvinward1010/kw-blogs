@@ -16,6 +16,7 @@ import { RootState } from "@/redux/store";
 import { useSelector } from "react-redux";
 import { getPost } from "@/services/post/get-post.service";
 import { useUpdatePost } from "@/services/post/update-post.service";
+import { RULES_UPDATEANDCREATEPOST } from "../rules";
 
 type FieldType = {
     topic?: string[];
@@ -208,9 +209,7 @@ export function WriteContent() {
                 <Form.Item<FieldType>
                     label={formLabel("Topic")}
                     name="topic"
-                    rules={[
-                        { required: true, message: "Please input your topic!" },
-                    ]}
+                    rules={RULES_UPDATEANDCREATEPOST.topic}
                 >
                     <Select
                         mode="multiple"
@@ -223,9 +222,7 @@ export function WriteContent() {
                 <Form.Item<FieldType>
                     label={formLabel("Title")}
                     name="title"
-                    rules={[
-                        { required: true, message: "Please input your title!" },
-                    ]}
+                    rules={RULES_UPDATEANDCREATEPOST.title}
                 >
                     <Input.TextArea rows={2} />
                 </Form.Item>
@@ -233,12 +230,7 @@ export function WriteContent() {
                 <Form.Item<FieldType>
                     label={formLabel("Description")}
                     name="description"
-                    rules={[
-                        {
-                            required: true,
-                            message: "Please input your description!",
-                        },
-                    ]}
+                    rules={RULES_UPDATEANDCREATEPOST.description}
                 >
                     <Input.TextArea rows={4} />
                 </Form.Item>

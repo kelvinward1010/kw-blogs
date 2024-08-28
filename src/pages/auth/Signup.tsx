@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { WarningOutlined } from "@ant-design/icons";
 import { signinUrl } from "@/routes/urls";
 import { useRegisterAccount } from "@/services/auth/register.service";
+import { RULES_SIGNUP } from "./rules";
 
 const { Text } = Typography;
 
@@ -80,12 +81,7 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Name"
                         name="name"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please input your name!",
-                            },
-                        ]}
+                        rules={RULES_SIGNUP.name}
                     >
                         <Input />
                     </Form.Item>
@@ -93,12 +89,7 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Email"
                         name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please input your email!",
-                            },
-                        ]}
+                        rules={RULES_SIGNUP.email}
                     >
                         <Input />
                     </Form.Item>
@@ -106,12 +97,7 @@ export function Signup() {
                     <Form.Item<FieldType>
                         label="Password"
                         name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please input your password!",
-                            },
-                        ]}
+                        rules={RULES_SIGNUP.password}
                     >
                         <Input.Password />
                     </Form.Item>

@@ -8,6 +8,7 @@ import storage, { storageRefreshToken } from "@/utils/storage";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { loginAcc } from "@/redux/reducers/authSlice";
+import { RULES_LOGIN } from "./rules";
 
 const { Text } = Typography;
 
@@ -76,12 +77,7 @@ export function Signin(): JSX.Element {
                     <Form.Item<FieldType>
                         label="Email"
                         name="email"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please input your email!",
-                            },
-                        ]}
+                        rules={RULES_LOGIN.email}
                     >
                         <Input />
                     </Form.Item>
@@ -89,12 +85,7 @@ export function Signin(): JSX.Element {
                     <Form.Item<FieldType>
                         label="Password"
                         name="password"
-                        rules={[
-                            {
-                                required: true,
-                                message: "Please input your password!",
-                            },
-                        ]}
+                        rules={RULES_LOGIN.password}
                     >
                         <Input.Password />
                     </Form.Item>

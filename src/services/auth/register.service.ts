@@ -3,13 +3,13 @@ import { apiClient } from "@/lib/api";
 import { MutationConfig } from "@/lib/react-query";
 import { useMutation } from "react-query";
 
-interface RegisterAccountProps {
+export interface RegisterAccountProps {
     name?: string;
     email?: string;
     password?: string;
-    image: string;
-    position: string;
-    favoritesposts: string[];
+    image?: string;
+    position?: string;
+    favoritesposts?: string[];
 }
 
 export const registerAccount = async (

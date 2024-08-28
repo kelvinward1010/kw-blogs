@@ -3,7 +3,7 @@ import { apiClient } from "@/lib/api";
 import { MutationConfig } from "@/lib/react-query";
 import { useMutation } from "react-query";
 
-interface CreatePostProps {
+export interface CreatePostProps {
     topic?: string[];
     title?: string;
     authorID?: string;
