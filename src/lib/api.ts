@@ -38,9 +38,6 @@ apiClient.interceptors.response.use(
                 );
                 const newToken = refreshTokenResponse.data?.data?.token;
 
-                //Lưu token mới vào Redux store
-                //dispatch(updateToken({access_token: newToken}));
-
                 // Lưu token mới vào local storage
                 storage.setToken(newToken);
 
@@ -49,9 +46,6 @@ apiClient.interceptors.response.use(
                 originalRequest.headers.Authorization = `Bearer ${newToken}`;
                 return apiClient(originalRequest);
             } catch (refreshError) {
-                console.error("Lỗi khi lấy token mới:", refreshError);
-                // dispatch({ type: 'LOGOUT' });
-                // history.push('/login');
                 return Promise.reject(error);
             }
         } else if (error?.response?.status === 404) {
