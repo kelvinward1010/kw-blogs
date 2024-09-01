@@ -2,7 +2,7 @@ import { IComment } from "@/types/comment";
 import styles from "./list-comments.module.scss";
 import { Avatar, Col, Flex, Row, Typography } from "antd";
 import { UserAddOutlined } from "@ant-design/icons";
-import { comments } from "../../../topics/data";
+import { comments } from "../../../explores/data";
 import { useState } from "react";
 import { FormComment } from "./form-comment";
 import { customConditionalCommentsFeedbackHigh } from "@/components/hoc/custom-feedback.hoc";

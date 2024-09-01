@@ -2,7 +2,7 @@ import { useNavigate, useSearchParams } from "react-router-dom";
 import styles from "./topic.module.scss";
 import { Flex, Tag, Typography } from "antd";
 import { useState } from "react";
-import { topicsUrl } from "@/routes/urls";
+import { exploressUrl } from "@/routes/urls";
 import { topicsData } from "@/config";
 
 const { Text } = Typography;
@@ -18,7 +18,7 @@ export function Topics() {
         const nextSelectedTags = checked
             ? [...selectedTopics, tag]
             : selectedTopics.filter((t) => t !== tag);
-        navigate(topicsUrl);
+        navigate(exploressUrl);
         setSelectedTopics(nextSelectedTags);
         setTopicsParams({ topic: nextSelectedTags });
     };

@@ -8,7 +8,7 @@ import {
     settingUrl,
     signinUrl,
     signupUrl,
-    topicsUrl,
+    exploressUrl,
     writecontentUrl,
 } from "@/routes/urls";
 import { MenuFoldOutlined } from "@ant-design/icons";
@@ -66,7 +66,7 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
             setOpen(false);
         },
         goTopics: () => {
-            navigate(topicsUrl);
+            navigate(exploressUrl);
             setOpen(false);
         },
         goAboutMe: () => {

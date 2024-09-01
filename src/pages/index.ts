@@ -20,9 +20,9 @@ export const Home = lazyLoad(
     (module) => module.Home,
 );
 
-export const Topics = lazyLoad(
-    () => import("./topics/views/Topics"),
-    (module) => module.Topics,
+export const Explores = lazyLoad(
+    () => import("./explores/views/Explores"),
+    (module) => module.Explores,
 );
 
 export const DetailPost = lazyLoad(

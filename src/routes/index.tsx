@@ -8,7 +8,7 @@ import {
     settingUrl,
     signinUrl,
     signupUrl,
-    topicsUrl,
+    exploressUrl,
     writecontentUrl,
 } from "./urls";
 import {
@@ -20,7 +20,7 @@ import {
     Setting,
     Signin,
     Signup,
-    Topics,
+    Explores,
     WriteContent,
 } from "@/pages";
 import { IUser } from "@/types/user";
@@ -77,8 +77,8 @@ export const routerConfig = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: topicsUrl,
-                element: <Topics />,
+                path: exploressUrl,
+                element: <Explores />,
             },
             {
                 path: contactUrl,

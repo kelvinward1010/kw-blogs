@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 const { Text } = Typography;
 
-export function Topics() {
+export function Explores() {
     const { t } = useTranslation();
     const [formInTopics] = Form.useForm();
     const [topicsParams, setTopicsParams] = useSearchParams();

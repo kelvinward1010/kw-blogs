@@ -16,7 +16,7 @@ import {
     settingUrl,
     signinUrl,
     signupUrl,
-    topicsUrl,
+    exploressUrl,
     writecontentUrl,
 } from "../../../../routes/urls";
 import { ButtonConfig } from "@/components/buttonconfig";
@@ -55,7 +55,7 @@ export function Header(): JSX.Element {
     const goSignin = () => navigate(signinUrl);
 
     const goHome = () => navigate(layoutUrl);
-    const goTopics = () => navigate(topicsUrl);
+    const goTopics = () => navigate(exploressUrl);
     const goAboutMe = () => navigate(contactUrl);
 
     const handleChangeLanguages = (value: string) => {
@@ -204,7 +204,7 @@ export function Header(): JSX.Element {
                         </li>
                         <li onClick={goTopics}>
                             <Text className={`${styles.title}`} strong>
-                                {t("head.menu.topics")}
+                                {t("head.menu.explores")}
                             </Text>
                         </li>
                         <li onClick={goAboutMe}>
