@@ -24,7 +24,7 @@ export function Layout({ children }: Props) {
     const currentTime = new Date();
     const [showButton, setShowButton] = useState(false);
     const [openModalAsk, setOpenModalAsk] = useState<boolean>(false);
-    const refreshtoken = storageRefreshToken.getToken();
+    const refreshtoken = storageRefreshToken?.getToken();
 
     const handleGoSignIn = () => {
         setOpenModalAsk(false);

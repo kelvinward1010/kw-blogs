@@ -140,7 +140,7 @@ export const DrawerResponsive: React.FC<DrawerResponsiveProps> = ({
                     </li>
                     <li onClick={navigationFunctions.goTopics}>
                         <Text className={`${stylesss.title}`} strong>
-                            {t("head.menu.topics")}
+                            {t("head.menu.explores")}
                         </Text>
                     </li>
                     <li onClick={navigationFunctions.goAboutMe}>

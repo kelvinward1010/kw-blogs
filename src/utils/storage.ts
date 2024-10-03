@@ -21,8 +21,8 @@ export default storage;
 
 export const storageRefreshToken = {
     getToken: () => {
-        return JSON.parse(
-            window.localStorage.getItem(
+        return JSON?.parse(
+            window.localStorage?.getItem(
                 `${storagePrefix}refresh_token`,
             ) as string,
         );

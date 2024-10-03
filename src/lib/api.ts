@@ -10,7 +10,7 @@ export const apiClient = axios.create({
 
 apiClient.interceptors.request.use(
     function (config) {
-        config.headers.Authorization = "Bearer " + storage.getToken();
+        config.headers.Authorization = "Bearer " + storage?.getToken();
         return config;
     },
     function (error) {
@@ -28,7 +28,7 @@ apiClient.interceptors.response.use(
         if (error?.response?.status === 401) {
             try {
                 // Gọi API để lấy token mới
-                const refreshtoken = storageRefreshToken.getToken();
+                const refreshtoken = storageRefreshToken?.getToken();
                 const draftData = {
                     refresh_token: refreshtoken,
                 };

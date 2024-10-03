@@ -25,17 +25,19 @@ export function Signin(): JSX.Element {
         config: {
             onSuccess: (res) => {
                 const data = res?.data;
-                notification.success({
-                    message: "Loged In!",
-                });
-                storage.setToken(data.access_token);
-                storageRefreshToken.setToken(data.refresh_token);
-                dispatch(
-                    loginAcc({
-                        user: data?.user,
-                    }),
-                );
-                navigate(-1);
+                if (data?.status == 200) {
+                    notification.success({
+                        message: "Loged In!",
+                    });
+                    storage.setToken(data.access_token);
+                    storageRefreshToken.setToken(data.refresh_token);
+                    dispatch(
+                        loginAcc({
+                            user: data?.user,
+                        }),
+                    );
+                    navigate(-1);
+                }
             },
             onError: (e) => {
                 notification.error({
